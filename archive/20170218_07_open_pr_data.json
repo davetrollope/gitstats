@@ -1,0 +1,2909 @@
+[
+  {
+    "repo": "rails/actioncable-examples",
+    "id": 34,
+    "created_at": "2016-10-20T01:43:56Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "karlcoelho"
+  },
+  {
+    "repo": "rails/actioncable-examples",
+    "id": 26,
+    "created_at": "2016-03-27T16:55:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "nicolasmlv"
+  },
+  {
+    "repo": "rails/actioncable-examples",
+    "id": 22,
+    "created_at": "2016-02-27T14:02:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jsilvestri"
+  },
+  {
+    "repo": "rails/actioncable-examples",
+    "id": 13,
+    "created_at": "2015-11-17T15:57:44Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dobryakov"
+  },
+  {
+    "repo": "rails/actioncable-examples",
+    "id": 8,
+    "created_at": "2015-07-13T21:57:14Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vovimayhem"
+  },
+  {
+    "repo": "rails/actionpack-action_caching",
+    "id": 42,
+    "created_at": "2017-01-25T14:12:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "nazarok"
+  },
+  {
+    "repo": "rails/actionpack-page_caching",
+    "id": 33,
+    "created_at": "2016-03-27T15:03:55Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mechanicles"
+  },
+  {
+    "repo": "rails/activerecord-session_store",
+    "id": 95,
+    "created_at": "2016-12-19T23:00:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "deltaroe"
+  },
+  {
+    "repo": "rails/activerecord-session_store",
+    "id": 89,
+    "created_at": "2016-09-21T18:59:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "eliotsykes"
+  },
+  {
+    "repo": "rails/activerecord-session_store",
+    "id": 86,
+    "created_at": "2016-08-25T07:59:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "albiere"
+  },
+  {
+    "repo": "rails/activerecord-session_store",
+    "id": 84,
+    "created_at": "2016-07-06T15:16:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bdewater"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 244,
+    "created_at": "2017-01-27T23:37:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "efigarolam"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 243,
+    "created_at": "2017-01-26T11:04:27Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "korstiaan"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 240,
+    "created_at": "2016-12-09T18:21:56Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "fanta"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 206,
+    "created_at": "2016-02-03T20:20:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "phil"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 196,
+    "created_at": "2015-12-18T16:44:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "chucre"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 192,
+    "created_at": "2015-11-30T07:23:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "acrogenesis"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 190,
+    "created_at": "2015-10-20T20:38:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jaisonerick"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 179,
+    "created_at": "2015-07-21T20:11:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "JKring"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 176,
+    "created_at": "2015-07-04T23:53:27Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ramontayag"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 166,
+    "created_at": "2015-06-10T10:59:57Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Masa331"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 165,
+    "created_at": "2015-06-03T13:18:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wyattisimo"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 144,
+    "created_at": "2014-09-24T22:20:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "boldenburg"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 137,
+    "created_at": "2014-06-10T08:34:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sephinroth"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 132,
+    "created_at": "2014-05-13T19:04:55Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cbeer"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 130,
+    "created_at": "2014-05-13T18:22:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cbeer"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 128,
+    "created_at": "2014-05-13T01:01:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cbeer"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 127,
+    "created_at": "2014-05-07T20:16:06Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cbeer"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 106,
+    "created_at": "2013-10-18T13:58:13Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "forker"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 94,
+    "created_at": "2013-09-04T13:24:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Fivell"
+  },
+  {
+    "repo": "rails/activeresource",
+    "id": 92,
+    "created_at": "2013-08-29T01:46:42Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "shamne"
+  },
+  {
+    "repo": "rails/activesupport-json_encoder",
+    "id": 8,
+    "created_at": "2016-03-08T02:46:17Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "marcelokanzaki"
+  },
+  {
+    "repo": "rails/activesupport-json_encoder",
+    "id": 4,
+    "created_at": "2014-12-29T10:12:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mahmoud-abdelaziz"
+  },
+  {
+    "repo": "rails/acts_as_list",
+    "id": 16,
+    "created_at": "2012-04-13T11:10:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ream88"
+  },
+  {
+    "repo": "rails/acts_as_list",
+    "id": 14,
+    "created_at": "2011-03-01T07:08:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "intel352"
+  },
+  {
+    "repo": "rails/acts_as_list",
+    "id": 13,
+    "created_at": "2011-02-07T10:16:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vpereira"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 472,
+    "created_at": "2017-02-17T19:08:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "film42"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 470,
+    "created_at": "2017-02-02T14:32:44Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kmmndr"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 465,
+    "created_at": "2017-01-06T17:09:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "abrandoned"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 455,
+    "created_at": "2016-11-17T21:22:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "romankonz"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 454,
+    "created_at": "2016-11-08T04:25:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rzane"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 449,
+    "created_at": "2016-10-05T00:03:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kbrock"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 434,
+    "created_at": "2016-05-15T01:41:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kbrock"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 406,
+    "created_at": "2015-12-27T12:24:21Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tadeusrox"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 385,
+    "created_at": "2015-07-28T15:41:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "zeckalpha"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 320,
+    "created_at": "2014-09-26T22:57:38Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jsanders"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 294,
+    "created_at": "2014-06-19T03:55:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "joseluistorres"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 286,
+    "created_at": "2014-06-06T20:59:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "JacobEvelyn"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 245,
+    "created_at": "2014-02-08T15:28:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vanderhoorn"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 241,
+    "created_at": "2014-02-04T11:01:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "lloeki"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 228,
+    "created_at": "2013-12-12T22:09:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ccutrer"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 225,
+    "created_at": "2013-12-04T01:17:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "robdimarco"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 207,
+    "created_at": "2013-09-06T14:46:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "pftg"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 190,
+    "created_at": "2013-06-07T16:51:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dark-panda"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 187,
+    "created_at": "2013-06-05T19:29:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ernie"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 176,
+    "created_at": "2013-04-02T16:31:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "PlugIN73"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 157,
+    "created_at": "2013-01-08T16:47:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "grosser"
+  },
+  {
+    "repo": "rails/arel",
+    "id": 145,
+    "created_at": "2012-09-30T12:45:50Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "teleological"
+  },
+  {
+    "repo": "rails/auto_complete",
+    "id": 12,
+    "created_at": "2011-03-06T22:17:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "reillyse"
+  },
+  {
+    "repo": "rails/auto_complete",
+    "id": 9,
+    "created_at": "2010-09-20T01:35:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "marklazz"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 64,
+    "created_at": "2015-01-06T15:36:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "spodlecki"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 46,
+    "created_at": "2013-05-21T21:04:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "nickurban"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 41,
+    "created_at": "2013-04-24T08:57:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "eimermusic"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 37,
+    "created_at": "2013-03-01T22:21:52Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "chibicode"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 32,
+    "created_at": "2013-02-07T21:46:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tibbon"
+  },
+  {
+    "repo": "rails/cache_digests",
+    "id": 18,
+    "created_at": "2012-12-02T03:57:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "latortuga"
+  },
+  {
+    "repo": "rails/commands",
+    "id": 25,
+    "created_at": "2014-03-02T05:37:08Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "adamgamble"
+  },
+  {
+    "repo": "rails/commands",
+    "id": 9,
+    "created_at": "2012-12-21T22:04:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "qrush"
+  },
+  {
+    "repo": "rails/conductor",
+    "id": 19,
+    "created_at": "2014-11-25T19:28:49Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wazery"
+  },
+  {
+    "repo": "rails/dynamic_form",
+    "id": 5,
+    "created_at": "2012-02-06T10:44:22Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dmasur"
+  },
+  {
+    "repo": "rails/dynamic_form",
+    "id": 4,
+    "created_at": "2011-11-26T13:03:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "alpardal"
+  },
+  {
+    "repo": "rails/dynamic_form",
+    "id": 2,
+    "created_at": "2010-10-06T20:07:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ramn"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 19,
+    "created_at": "2015-07-24T14:50:47Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "stevenspiel"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 18,
+    "created_at": "2011-02-19T20:52:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "srejbi"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 16,
+    "created_at": "2011-01-24T21:38:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "paulschreiber"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 11,
+    "created_at": "2010-11-23T10:58:13Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "karmi"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 10,
+    "created_at": "2010-11-03T15:26:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vjt"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 9,
+    "created_at": "2010-10-14T15:33:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "alto"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 8,
+    "created_at": "2010-09-26T20:13:12Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "deneuxa"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 7,
+    "created_at": "2010-09-25T01:06:25Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "lichtamberg"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 6,
+    "created_at": "2010-09-23T17:36:28Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "azimux"
+  },
+  {
+    "repo": "rails/exception_notification",
+    "id": 5,
+    "created_at": "2010-09-03T07:51:02Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "der-flo"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 55,
+    "created_at": "2016-10-10T10:40:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jhawthorn"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 49,
+    "created_at": "2016-07-20T18:36:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "junaruga"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 46,
+    "created_at": "2016-07-07T02:58:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maisumakun"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 37,
+    "created_at": "2016-04-24T19:12:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "julik"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 35,
+    "created_at": "2016-03-16T14:42:08Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kares"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 28,
+    "created_at": "2015-10-02T15:44:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tristanchanson"
+  },
+  {
+    "repo": "rails/execjs",
+    "id": 8,
+    "created_at": "2015-03-20T12:50:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "martynovs"
+  },
+  {
+    "repo": "rails/globalid",
+    "id": 85,
+    "created_at": "2016-01-09T22:16:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "georgeclaghorn"
+  },
+  {
+    "repo": "rails/globalid",
+    "id": 81,
+    "created_at": "2015-11-30T22:04:47Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jhoffner"
+  },
+  {
+    "repo": "rails/homepage",
+    "id": 67,
+    "created_at": "2016-09-20T18:43:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vis-kid"
+  },
+  {
+    "repo": "rails/homepage",
+    "id": 64,
+    "created_at": "2016-09-01T21:28:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "vis-kid"
+  },
+  {
+    "repo": "rails/homepage",
+    "id": 42,
+    "created_at": "2016-02-13T04:37:27Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sonalkr132"
+  },
+  {
+    "repo": "rails/homepage",
+    "id": 27,
+    "created_at": "2016-01-21T10:13:32Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "psagan"
+  },
+  {
+    "repo": "rails/in_place_editing",
+    "id": 4,
+    "created_at": "2010-10-12T03:47:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wanglian"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 386,
+    "created_at": "2017-02-15T19:50:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "justin808"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 380,
+    "created_at": "2017-02-06T02:41:42Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "nullset2"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 369,
+    "created_at": "2016-11-10T19:52:47Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mu-is-too-short"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 361,
+    "created_at": "2016-10-08T22:42:44Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "abhiQmar"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 353,
+    "created_at": "2016-09-15T15:24:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "composerinteralia"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 352,
+    "created_at": "2016-09-14T15:48:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "warmwaffles"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 304,
+    "created_at": "2015-11-04T08:54:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bastengao"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 301,
+    "created_at": "2015-10-22T17:49:06Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bzanchet"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 298,
+    "created_at": "2015-10-06T03:07:57Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dirk"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 288,
+    "created_at": "2015-07-29T10:01:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ASnow"
+  },
+  {
+    "repo": "rails/jbuilder",
+    "id": 286,
+    "created_at": "2015-07-16T12:26:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "odedniv"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 482,
+    "created_at": "2016-12-30T06:29:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "s0ber"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 458,
+    "created_at": "2016-02-12T00:41:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maisumakun"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 413,
+    "created_at": "2015-04-27T15:01:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "stevenwanderski"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 409,
+    "created_at": "2015-03-25T17:31:39Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ericdfields"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 403,
+    "created_at": "2015-02-16T19:17:52Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bwillis"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 395,
+    "created_at": "2014-10-28T10:48:13Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "KODerFunk"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 383,
+    "created_at": "2014-07-22T20:45:27Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "koenpunt"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 362,
+    "created_at": "2014-03-03T04:01:42Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "pekeler"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 361,
+    "created_at": "2014-03-02T23:53:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "pekeler"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 348,
+    "created_at": "2013-11-01T21:28:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "arojoal"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 328,
+    "created_at": "2013-06-11T08:37:50Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "pzgz"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 307,
+    "created_at": "2013-02-18T11:57:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "phillipp"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 301,
+    "created_at": "2013-01-28T14:15:14Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "santry"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 274,
+    "created_at": "2012-08-30T03:03:36Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "paulcookie"
+  },
+  {
+    "repo": "rails/jquery-ujs",
+    "id": 250,
+    "created_at": "2012-03-29T14:46:21Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "lseelenbinder"
+  },
+  {
+    "repo": "rails/open_id_authentication",
+    "id": 5,
+    "created_at": "2010-10-03T13:33:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tomhughes"
+  },
+  {
+    "repo": "rails/pjax_rails",
+    "id": 85,
+    "created_at": "2016-12-06T21:40:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "koenpunt"
+  },
+  {
+    "repo": "rails/pjax_rails",
+    "id": 77,
+    "created_at": "2015-12-18T21:05:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "koenpunt"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 40,
+    "created_at": "2016-07-13T11:40:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "pbharadiya"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 39,
+    "created_at": "2016-03-15T05:29:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "grosser"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 31,
+    "created_at": "2014-11-19T19:16:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "spinecone"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 25,
+    "created_at": "2013-07-26T14:56:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "prowler"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 19,
+    "created_at": "2013-01-16T17:06:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "subbarao"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 18,
+    "created_at": "2013-01-11T03:09:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "SpiffyStores"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 16,
+    "created_at": "2012-12-02T05:12:39Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "willbryant"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 15,
+    "created_at": "2012-06-30T16:44:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dvandersluis"
+  },
+  {
+    "repo": "rails/prototype-rails",
+    "id": 5,
+    "created_at": "2011-09-01T16:27:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "twalpole"
+  },
+  {
+    "repo": "rails/prototype-ujs",
+    "id": 12,
+    "created_at": "2011-12-21T18:40:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dvandersluis"
+  },
+  {
+    "repo": "rails/prototype-ujs",
+    "id": 11,
+    "created_at": "2011-10-06T22:40:06Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "domchristie"
+  },
+  {
+    "repo": "rails/prototype-ujs",
+    "id": 10,
+    "created_at": "2011-09-26T21:09:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "gregjacobs"
+  },
+  {
+    "repo": "rails/prototype-ujs",
+    "id": 9,
+    "created_at": "2011-06-10T19:25:44Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cjolly"
+  },
+  {
+    "repo": "rails/prototype-ujs",
+    "id": 8,
+    "created_at": "2011-06-08T19:05:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cjolly"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28064,
+    "created_at": "2017-02-18T09:37:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "github0013"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28063,
+    "created_at": "2017-02-18T08:12:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Erol"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28062,
+    "created_at": "2017-02-18T07:53:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "y-yagi"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28061,
+    "created_at": "2017-02-18T02:29:12Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "andrewhood125"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28059,
+    "created_at": "2017-02-18T02:03:21Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "y-yagi"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28057,
+    "created_at": "2017-02-18T00:37:25Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "eugeneius"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28056,
+    "created_at": "2017-02-17T22:11:01Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sngeth"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28055,
+    "created_at": "2017-02-17T20:16:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "robertomiranda"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28052,
+    "created_at": "2017-02-17T14:14:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28051,
+    "created_at": "2017-02-17T13:55:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "deraru"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28050,
+    "created_at": "2017-02-17T13:19:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "namusyaka"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28048,
+    "created_at": "2017-02-17T08:41:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "domcleal"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28043,
+    "created_at": "2017-02-17T00:50:37Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28042,
+    "created_at": "2017-02-16T23:56:21Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28041,
+    "created_at": "2017-02-16T23:15:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28038,
+    "created_at": "2017-02-16T18:45:38Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kaspth"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28036,
+    "created_at": "2017-02-16T15:15:01Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kenta-s"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28035,
+    "created_at": "2017-02-16T15:12:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "michald"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28029,
+    "created_at": "2017-02-16T09:10:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "koic"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28027,
+    "created_at": "2017-02-15T23:32:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "claudiob"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28022,
+    "created_at": "2017-02-15T19:18:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "spk"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28017,
+    "created_at": "2017-02-15T14:54:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mtsmfm"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28014,
+    "created_at": "2017-02-15T07:05:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Sen-Zhang"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28013,
+    "created_at": "2017-02-15T02:18:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "iguchi1124"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28009,
+    "created_at": "2017-02-14T22:54:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mltsy"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28008,
+    "created_at": "2017-02-14T21:31:55Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28007,
+    "created_at": "2017-02-14T20:19:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28006,
+    "created_at": "2017-02-14T20:01:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "fareastside"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 28005,
+    "created_at": "2017-02-14T19:45:08Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27994,
+    "created_at": "2017-02-14T05:24:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rzane"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27990,
+    "created_at": "2017-02-13T23:29:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "leonelgalan"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27978,
+    "created_at": "2017-02-12T16:47:14Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27962,
+    "created_at": "2017-02-10T09:53:47Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27947,
+    "created_at": "2017-02-08T18:47:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mastahyeti"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27941,
+    "created_at": "2017-02-08T09:32:28Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "y-yagi"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27939,
+    "created_at": "2017-02-07T23:59:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27936,
+    "created_at": "2017-02-07T18:46:37Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rafaelfranca"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27930,
+    "created_at": "2017-02-07T02:31:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "st0012"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27925,
+    "created_at": "2017-02-06T13:55:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "robin850"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27920,
+    "created_at": "2017-02-06T07:22:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kami-zh"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27918,
+    "created_at": "2017-02-05T21:47:11Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27917,
+    "created_at": "2017-02-05T20:46:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "composerinteralia"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27909,
+    "created_at": "2017-02-05T02:14:05Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "eugeneius"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27903,
+    "created_at": "2017-02-04T13:20:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kirs"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27888,
+    "created_at": "2017-02-02T18:11:37Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "namusyaka"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27886,
+    "created_at": "2017-02-02T15:23:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "5t111111"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27879,
+    "created_at": "2017-02-02T07:11:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "marrsale"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27872,
+    "created_at": "2017-02-01T16:27:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "deraru"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27863,
+    "created_at": "2017-01-31T21:43:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "robin850"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27861,
+    "created_at": "2017-01-31T18:00:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "RichieAHB"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27860,
+    "created_at": "2017-01-31T17:24:42Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "meinac"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27843,
+    "created_at": "2017-01-30T01:32:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rbhitchcock"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27832,
+    "created_at": "2017-01-28T04:07:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bdewater"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27813,
+    "created_at": "2017-01-26T17:48:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Vasfed"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27792,
+    "created_at": "2017-01-24T12:49:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tjoyal"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27790,
+    "created_at": "2017-01-24T11:07:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "domcleal"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27780,
+    "created_at": "2017-01-23T17:18:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mikelikesbikes"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27769,
+    "created_at": "2017-01-22T16:52:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27756,
+    "created_at": "2017-01-20T23:13:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "travisofthenorth"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27755,
+    "created_at": "2017-01-20T21:27:41Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bogdanvlviv"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27737,
+    "created_at": "2017-01-19T10:59:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Crunch09"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27721,
+    "created_at": "2017-01-18T07:17:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Widdershin"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27689,
+    "created_at": "2017-01-15T03:54:12Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "killthekitten"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27681,
+    "created_at": "2017-01-14T16:12:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rickypai"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27669,
+    "created_at": "2017-01-13T11:20:14Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "avdept"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27662,
+    "created_at": "2017-01-12T22:23:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "nhorton"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27651,
+    "created_at": "2017-01-11T23:26:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kirs"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27648,
+    "created_at": "2017-01-11T16:18:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "palkan"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27640,
+    "created_at": "2017-01-11T01:57:21Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ecoologic"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27636,
+    "created_at": "2017-01-10T17:32:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mtsmfm"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27623,
+    "created_at": "2017-01-09T20:27:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Envek"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27617,
+    "created_at": "2017-01-09T13:33:57Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "longkt90"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27615,
+    "created_at": "2017-01-09T12:21:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27611,
+    "created_at": "2017-01-09T00:33:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "arthurnn"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27609,
+    "created_at": "2017-01-08T17:06:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27597,
+    "created_at": "2017-01-06T22:34:28Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "brchristian"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27588,
+    "created_at": "2017-01-06T10:19:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bradleypriest"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27585,
+    "created_at": "2017-01-05T21:02:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sbleon"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27577,
+    "created_at": "2017-01-05T03:03:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27572,
+    "created_at": "2017-01-04T17:51:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "matthewd"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27561,
+    "created_at": "2017-01-04T00:40:04Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "klaseskilson"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27494,
+    "created_at": "2016-12-29T11:26:39Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "matthewd"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27484,
+    "created_at": "2016-12-28T19:25:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ninjarhyme"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27449,
+    "created_at": "2016-12-24T21:30:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27443,
+    "created_at": "2016-12-23T17:20:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "legendetm"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27439,
+    "created_at": "2016-12-23T01:28:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "hugopeixoto"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27436,
+    "created_at": "2016-12-22T14:26:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dfaulken"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27429,
+    "created_at": "2016-12-22T00:52:37Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jhawthorn"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27413,
+    "created_at": "2016-12-20T06:27:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kamipo"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27381,
+    "created_at": "2016-12-16T08:34:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mrhead"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27376,
+    "created_at": "2016-12-15T21:13:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ptoomey3"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27362,
+    "created_at": "2016-12-14T18:56:13Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "homakov"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27333,
+    "created_at": "2016-12-11T22:11:02Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27331,
+    "created_at": "2016-12-11T18:26:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "brchristian"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27319,
+    "created_at": "2016-12-10T01:14:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jeremy"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27316,
+    "created_at": "2016-12-09T23:28:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27296,
+    "created_at": "2016-12-07T13:03:39Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "printercu"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27287,
+    "created_at": "2016-12-06T21:42:52Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "koenpunt"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27249,
+    "created_at": "2016-12-02T03:22:39Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ezr-ondrej"
+  },
+  {
+    "repo": "rails/rails",
+    "id": 27239,
+    "created_at": "2016-12-01T03:33:29Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "kruppel"
+  },
+  {
+    "repo": "rails/rails-controller-testing",
+    "id": 32,
+    "created_at": "2017-01-31T14:18:58Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Shuiei"
+  },
+  {
+    "repo": "rails/rails-docs-server",
+    "id": 6,
+    "created_at": "2015-12-02T22:24:43Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "matthewd"
+  },
+  {
+    "repo": "rails/rails-html-sanitizer",
+    "id": 61,
+    "created_at": "2017-02-03T19:57:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "junaruga"
+  },
+  {
+    "repo": "rails/rails-html-sanitizer",
+    "id": 60,
+    "created_at": "2017-01-10T23:44:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "flakeparadigm"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 50,
+    "created_at": "2016-08-01T05:34:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cfis"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 49,
+    "created_at": "2016-08-01T05:24:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cfis"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 41,
+    "created_at": "2016-02-04T03:57:42Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mvastola"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 36,
+    "created_at": "2015-08-26T15:49:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "anthonyjsmith"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 28,
+    "created_at": "2014-07-23T12:02:44Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jesenko"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 16,
+    "created_at": "2013-09-30T19:13:12Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "markmeeus"
+  },
+  {
+    "repo": "rails/rails-observers",
+    "id": 13,
+    "created_at": "2013-07-22T14:09:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "schmurfy"
+  },
+  {
+    "repo": "rails/rails-perftest",
+    "id": 42,
+    "created_at": "2017-01-10T23:18:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "gabrielmdeal"
+  },
+  {
+    "repo": "rails/rails-perftest",
+    "id": 40,
+    "created_at": "2017-01-06T07:41:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "gabrielmdeal"
+  },
+  {
+    "repo": "rails/rails-perftest",
+    "id": 34,
+    "created_at": "2016-04-01T20:13:07Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mfazekas"
+  },
+  {
+    "repo": "rails/rails-perftest",
+    "id": 25,
+    "created_at": "2015-10-07T22:19:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "TheAustinSeven"
+  },
+  {
+    "repo": "rails/rails.github.com",
+    "id": 76,
+    "created_at": "2015-12-02T22:40:08Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "matthewd"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 26,
+    "created_at": "2015-01-07T13:11:56Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "JamesWatling"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 25,
+    "created_at": "2014-02-19T17:33:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "iangreenleaf"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 24,
+    "created_at": "2013-12-18T18:48:32Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bigchirv"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 23,
+    "created_at": "2013-06-11T08:24:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sfsekaran"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 22,
+    "created_at": "2013-04-15T03:25:28Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "HandyAndyShortStack"
+  },
+  {
+    "repo": "rails/rails_upgrade",
+    "id": 19,
+    "created_at": "2012-04-27T05:17:45Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "amontano"
+  },
+  {
+    "repo": "rails/rails_xss",
+    "id": 18,
+    "created_at": "2012-11-08T23:18:11Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mungler"
+  },
+  {
+    "repo": "rails/rails_xss",
+    "id": 17,
+    "created_at": "2012-09-11T21:03:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "grosser"
+  },
+  {
+    "repo": "rails/rails_xss",
+    "id": 16,
+    "created_at": "2012-09-11T21:01:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "grosser"
+  },
+  {
+    "repo": "rails/rails_xss",
+    "id": 14,
+    "created_at": "2012-08-19T01:08:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "grosser"
+  },
+  {
+    "repo": "rails/rails_xss",
+    "id": 13,
+    "created_at": "2011-11-23T21:54:31Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "jingoro"
+  },
+  {
+    "repo": "rails/routing_concerns",
+    "id": 3,
+    "created_at": "2012-11-19T16:21:57Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ysbaddaden"
+  },
+  {
+    "repo": "rails/ruby-coffee-script",
+    "id": 8,
+    "created_at": "2016-03-15T21:10:47Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "diclophis"
+  },
+  {
+    "repo": "rails/ruby-coffee-script",
+    "id": 6,
+    "created_at": "2015-12-27T11:06:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wwood"
+  },
+  {
+    "repo": "rails/sass-rails",
+    "id": 386,
+    "created_at": "2016-09-02T18:36:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wjordan"
+  },
+  {
+    "repo": "rails/sass-rails",
+    "id": 374,
+    "created_at": "2016-06-23T22:52:12Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "wjordan"
+  },
+  {
+    "repo": "rails/sass-rails",
+    "id": 367,
+    "created_at": "2016-04-16T15:00:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "lucasmazza"
+  },
+  {
+    "repo": "rails/sass-rails",
+    "id": 361,
+    "created_at": "2016-01-07T14:56:20Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "ruipserra"
+  },
+  {
+    "repo": "rails/sass-rails",
+    "id": 349,
+    "created_at": "2015-10-06T03:28:41Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bolandrm"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 514,
+    "created_at": "2017-02-16T22:42:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Kache"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 504,
+    "created_at": "2016-12-26T11:40:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "oklas"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 458,
+    "created_at": "2015-12-19T06:14:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sonalkr132"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 449,
+    "created_at": "2015-11-18T22:48:33Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mrbrdo"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 430,
+    "created_at": "2015-09-05T07:32:46Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "oggy"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 427,
+    "created_at": "2015-09-01T23:43:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  },
+  {
+    "repo": "rails/spring",
+    "id": 267,
+    "created_at": "2014-03-02T14:10:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "eval"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 459,
+    "created_at": "2017-02-11T22:00:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "richseviora"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 455,
+    "created_at": "2017-01-23T22:03:28Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rubenfonseca"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 446,
+    "created_at": "2016-12-30T08:55:00Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "choihongil"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 438,
+    "created_at": "2016-12-12T15:20:32Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "schneems"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 419,
+    "created_at": "2016-11-09T15:58:52Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bouk"
+  },
+  {
+    "repo": "rails/sprockets",
+    "id": 378,
+    "created_at": "2016-09-06T21:36:11Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "schneems"
+  },
+  {
+    "repo": "rails/sprockets-rails",
+    "id": 384,
+    "created_at": "2016-11-15T19:58:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "junaruga"
+  },
+  {
+    "repo": "rails/sprockets-rails",
+    "id": 381,
+    "created_at": "2016-10-07T16:11:59Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "rossta"
+  },
+  {
+    "repo": "rails/sprockets-rails",
+    "id": 239,
+    "created_at": "2015-04-23T23:44:05Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "celsodantas"
+  },
+  {
+    "repo": "rails/ssl_requirement",
+    "id": 8,
+    "created_at": "2014-04-25T12:48:02Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "manishgkasera"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 245,
+    "created_at": "2016-12-02T10:22:23Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "clupprich"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 233,
+    "created_at": "2015-12-01T09:22:50Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dsalahutdinov"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 232,
+    "created_at": "2015-11-16T07:13:03Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dcki"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 231,
+    "created_at": "2015-10-13T13:25:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "sdepold"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 229,
+    "created_at": "2015-08-12T20:21:55Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "levsero"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 220,
+    "created_at": "2015-02-17T19:50:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "Trevoke"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 215,
+    "created_at": "2015-01-31T00:05:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "IndieKelly"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 197,
+    "created_at": "2014-04-09T11:55:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "razum2um"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 194,
+    "created_at": "2014-03-19T10:19:26Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "antonioparisi"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 193,
+    "created_at": "2014-03-07T17:24:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "alvarezloaiciga"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 168,
+    "created_at": "2013-09-18T15:48:10Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "speric"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 161,
+    "created_at": "2013-08-07T08:36:09Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "tilsammans"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 156,
+    "created_at": "2013-07-08T06:50:15Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "d-Pixie"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 152,
+    "created_at": "2013-06-11T20:16:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "scottschulthess"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 148,
+    "created_at": "2013-05-30T20:13:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bryanrite"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 147,
+    "created_at": "2013-05-29T20:21:18Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "cawel"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 143,
+    "created_at": "2013-05-20T13:47:40Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "thomasguillory"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 141,
+    "created_at": "2013-05-16T02:06:54Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "marshallshen"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 138,
+    "created_at": "2013-04-26T16:32:02Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "teeparham"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 118,
+    "created_at": "2013-03-11T21:19:35Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "emorikawa"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 116,
+    "created_at": "2013-03-10T19:16:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bemurphy"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 111,
+    "created_at": "2013-03-01T09:43:27Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "route"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 102,
+    "created_at": "2013-02-19T08:26:34Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "bemurphy"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 87,
+    "created_at": "2013-01-22T17:16:55Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "HurricaneJames"
+  },
+  {
+    "repo": "rails/strong_parameters",
+    "id": 34,
+    "created_at": "2012-09-05T14:30:05Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "fidothe"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 97,
+    "created_at": "2017-02-18T12:41:53Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "gauravtiwari"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 95,
+    "created_at": "2017-02-13T17:33:51Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "danbroooks"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 85,
+    "created_at": "2017-02-07T02:10:30Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "mikerob215"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 84,
+    "created_at": "2017-02-06T04:29:48Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "dleavitt"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 68,
+    "created_at": "2017-01-23T20:59:50Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "afgomez"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 47,
+    "created_at": "2016-12-31T01:33:19Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "drewhamlett"
+  },
+  {
+    "repo": "rails/webpacker",
+    "id": 17,
+    "created_at": "2016-12-11T15:40:16Z",
+    "merged_at": null,
+    "closed_at": null,
+    "state": "open",
+    "author": "maclover7"
+  }
+]

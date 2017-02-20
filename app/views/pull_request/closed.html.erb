@@ -1,0 +1,43 @@
+<h1>Closed Pull Request Data</h1>
+
+<table id="closed_prs" class="table table-striped" width="100%">
+  <thead><tr align="left">
+    <th>Repo</th>
+    <th>ID</th>
+    <th>Author</th>
+    <th>Merge Time<br/><sup>(hours)</sup></th>
+    <th>Integration Time<br/><sup>(hours)</sup></th>
+  </tr></thead>
+
+  <tbody>
+  <% pr_data.each {|pr| %>
+  <tr>
+  <td><%= link_to pr[:repo], PullRequestHelper.github_pr_path(pr[:repo],pr[:id]) %></td>
+  <td><%= link_to pr[:id], PullRequestHelper.github_pr_path(pr[:repo],pr[:id]) %></td>
+    <td><%= pr[:author] %></td>
+  <td>
+    <% if pr[:merged_at].present? %>
+      <%= (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 %>
+    <% end %>
+  </td><td>
+    <% if pr[:merged_at].present? %>
+      <%= (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 %>
+    <% end %>
+  </td>
+  </tr>
+  <% } %>
+  </tbody>
+</table>
+
+<script>
+  $(document).ready(function(){
+    $('#closed_prs').DataTable({
+        fixedHeader: true,
+        bInfo : false,
+        colReorder: true,
+        rowReorder: true,
+        responsive: true,
+        "bPaginate": false
+    });
+  });
+  </script>
