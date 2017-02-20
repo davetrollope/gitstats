@@ -9,7 +9,7 @@ class GithubDataCollector
     @options = options
   end
 
-  def fetch_pullrequests(repo, state, day_limit = 0)
+  def fetch_pullrequests(repo, state, constraint = {})
     state = 'all' if state.nil?
 
     require 'net/http'
@@ -20,7 +20,10 @@ class GithubDataCollector
     page = 0
     pages = 1
 
-    limit_time = Time.now - day_limit.days if day_limit > 0
+    if constraint.count > 0
+      limit_field = constraint.first[0]
+      limit_time = Time.now - constraint.first[1]
+    end
 
     Net::HTTP.start(uri.host, uri.port,
                     use_ssl: uri.scheme == 'https',
@@ -45,7 +48,7 @@ class GithubDataCollector
         end
 
         response_json = JSON.parse(response.body)
-        response_json.reject! {|pr| Time.parse(pr["created_at"]) < limit_time} if day_limit > 0
+        response_json.reject! {|pr| Time.parse(pr[limit_field]) < limit_time} if constraint.count > 0
         response_data << response_json
         page += 1
       end while page < pages
@@ -88,8 +91,8 @@ class GithubDataCollector
       pool.process {
         begin
           data_collector = new options
-
-          repo_pr_data = data_collector.fetch_pullrequests repo, state, state == 'closed' ? 30 : 0
+          repo_pr_data = data_collector.fetch_pullrequests repo, state, state == 'closed' ?
+              {"closed_at" => (options[:closed_days] || 30).days} : {}
           if repo_pr_data.present?
             merge_mutex.synchronize {
               all_prs = (all_prs << repo_pr_data).flatten

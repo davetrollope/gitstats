@@ -41,6 +41,7 @@ GEM
     arel (7.1.4)
     ast (2.3.0)
     builder (3.2.3)
+    byebug (9.0.6)
     chronic (0.10.2)
     coderay (1.1.1)
     coffee-rails (4.2.1)
@@ -179,6 +180,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   coffee-rails (~> 4.2)
   figgy
   jbuilder (~> 2.5)

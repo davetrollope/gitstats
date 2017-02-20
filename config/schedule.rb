@@ -29,6 +29,6 @@
 # Closed PRs
 every 1.day, at: '6:00 am' do
   runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today"
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'jsor'"
+  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'jsor', closed_days: 60"
   # runner "GithubDataFile.get_org_prs 'archive', GithubDataFile.prefix_today, 'enova'"
 end

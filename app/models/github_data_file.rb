@@ -2,7 +2,7 @@ class GithubDataFile
   def self.get_user_prs(output_path, prefix, username = nil, options = {})
     user_repos = GithubDataCollector.get_repo_list username.nil? ? 'user/repos' : "users/#{username}/repos"
 
-    state = options[:state] || 'all'
+    state = options[:state] || 'closed'
 
     prs = GithubDataCollector.get_prs output_path, user_repos, state, options
 
@@ -12,7 +12,7 @@ class GithubDataFile
   def self.get_org_prs(output_path, prefix, orgname, options = {})
     user_repos = GithubDataCollector.get_repo_list "orgs/#{orgname}/repos"
 
-    state = options[:state] || 'all'
+    state = options[:state] || 'closed'
 
     prs = GithubDataCollector.get_prs output_path, user_repos, state, options
 
@@ -60,7 +60,7 @@ class GithubDataFile
 
   def self.most_recent(path, pattern)
     files = Dir["#{path}/#{pattern}"].sort_by { |f| File.mtime(f) }
-    [files.last]
+    [files.last].compact
   end
 
   def self.load_files(files)

@@ -6,17 +6,17 @@ class PullRequestController < ApplicationController
 
     file_data = GithubDataFile.load_files(file)
 
-    pr_data = file_data.last[:pr_data]
+    pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
     render locals: { pr_data: pr_data }
   end
 
   def closed
-    file = GithubDataFile.most_recent('archive', '*_all_pr_data.json')
+    file = GithubDataFile.most_recent('archive', '*_closed_pr_data.json')
 
     file_data = GithubDataFile.load_files(file)
 
-    pr_data = file_data.last[:pr_data].where(state: 'closed')
+    pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
 
     pr_data = pr_data.where(merged_at: /./) if filter_enabled?(:unmerged, false) == false
 
