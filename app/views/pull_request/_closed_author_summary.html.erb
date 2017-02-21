@@ -1,0 +1,44 @@
+<h1>Closed Pull Request Data (Author Summary View)</h1>
+
+<%
+  authors = pr_data.map {|pr| pr[:author]}.uniq
+
+  summary_data = authors.map {|author|
+    author_prs = pr_data.where(:author => author)
+
+    {
+        author: author,
+        total: author_prs.count,
+        repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
+        merge_time: author_prs.map {|pr|
+          (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+        }.sum / author_prs.count,
+        intg_time: author_prs.map {|pr|
+          (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+        }.sum / author_prs.count
+    }
+  }
+%>
+<table id="closed_author_prs" class="table table-striped" width="100%">
+  <thead><tr align="left">
+    <th>Author</th>
+    <th>PR Count</th>
+    <th>Repo Count</th>
+    <th>Average Merge Time<br/><sup>(hours)</sup></th>
+    <th>Average Integration Time<br/><sup>(hours)</sup></th>
+  </tr></thead>
+
+  <tbody>
+  <% summary_data.each {|author_summary| %>
+      <tr>
+        <td><%= author_summary[:author] %></td>
+        <td><%= author_summary[:total] %></td>
+        <td><%= author_summary[:repo_count] %></td>
+        <td><%= author_summary[:merge_time] %></td>
+        <td><%= author_summary[:intg_time] %></td>
+      </tr>
+  <% } %>
+  </tbody>
+</table>
+
+<%= render 'init_table', locals: { table_name: 'closed_author_prs' } %>

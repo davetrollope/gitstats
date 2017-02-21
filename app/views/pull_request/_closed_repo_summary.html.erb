@@ -1,0 +1,44 @@
+<h1>Closed Pull Request Data (Repo Summary View)</h1>
+
+<%
+  repos = pr_data.map {|pr| pr[:repo]}.uniq
+
+  summary_data = repos.map {|repo|
+    repo_prs = pr_data.where(:repo => repo)
+
+    {
+      repo: repo,
+      total: repo_prs.count,
+      authors: repo_prs.map {|pr| pr[:author]}.count,
+      merge_time: repo_prs.map {|pr|
+          (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+        }.sum / repo_prs.count,
+      intg_time: repo_prs.map {|pr|
+          (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+        }.sum / repo_prs.count
+    }
+  }
+  %>
+<table id="closed_summary_prs" class="table table-striped" width="100%">
+  <thead><tr align="left">
+    <th>Repo</th>
+    <th>PR Count</th>
+    <th>Authors</th>
+    <th>Average Merge Time<br/><sup>(hours)</sup></th>
+    <th>Average Integration Time<br/><sup>(hours)</sup></th>
+  </tr></thead>
+
+  <tbody>
+  <% summary_data.each {|repo_summary| %>
+      <tr>
+        <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
+        <td><%= repo_summary[:total] %></td>
+        <td><%= repo_summary[:authors] %></td>
+        <td><%= repo_summary[:merge_time] %></td>
+        <td><%= repo_summary[:intg_time] %></td>
+      </tr>
+  <% } %>
+  </tbody>
+</table>
+
+<%= render 'init_table', locals: { table_name: 'closed_summary_prs' } %>

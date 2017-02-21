@@ -1,0 +1,13 @@
+
+<script>
+    $(document).ready(function(){
+        $('#<%= locals[:table_name] %>').DataTable({
+            fixedHeader: true,
+            bInfo : false,
+            colReorder: true,
+            rowReorder: true,
+            responsive: true,
+            "bPaginate": false
+        });
+    });
+</script>
