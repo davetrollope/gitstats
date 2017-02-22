@@ -1,4 +1,4 @@
-<h1>Closed Pull Request Data (Repo Summary View)</h1>
+<h1>Closed Pull Request Data</h1><h2>Repo Summary View</h2>
 
 <%
   repos = pr_data.map {|pr| pr[:repo]}.uniq
@@ -19,7 +19,10 @@
     }
   }
   %>
-<table id="closed_summary_prs" class="table table-striped" width="100%">
+
+
+
+<table id="closed_summary_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Repo</th>
     <th>PR Count</th>
@@ -34,11 +37,12 @@
         <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
         <td><%= repo_summary[:total] %></td>
         <td><%= repo_summary[:authors] %></td>
-        <td><%= repo_summary[:merge_time] %></td>
-        <td><%= repo_summary[:intg_time] %></td>
+        <td><%= '%.2f' % repo_summary[:merge_time] %></td>
+        <td><%= '%.2f' % repo_summary[:intg_time] %></td>
       </tr>
   <% } %>
   </tbody>
 </table>
 
 <%= render 'init_table', locals: { table_name: 'closed_summary_prs' } %>
+

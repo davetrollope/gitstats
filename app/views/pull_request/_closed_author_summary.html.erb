@@ -1,4 +1,4 @@
-<h1>Closed Pull Request Data (Author Summary View)</h1>
+<h1>Closed Pull Request Data</h1><h2>Author Summary View</h2>
 
 <%
   authors = pr_data.map {|pr| pr[:author]}.uniq
@@ -19,7 +19,7 @@
     }
   }
 %>
-<table id="closed_author_prs" class="table table-striped" width="100%">
+<table id="closed_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Author</th>
     <th>PR Count</th>
@@ -34,8 +34,8 @@
         <td><%= author_summary[:author] %></td>
         <td><%= author_summary[:total] %></td>
         <td><%= author_summary[:repo_count] %></td>
-        <td><%= author_summary[:merge_time] %></td>
-        <td><%= author_summary[:intg_time] %></td>
+        <td><%= '%.2f' % author_summary[:merge_time] %></td>
+        <td><%= '%.2f' % author_summary[:intg_time] %></td>
       </tr>
   <% } %>
   </tbody>
