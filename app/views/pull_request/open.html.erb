@@ -4,6 +4,7 @@
   <thead><tr align="left">
     <th>Repo</th>
     <th>ID</th>
+    <th>Created</th>
     <th>Author</th>
     <th>Open Time<br/><sup>(hours)</sup></th>
   </tr></thead>
@@ -13,6 +14,7 @@
       <tr>
         <td><%= link_to pr[:repo], PullRequestHelper.github_pr_path(pr[:repo],pr[:id]) %></td>
         <td><%= link_to pr[:id], PullRequestHelper.github_pr_path(pr[:repo],pr[:id]) %></td>
+        <td><%= Time.parse pr[:created_at] %></td>
         <td><%= pr[:author] %></td>
         <td><%= (Time.now - Time.parse(pr[:created_at])).to_i / 3600 %></td>
       </tr>

@@ -1,4 +1,4 @@
-<h1>Closed Pull Request Data</h1><h2>Author Summary View</h2>
+<h1 align="center">Closed Pull Request Data</h1><h2 align="center">Author Summary</h2>
 
 <%
   authors = pr_data.map {|pr| pr[:author]}.uniq
@@ -15,10 +15,24 @@
         }.sum / author_prs.count,
         intg_time: author_prs.map {|pr|
           (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-        }.sum / author_prs.count
+        }.sum / author_prs.count,
+        close_time: author_prs.map {|pr|
+          (pr[:merged_at].present? ?
+              (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
+              (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+        }.sum / author_prs.count,
     }
   }
+  lifecycle_data = [
+      { name: "Merge Time", data: summary_data.pluck(:author,:merge_time) },
+      { name: "Close Time", data: summary_data.pluck(:author,:close_time) }
+  ]
 %>
+
+<%= column_chart summary_data.pluck(:author,:total), ytitle: "Number of PRs" %>
+
+<%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{authors.count*20}px" %>
+
 <table id="closed_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Author</th>

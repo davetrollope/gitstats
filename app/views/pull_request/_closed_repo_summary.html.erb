@@ -1,4 +1,4 @@
-<h1>Closed Pull Request Data</h1><h2>Repo Summary View</h2>
+<h1 align="center">Closed Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
 <%
   repos = pr_data.map {|pr| pr[:repo]}.uniq
@@ -15,12 +15,23 @@
         }.sum / repo_prs.count,
       intg_time: repo_prs.map {|pr|
           (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-        }.sum / repo_prs.count
+        }.sum / repo_prs.count,
+      close_time: repo_prs.map {|pr|
+        (pr[:merged_at].present? ?
+            (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
+            (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+        }.sum / repo_prs.count,
     }
   }
+  lifecycle_data = [
+      { name: "Merge Time", data: summary_data.pluck(:repo,:merge_time) },
+      { name: "Close Time", data: summary_data.pluck(:repo,:close_time) }
+  ]
   %>
 
+<%= column_chart summary_data.pluck(:repo,:total), xtitle: "Number of PRs" %>
 
+<%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{repos.count*20}px" %>
 
 <table id="closed_summary_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
