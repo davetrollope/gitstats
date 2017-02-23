@@ -10,7 +10,7 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
-    render locals: { pr_data: pr_data }
+    render "_open_#{session['view_type']}", locals: { pr_data: pr_data }
   end
 
   def closed

@@ -1,0 +1,45 @@
+<h1 align="center">Open Pull Request Data</h1><h2 align="center">Repo Summary</h2>
+
+<%
+  repos = pr_data.map {|pr| pr[:repo]}.uniq
+
+  summary_data = repos.map {|repo|
+    repo_prs = pr_data.where(:repo => repo)
+
+    {
+        repo: repo,
+        total: repo_prs.count,
+        authors: repo_prs.map {|pr| pr[:author]}.count,
+        open_time: repo_prs.map {|pr|
+          ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
+        }.sum / repo_prs.count,
+    }
+  }
+%>
+
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
+<%= column_chart summary_data.pluck(:repo,:total) %>
+
+<table id="open_summary_prs" class="table table-condensed table-striped" width="100%">
+  <thead><tr align="left">
+    <th>Repo</th>
+    <th>PR Count</th>
+    <th>Authors</th>
+    <th>Open Time<br/><sup>(hours)</sup></th>
+  </tr></thead>
+
+  <tbody>
+  <% summary_data.each {|repo_summary| %>
+      <tr>
+        <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
+        <td><%= repo_summary[:total] %></td>
+        <td><%= repo_summary[:authors] %></td>
+        <td><%= '%.2f' % repo_summary[:open_time] %></td>
+      </tr>
+  <% } %>
+  </tbody>
+</table>
+
+<%= render 'init_table', locals: { table_name: 'closed_summary_prs' } %>
+

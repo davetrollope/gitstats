@@ -29,9 +29,13 @@
   ]
 %>
 
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
 <%= column_chart summary_data.pluck(:author,:total), ytitle: "Number of PRs" %>
 
-<%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{authors.count*20}px" %>
+<%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{(authors.count*5).to_i}px",
+              library: {'chartArea': {'width': '80%', 'height': '60%'}}
+%>
 
 <table id="closed_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">

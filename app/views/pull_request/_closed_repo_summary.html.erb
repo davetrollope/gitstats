@@ -29,6 +29,8 @@
   ]
   %>
 
+<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
+
 <%= column_chart summary_data.pluck(:repo,:total), xtitle: "Number of PRs" %>
 
 <%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{repos.count*20}px" %>
