@@ -1,6 +1,8 @@
 <h1 align="center">Closed Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
 <%
+  pr_data.sort_by! {|pr| pr[:repo].downcase}
+
   repos = pr_data.map {|pr| pr[:repo]}.uniq
 
   summary_data = repos.map {|repo|

@@ -1,3 +1,5 @@
+<% pr_data.sort_by! {|pr| pr[:repo].downcase} %>
+
 <h1>Open Pull Request Data</h1>
 
 <table id="open_prs" class="table table-striped" width="100%">
