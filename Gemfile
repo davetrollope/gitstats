@@ -18,7 +18,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # See https://github.com/rails/execjs#readme for more supported runtimes
-install_if -> { ! RUBY_PLATFORM =~ /darwin/ } do
+install_if -> { RUBY_PLATFORM =~ /linux/ } do
   gem 'therubyracer', platforms: :ruby
 end
 
