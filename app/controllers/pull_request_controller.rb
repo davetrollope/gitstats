@@ -10,6 +10,8 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
+    session['view_type'] ||= 'details'
+
     render "_open_#{session['view_type']}", locals: { pr_data: pr_data }
   end
 
@@ -23,6 +25,8 @@ class PullRequestController < ApplicationController
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
 
     pr_data = pr_data.where(merged_at: /./) if filter_value?(:unmerged, false) == false
+
+    session['view_type'] ||= 'details'
 
     render "_closed_#{session['view_type']}", locals: { pr_data: pr_data }
   end
