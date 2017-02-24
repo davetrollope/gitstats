@@ -22,9 +22,9 @@
 # Some example gitstats jobs
 
 # Open PRs
-# every 1.hour do
+every 1.hour do
   runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
-# end
+end
 
 # Closed PRs
 every 1.day, at: '6:00 am' do
