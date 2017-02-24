@@ -19,16 +19,17 @@
 
 # Learn more: http://github.com/javan/whenever
 
-# Some example jobs
+# Some example gitstats jobs
 
 # Open PRs
-# every 15.minutes do
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
+# every 1.hour do
+  runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
 # end
 
 # Closed PRs
 every 1.day, at: '6:00 am' do
-  runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today"
+  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today"
+  runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails'"
   # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'jsor', closed_days: 60"
   # runner "GithubDataFile.get_org_prs 'archive', GithubDataFile.prefix_today, 'enova'"
 end
