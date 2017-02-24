@@ -1,5 +1,7 @@
 class PullRequestController < ApplicationController
   require 'hash_arrays'
+  skip_before_action :verify_authenticity_token
+
 
   def open
     params_to_session
