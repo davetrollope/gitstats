@@ -1,39 +1,17 @@
 <h1 align="center">Closed Pull Request Data</h1><h2 align="center">Author Summary</h2>
 
 <%
-  pr_data.sort_by! {|pr| pr[:author].downcase}
-
   authors = pr_data.map {|pr| pr[:author]}.uniq
-
-  summary_data = authors.map {|author|
-    author_prs = pr_data.where(:author => author)
-
-    {
-        author: author,
-        total: author_prs.count,
-        repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
-        merge_time: author_prs.map {|pr|
-          (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
-        }.sum / author_prs.count,
-        intg_time: author_prs.map {|pr|
-          (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-        }.sum / author_prs.count,
-        close_time: author_prs.map {|pr|
-          (pr[:merged_at].present? ?
-              (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-              (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
-        }.sum / author_prs.count,
-    }
-  }
   lifecycle_data = [
-      { name: "Merge Time", data: summary_data.pluck(:author,:merge_time) },
-      { name: "Close Time", data: summary_data.pluck(:author,:close_time) }
+      { name: "Merge Time", data: pr_data.pluck(:author,:merge_time) },
+      { name: "Close Time", data: pr_data.pluck(:author,:close_time) }
   ]
 %>
 
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-
-<%= column_chart summary_data.pluck(:author,:total), ytitle: "Number of PRs" %>
+<!-- We could use ajax to retrieve the data, but we don't want to get different data than
+     is shown in the table so this needs to be syncronously loaded.
+  -->
+<%= column_chart pr_data.pluck(:author,:total), ytitle: "Number of PRs" %>
 
 <%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{(authors.count*5).to_i}px",
               library: {'chartArea': {'width': '80%', 'height': '60%'}}
@@ -49,7 +27,7 @@
   </tr></thead>
 
   <tbody>
-  <% summary_data.each {|author_summary| %>
+  <% pr_data.each {|author_summary| %>
       <tr>
         <td><%= author_summary[:author] %></td>
         <td><%= author_summary[:total] %></td>

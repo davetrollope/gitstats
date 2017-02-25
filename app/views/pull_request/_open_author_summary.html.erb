@@ -1,33 +1,17 @@
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Author Summary</h2>
 
-<%
-  pr_data.sort_by! {|pr| pr[:author].downcase}
+<% authors = pr_data.map {|pr| pr[:author]}.uniq %>
 
-  authors = pr_data.map {|pr| pr[:author]}.uniq
+<!-- We could use ajax to retrieve the data, but we don't want to get different data than
+     is shown in the table so this needs to be syncronously loaded.
+  -->
+<%= column_chart pr_data.pluck(:author,:total), ytitle: "Number of PRs" %>
 
-  summary_data = authors.map {|author|
-    author_prs = pr_data.where(:author => author)
-
-    {
-        author: author,
-        total: author_prs.count,
-        repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
-        open_time: author_prs.map {|pr|
-          ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
-        }.sum / author_prs.count,
-    }
-  }
-%>
-
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-
-<%= column_chart summary_data.pluck(:author,:total), ytitle: "Number of PRs" %>
-
-<%= bar_chart summary_data.pluck(:author,:open_time), xtitle: "Average Time Open (hours)", height: "#{(authors.count*1.25).to_i}px",
+<%= bar_chart pr_data.pluck(:author,:open_time), xtitle: "Average Time Open (hours)", height: "#{(authors.count*1.25).to_i}px",
               library: {'chartArea': {'width': '80%', 'height': '90%'}}
 %>
 
-<table id="closed_author_prs" class="table table-condensed table-striped" width="100%">
+<table id="open_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Author</th>
     <th>PR Count</th>
@@ -36,7 +20,7 @@
   </tr></thead>
 
   <tbody>
-  <% summary_data.each {|author_summary| %>
+  <% pr_data.each {|author_summary| %>
       <tr>
         <td><%= author_summary[:author] %></td>
         <td><%= author_summary[:total] %></td>
@@ -47,4 +31,4 @@
   </tbody>
 </table>
 
-<%= render 'init_table', locals: { table_name: 'closed_author_prs' } %>
+<%= render 'init_table', locals: { table_name: 'open_author_prs' } %>

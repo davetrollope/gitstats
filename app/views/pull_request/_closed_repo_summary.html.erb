@@ -1,43 +1,21 @@
 <h1 align="center">Closed Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
 <%
-  pr_data.sort_by! {|pr| pr[:repo].downcase}
-
   repos = pr_data.map {|pr| pr[:repo]}.uniq
-
-  summary_data = repos.map {|repo|
-    repo_prs = pr_data.where(:repo => repo)
-
-    {
-      repo: repo,
-      total: repo_prs.count,
-      authors: repo_prs.map {|pr| pr[:author]}.count,
-      merge_time: repo_prs.map {|pr|
-          (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
-        }.sum / repo_prs.count,
-      intg_time: repo_prs.map {|pr|
-          (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-        }.sum / repo_prs.count,
-      close_time: repo_prs.map {|pr|
-        (pr[:merged_at].present? ?
-            (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-            (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
-        }.sum / repo_prs.count,
-    }
-  }
   lifecycle_data = [
-      { name: "Merge Time", data: summary_data.pluck(:repo,:merge_time) },
-      { name: "Close Time", data: summary_data.pluck(:repo,:close_time) }
+      { name: "Merge Time", data: pr_data.pluck(:repo,:merge_time) },
+      { name: "Close Time", data: pr_data.pluck(:repo,:close_time) }
   ]
   %>
 
-<%= javascript_include_tag "https://www.gstatic.com/charts/loader.js" %>
-
-<%= column_chart summary_data.pluck(:repo,:total), xtitle: "Number of PRs" %>
+<!-- We could use ajax to retrieve the data, but we don't want to get different data than
+     is shown in the table so this needs to be syncronously loaded.
+  -->
+<%= column_chart pr_data.pluck(:repo,:total), xtitle: "Number of PRs" %>
 
 <%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{repos.count*20}px" %>
 
-<table id="closed_summary_prs" class="table table-condensed table-striped" width="100%">
+<table id="closed_repo_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Repo</th>
     <th>PR Count</th>
@@ -47,7 +25,7 @@
   </tr></thead>
 
   <tbody>
-  <% summary_data.each {|repo_summary| %>
+  <% pr_data.each {|repo_summary| %>
       <tr>
         <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
         <td><%= repo_summary[:total] %></td>
@@ -59,5 +37,5 @@
   </tbody>
 </table>
 
-<%= render 'init_table', locals: { table_name: 'closed_summary_prs' } %>
+<%= render 'init_table', locals: { table_name: 'closed_repo_prs' } %>
 
