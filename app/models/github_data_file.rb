@@ -38,14 +38,6 @@ class GithubDataFile
     File.write "#{output_path}/#{prefix}_pr_data.json", JSON.pretty_generate(persistable_pr_fields(pr_data))
   end
 
-  def self.write_pr_data(output_path, prefix, repo, options = {})
-    data_collector = new options
-
-    data_collector.export(output_path, prefix, data_collector.fetch_pullrequests(repo))
-  rescue GithubBadResponse => e
-    Rails.logger.error e.inspect.to_s
-  end
-
   def self.prefix_today
     Time.now.strftime '%Y%m%d'
   end

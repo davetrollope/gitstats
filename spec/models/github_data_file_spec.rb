@@ -44,7 +44,7 @@ RSpec.describe GithubDataFile do
   it 'gets a set of closed pull requests for a user' do
     allow(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
 
-    allow(GithubDataCollector).to receive(:get_repo_list).and_return(['test_repo'])
+    allow(GithubDataCollector).to receive(:get_repo_list).with('users/tester/repos').and_return(['test_repo'])
 
     pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json')))
 
@@ -56,7 +56,7 @@ RSpec.describe GithubDataFile do
   it 'gets all closed pull requests for the current user' do
     allow(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
 
-    allow(GithubDataCollector).to receive(:get_repo_list).and_return(['test_repo'])
+    allow(GithubDataCollector).to receive(:get_repo_list).with('user/repos').and_return(['test_repo'])
 
     pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json')))
 
@@ -68,12 +68,36 @@ RSpec.describe GithubDataFile do
   it 'gets a set of open pull requests for a user' do
     allow(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
 
-    allow(GithubDataCollector).to receive(:get_repo_list).and_return(['test_repo'])
+    allow(GithubDataCollector).to receive(:get_repo_list).with('users/tester/repos').and_return(['test_repo'])
 
     pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_open.json')))
 
     allow(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'open', state: 'open').and_return(pr_data)
 
     described_class.get_user_prs('test', 'prefix', 'tester', state: 'open')
+  end
+
+  it 'gets a set of closed pull requests for an org' do
+    allow(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
+
+    allow(GithubDataCollector).to receive(:get_repo_list).with('orgs/testorg/repos').and_return(['test_repo'])
+
+    pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json')))
+
+    allow(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'closed', {}).and_return(pr_data)
+
+    described_class.get_org_prs('test', 'prefix', 'testorg')
+  end
+
+  it 'gets a set of open pull requests for an org' do
+    allow(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
+
+    allow(GithubDataCollector).to receive(:get_repo_list).with('orgs/testorg/repos').and_return(['test_repo'])
+
+    pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_open.json')))
+
+    allow(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'open', state: 'open').and_return(pr_data)
+
+    described_class.get_org_prs('test', 'prefix', 'testorg', state: 'open')
   end
 end
