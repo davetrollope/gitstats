@@ -7,9 +7,18 @@ Metrics/LineLength:
 
 # Configuration parameters: CountComments.
 Metrics/MethodLength:
-  Max: 25
+  Max: 50
+
+Metrics/ClassLength:
+  Max: 500
+
+Lint/UselessAssignment:
+  Enabled: false
 
 Style/SpaceInsideBlockBraces:
+  Enabled: false
+
+Style/SpaceInsideBrackets:
   Enabled: false
 
 Style/RaiseArgs:
@@ -26,3 +35,18 @@ Style/Documentation:
 
 Style/ClassAndModuleChildren:
   Enabled: false
+
+Style/StringLiterals:
+  Exclude:
+    - 'bin/*'
+    - 'config/environments/*.rb'
+    - 'config/*.rb'
+    - 'spec/*.rb'
+
+Style/BlockComments:
+  Exclude:
+    - 'spec/*.rb'
+
+Style/AlignParameters:
+  Exclude:
+    - 'bin/*'

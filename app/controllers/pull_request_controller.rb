@@ -1,7 +1,7 @@
 class PullRequestController < ApplicationController
   require 'hash_arrays'
   skip_before_action :verify_authenticity_token
-  VALID_VIEW_TYPES = [ 'author_summary', 'repo_summary', 'details']
+  VALID_VIEW_TYPES = %w(author_summary repo_summary details).freeze
 
   def open
     params_to_session
@@ -14,21 +14,20 @@ class PullRequestController < ApplicationController
 
     session['view_type'] ||= 'details'
 
-    if respond_to? "open_#{session['view_type']}_json"
-      view_data = send("open_#{session['view_type']}_json", pr_data)
-    else
-      view_data = pr_data
-    end
+    view_data = if respond_to? "open_#{session['view_type']}_json"
+                  send("open_#{session['view_type']}_json", pr_data)
+                else
+                  pr_data
+                end
 
     respond_to do |format|
       format.html {
         render "_open_#{session['view_type']}", locals: { pr_data: view_data }
       }
       format.json {
-        render :json => view_data
+        render json: view_data
       }
     end
-
   end
 
   def closed
@@ -44,18 +43,18 @@ class PullRequestController < ApplicationController
 
     session['view_type'] ||= 'details'
 
-    if respond_to? "closed_#{session['view_type']}_json"
-      view_data = send("closed_#{session['view_type']}_json", pr_data)
-    else
-      view_data = pr_data
-    end
+    view_data = if respond_to? "closed_#{session['view_type']}_json"
+                  send("closed_#{session['view_type']}_json", pr_data)
+                else
+                  pr_data
+                end
 
     respond_to do |format|
       format.html {
         render "_closed_#{session['view_type']}", locals: { pr_data: view_data }
       }
       format.json {
-        render :json => view_data
+        render json: view_data
       }
     end
   end
@@ -91,15 +90,15 @@ class PullRequestController < ApplicationController
     authors = pr_data.map {|pr| pr[:author]}.uniq
 
     summary_data = authors.map {|author|
-      author_prs = pr_data.where(:author => author)
+      author_prs = pr_data.where(author: author)
 
       {
-          author: author,
-          total: author_prs.count,
-          repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
-          open_time: author_prs.map {|pr|
-            ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
-          }.sum / author_prs.count,
+        author: author,
+        total: author_prs.count,
+        repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
+        open_time: author_prs.map {|pr|
+                     ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                   }.sum / author_prs.count
       }
     }
   end
@@ -110,15 +109,15 @@ class PullRequestController < ApplicationController
     repos = pr_data.map {|pr| pr[:repo]}.uniq
 
     summary_data = repos.map {|repo|
-      repo_prs = pr_data.where(:repo => repo)
+      repo_prs = pr_data.where(repo: repo)
 
       {
-          repo: repo,
-          total: repo_prs.count,
-          authors: repo_prs.map {|pr| pr[:author]}.count,
-          open_time: repo_prs.map {|pr|
-            ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
-          }.sum / repo_prs.count,
+        repo: repo,
+        total: repo_prs.count,
+        authors: repo_prs.map {|pr| pr[:author]}.count,
+        open_time: repo_prs.map {|pr|
+                     ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                   }.sum / repo_prs.count
       }
     }
   end
@@ -133,23 +132,23 @@ class PullRequestController < ApplicationController
     authors = pr_data.map {|pr| pr[:author]}.uniq
 
     summary_data = authors.map {|author|
-      author_prs = pr_data.where(:author => author)
+      author_prs = pr_data.where(author: author)
 
       {
-          author: author,
-          total: author_prs.count,
-          repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
-          merge_time: author_prs.map {|pr|
-            (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
-          }.sum / author_prs.count,
-          intg_time: author_prs.map {|pr|
-            (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-          }.sum / author_prs.count,
-          close_time: author_prs.map {|pr|
-            (pr[:merged_at].present? ?
-                (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-                (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
-          }.sum / author_prs.count,
+        author: author,
+        total: author_prs.count,
+        repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
+        merge_time: author_prs.map {|pr|
+                      (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+                    }.sum / author_prs.count,
+        intg_time: author_prs.map {|pr|
+                     (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+                   }.sum / author_prs.count,
+        close_time: author_prs.map {|pr|
+                      (pr[:merged_at].present? ?
+                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
+                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                    }.sum / author_prs.count
       }
     }
   end
@@ -160,23 +159,23 @@ class PullRequestController < ApplicationController
     repos = pr_data.map {|pr| pr[:repo]}.uniq
 
     summary_data = repos.map {|repo|
-      repo_prs = pr_data.where(:repo => repo)
+      repo_prs = pr_data.where(repo: repo)
 
       {
-          repo: repo,
-          total: repo_prs.count,
-          authors: repo_prs.map {|pr| pr[:author]}.count,
-          merge_time: repo_prs.map {|pr|
-            (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
-          }.sum / repo_prs.count,
-          intg_time: repo_prs.map {|pr|
-            (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
-          }.sum / repo_prs.count,
-          close_time: repo_prs.map {|pr|
-            (pr[:merged_at].present? ?
-                (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-                (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
-          }.sum / repo_prs.count,
+        repo: repo,
+        total: repo_prs.count,
+        authors: repo_prs.map {|pr| pr[:author]}.count,
+        merge_time: repo_prs.map {|pr|
+                      (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+                    }.sum / repo_prs.count,
+        intg_time: repo_prs.map {|pr|
+                     (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+                   }.sum / repo_prs.count,
+        close_time: repo_prs.map {|pr|
+                      (pr[:merged_at].present? ?
+                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
+                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                    }.sum / repo_prs.count
       }
     }
   end

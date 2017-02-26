@@ -42,9 +42,7 @@ class GithubDataCollector
 
         if response.header['link'].present?
           page_str = response.header['link'].split(',').select {|s| s =~ /\"last\"/}.first
-          if page_str
-            pages = page_str[/&page=[0-9]+/].scan(/[0-9]+/).first.to_i
-          end
+          pages = page_str[/&page=[0-9]+/].scan(/[0-9]+/).first.to_i if page_str
         end
 
         response_json = JSON.parse(response.body)
@@ -73,8 +71,8 @@ class GithubDataCollector
 
       raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
 
-      Rails.logger.error "get_repo_list returned paginated response (not supported)" if if response.header['link'].present?
-                                                                        end
+      Rails.logger.error 'get_repo_list returned paginated response (not supported)' if response.header['link'].present?
+
       JSON.parse(response.body).map {|repo| repo['full_name']}
     end
   end
@@ -92,7 +90,7 @@ class GithubDataCollector
         begin
           data_collector = new options
           repo_pr_data = data_collector.fetch_pullrequests repo, state, state == 'closed' ?
-              {"closed_at" => (options[:closed_days] || 30).days} : {}
+              { 'closed_at' => (options[:closed_days] || 30).days } : {}
           if repo_pr_data.present?
             merge_mutex.synchronize {
               all_prs = (all_prs << repo_pr_data).flatten
