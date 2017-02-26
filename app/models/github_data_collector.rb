@@ -28,7 +28,6 @@ class GithubDataCollector
     Net::HTTP.start(uri.host, uri.port,
                     use_ssl: uri.scheme == 'https',
                     verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
-
       begin
         uri = URI("#{AppConfig.github.server}/repos/#{repo}/pulls?state=#{state}&per_page=100&page=#{page + 1}")
 
@@ -49,7 +48,7 @@ class GithubDataCollector
         response_json.reject! {|pr| Time.parse(pr[limit_field]) < limit_time} if constraint.count > 0
         response_data << response_json
         page += 1
-      end while page < pages
+      end while page < pages # rubocop:disable Lint/Loop - using a loop increases branch complexity
     end
 
     response_data.flatten!
@@ -89,14 +88,16 @@ class GithubDataCollector
       pool.process {
         begin
           data_collector = new options
-          repo_pr_data = data_collector.fetch_pullrequests repo, state, state == 'closed' ?
-              { 'closed_at' => (options[:closed_days] || 30).days } : {}
+          repo_pr_data = data_collector.fetch_pullrequests(
+            repo, state, state == 'closed' ? { 'closed_at' => (options[:closed_days] || 30).days } : {}
+          )
+
           if repo_pr_data.present?
             merge_mutex.synchronize {
               all_prs = (all_prs << repo_pr_data).flatten
             }
           end
-        rescue Exception => e
+        rescue StandardError => e
           Rails.logger.error "#{e.message} #{e.backtrace}"
         end
       }

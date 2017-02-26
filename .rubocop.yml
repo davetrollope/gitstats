@@ -16,6 +16,12 @@ Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
 
+Metrics/AbcSize:
+  Max: 65
+
+Metrics/CyclomaticComplexity:
+  Max: 10
+
 Lint/UselessAssignment:
   Enabled: false
 

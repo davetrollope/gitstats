@@ -6,27 +6,3 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Offense count: 1
-Lint/Loop:
-  Exclude:
-    - 'app/models/github_data_collector.rb'
-
-# Offense count: 1
-Lint/RescueException:
-  Exclude:
-    - 'app/models/github_data_collector.rb'
-
-# Offense count: 10
-Metrics/AbcSize:
-  Max: 64
-
-# Offense count: 1
-Metrics/CyclomaticComplexity:
-  Max: 7
-
-# Offense count: 3
-Style/MultilineTernaryOperator:
-  Exclude:
-    - 'app/controllers/pull_request_controller.rb'
-    - 'app/models/github_data_collector.rb'
-

@@ -126,6 +126,18 @@ class PullRequestController < ApplicationController
     pr_data.sort_by! {|pr| pr[:repo].downcase}
   end
 
+  def merged_time(pr)
+    (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600
+  end
+
+  def integration_time(pr)
+    (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600
+  end
+
+  def closed_time(pr)
+    (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600
+  end
+
   def closed_author_summary_json(pr_data)
     pr_data.sort_by! {|pr| pr[:author].downcase}
 
@@ -139,15 +151,13 @@ class PullRequestController < ApplicationController
         total: author_prs.count,
         repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
         merge_time: author_prs.map {|pr|
-                      (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+                      (pr[:merged_at].present? ? merged_time(pr) : 0).to_f
                     }.sum / author_prs.count,
         intg_time: author_prs.map {|pr|
-                     (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+                     (pr[:merged_at].present? ? integration_time(pr) : 0).to_f
                    }.sum / author_prs.count,
         close_time: author_prs.map {|pr|
-                      (pr[:merged_at].present? ?
-                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                      (pr[:merged_at].present? ? integration_time(pr) : closed_time(pr)).to_f
                     }.sum / author_prs.count
       }
     }
@@ -166,15 +176,13 @@ class PullRequestController < ApplicationController
         total: repo_prs.count,
         authors: repo_prs.map {|pr| pr[:author]}.count,
         merge_time: repo_prs.map {|pr|
-                      (pr[:merged_at].present? ? (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 : 0).to_f
+                      (pr[:merged_at].present? ? merged_time(pr) : 0).to_f
                     }.sum / repo_prs.count,
         intg_time: repo_prs.map {|pr|
-                     (pr[:merged_at].present? ? (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 : 0).to_f
+                     (pr[:merged_at].present? ? integration_time(pr) : 0).to_f
                    }.sum / repo_prs.count,
         close_time: repo_prs.map {|pr|
-                      (pr[:merged_at].present? ?
-                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 :
-                          (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600).to_f
+                      (pr[:merged_at].present? ? integration_time(pr) : closed_time(pr)).to_f
                     }.sum / repo_prs.count
       }
     }
