@@ -1,5 +1,5 @@
 
-class GithubBadResponse < RuntimeError
+class GithubBadResponse < StandardError
 end
 
 class GithubDataCollector
