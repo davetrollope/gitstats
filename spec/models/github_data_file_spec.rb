@@ -72,7 +72,7 @@ RSpec.describe GithubDataFile do
 
     pr_data = JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_open.json')))
 
-    allow(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'open', { state: 'open' }).and_return(pr_data)
+    allow(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'open', state: 'open').and_return(pr_data)
 
     described_class.get_user_prs('test', 'prefix', 'tester', state: 'open')
   end

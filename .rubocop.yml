@@ -12,6 +12,10 @@ Metrics/MethodLength:
 Metrics/ClassLength:
   Max: 500
 
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
 Lint/UselessAssignment:
   Enabled: false
 
