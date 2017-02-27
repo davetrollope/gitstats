@@ -80,9 +80,11 @@ class GithubDataCollector
     require 'thread/pool'
 
     all_prs = []
+    exceptions = []
 
     pool = Thread.pool(AppConfig.github_data_collector.thread_pool.size)
     merge_mutex = Mutex.new
+    exception_mutex = Mutex.new
 
     repo_list.each {|repo|
       pool.process {
@@ -97,13 +99,17 @@ class GithubDataCollector
               all_prs = (all_prs << repo_pr_data).flatten
             }
           end
-        rescue StandardError => e
+        rescue StandardError, WebMock::NetConnectNotAllowedError => e
           Rails.logger.error "#{e.message} #{e.backtrace}"
+          exception_mutex.synchronize {
+            exceptions << e
+          }
         end
       }
     }
     pool.shutdown
 
+    exceptions.each {|e| raise e }
     all_prs
   end
 end
