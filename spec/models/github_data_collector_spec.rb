@@ -61,7 +61,7 @@ RSpec.describe GithubDataCollector do
     end
 
     it 'propogates exceptions' do
-      allow(described_class).to receive_message_chain(:new, :fetch_pullrequests).and_raise(GithubBadResponse.new('test exception'))
+      expect(described_class).to receive_message_chain(:new, :fetch_pullrequests).and_raise(GithubBadResponse.new('test exception'))
 
       expect { described_class.get_prs('testdir', ['test/repo'], 'open') }.to raise_error(GithubBadResponse)
     end

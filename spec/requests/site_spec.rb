@@ -6,25 +6,28 @@ RSpec.describe 'main endpoints' do
     expect(response).to redirect_to(pull_request_open_path)
   end
 
-  it 'open pull requests' do
-    get pull_request_open_path
-    expect(response.code).to eq('200')
-  end
-
-  it 'closed pull requests' do
-    get pull_request_closed_path
-    expect(response.code).to eq('200')
-  end
-
-  [:author_summary, :repo_summary, :details].each {|view_type|
-    it "open pull requests, view type #{view_type}" do
-      get "#{pull_request_open_path}?view_type=#{view_type}"
+  ['','.json'].each {|extension|
+    it "open pull requests #{extension}" do
+      get "#{pull_request_open_path}#{extension}"
       expect(response.code).to eq('200')
     end
 
-    it 'closed pull requests' do
-      get "#{pull_request_closed_path}?view_type=#{view_type}"
+    it "closed pull requests #{extension}" do
+
+      get "#{pull_request_closed_path}#{extension}"
       expect(response.code).to eq('200')
     end
+
+    [:author_summary, :repo_summary, :details].each {|view_type|
+      it "open pull requests, view type #{view_type} #{extension}" do
+        get "#{pull_request_open_path}#{extension}?view_type=#{view_type}"
+        expect(response.code).to eq('200')
+      end
+
+      it 'closed pull requests #{extension}' do
+        get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}"
+        expect(response.code).to eq('200')
+      end
+    }
   }
 end
