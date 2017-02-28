@@ -65,7 +65,6 @@ RSpec.describe GithubDataFile do
 
       described_class.get_org_prs('test', 'prefix', 'testorg')
     end
-
   end
 
   context 'open pull requests' do

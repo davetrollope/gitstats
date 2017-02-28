@@ -1,6 +1,6 @@
 # GitStats
 
-This application is designed to provide collection and visualization of pull request data from Github.
+This application provides collection and visualization of pull request data from Github. It is a [Rails 5](http://rubyonrails.org) application
 
 There are two sides to this application:
 
@@ -14,7 +14,7 @@ There are two sides to this application:
   
 * Data Visualization
 
-  * A Rails server using Bootstrap and D3 to gleen data about the lifecycle of a PR, author or repo etc.
+  * A Rails server using Bootstrap and Google Charts to gleen data about the lifecycle of a PR, author or repo etc.
   
 # Evaluation Instance
 An example instance of this application is running for [evaluation purposes](http://gitstats.hopto.org) - take a look!
@@ -34,4 +34,12 @@ RAILS_SERVE_STATIC_FILES and SECRET_KEY_BASE variables to be set. E.G.
 
 <pre>
   RAILS_SERVE_STATIC_FILES=1 SECRET_KEY_BASE=secret RAILS_ENV=production rails s
+</pre>
+
+# Testing
+
+Tests are written with [RSpec](http://rspec.info) so to run tests simply:
+
+<pre>
+  rails spec
 </pre>

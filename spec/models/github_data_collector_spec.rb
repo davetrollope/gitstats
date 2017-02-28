@@ -40,31 +40,45 @@ RSpec.describe GithubDataCollector do
     let(:closed_pr_data) { update_closed_time(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json'))) }
 
     it 'gets open prs' do
-      stub_request(:get, "https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open").
-          to_return(:status => 200, :body => open_pr_data, :headers => {})
+      stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open')
+        .to_return(status: 200, body: open_pr_data, headers: {})
 
       expect(described_class.get_prs('testdir', ['test/repo'], 'open').count).to eq(JSON.parse(open_pr_data).count)
     end
 
     it 'gets closed prs within 30 days' do
-      stub_request(:get, "https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed").
-          to_return(:status => 200, :body => closed_pr_data, :headers => {})
+      stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
+        .to_return(status: 200, body: closed_pr_data, headers: {})
 
       expect(described_class.get_prs('testdir', ['test/repo'], 'closed').count).to eq(1)
     end
 
     it 'gets closed prs within 60 days' do
-      stub_request(:get, "https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed").
-          to_return(:status => 200, :body => closed_pr_data, :headers => {})
+      stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
+        .to_return(status: 200, body: closed_pr_data, headers: {})
 
       expect(described_class.get_prs('testdir', ['test/repo'], 'closed', closed_days: 60.days).count).to eq(2)
     end
 
     it 'propogates exceptions' do
-      allow(described_class).to receive_message_chain(:new,:fetch_pullrequests).and_raise(GithubBadResponse.new("test exception"))
+      allow(described_class).to receive_message_chain(:new, :fetch_pullrequests).and_raise(GithubBadResponse.new('test exception'))
 
       expect { described_class.get_prs('testdir', ['test/repo'], 'open') }.to raise_error(GithubBadResponse)
     end
-  end
 
+    it 'handles paginated responses' do
+      response_header = {
+        link: '<https://api.github.com/repositories/3711416/pulls?state=closed&per_page=100&page=1>; rel="next",'\
+              ' <https://api.github.com/repositories/3711416/pulls?state=closed&per_page=100&page=2>; rel="last"'
+      }
+
+      stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
+        .to_return(status: 200, body: closed_pr_data, headers: response_header)
+
+      stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=2&per_page=100&state=closed')
+        .to_return(status: 200, body: closed_pr_data, headers: {})
+
+      expect(described_class.get_prs('testdir', ['test/repo'], 'closed').count).to eq(2)
+    end
+  end
 end
