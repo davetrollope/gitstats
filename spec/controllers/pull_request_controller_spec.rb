@@ -13,7 +13,7 @@ RSpec.describe PullRequestController do
 
     get :closed
 
-    expect(response.code).to eq("200")
+    expect(response.code).to eq('200')
   end
 
   it '#closed includes unmerged data when selected' do
@@ -23,7 +23,7 @@ RSpec.describe PullRequestController do
     session['view_type'] = 'repo_summary'
     get :closed
 
-    expect(response.code).to eq("200")
+    expect(response.code).to eq('200')
   end
 
   it '#open uses default data when there is no custom method' do
@@ -31,13 +31,13 @@ RSpec.describe PullRequestController do
 
     get :open
 
-    expect(response.code).to eq("200")
+    expect(response.code).to eq('200')
   end
 
   it '#params_to_session deletes invalid view types and defaults to details' do
     get :open, params: { view_type: :invalid }
 
     expect(session['view_type']).to eq('details')
-    expect(response.code).to eq("200")
+    expect(response.code).to eq('200')
   end
 end

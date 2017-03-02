@@ -6,14 +6,13 @@ RSpec.describe 'main endpoints' do
     expect(response).to redirect_to(pull_request_open_path)
   end
 
-  ['','.json'].each {|extension|
+  ['', '.json'].each {|extension|
     it "open pull requests #{extension}" do
       get "#{pull_request_open_path}#{extension}"
       expect(response.code).to eq('200')
     end
 
     it "closed pull requests #{extension}" do
-
       get "#{pull_request_closed_path}#{extension}"
       expect(response.code).to eq('200')
     end
