@@ -42,7 +42,7 @@ class PullRequestController < ApplicationController
     days = filter_value?(:days, 0).to_i
     if days > 0
       limit_time = Time.now - days.days
-      pr_data = pr_data.select {|hash| hash[:created_at] > limit_time }
+      pr_data = pr_data.select {|hash| hash[:closed_at] > limit_time }
     end
 
     pr_data = pr_data.where(merged_at: /./) if filter_value?(:unmerged, false) == false
@@ -78,7 +78,7 @@ class PullRequestController < ApplicationController
       params.delete(:view_type)
     end
 
-    filter_syms.each {|sym|
+    [filter_syms,numeric_filter_syms].flatten.each {|sym|
       session[sym.to_s] = params[sym] if params[sym].present?
     }
   end
