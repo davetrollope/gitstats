@@ -8,7 +8,7 @@
         </a>
         <ul class="dropdown-menu">
           <%= form_tag("/pull_request/set_filters", method: "put", remote: true) do %>
-            <table align="center" width="100%">
+            <table align="center" width="100%" style="border-spacing: 3px; border-collapse: separate;">
               <tr><td colspan="2" align="center">
               <%= select_tag(:view_type, options_for_select([
                   ['Repo Summary', 'repo_summary'],
@@ -22,8 +22,14 @@
                   </td>
                   <td align="left">Show unmerged</td>
                 </tr>
+                  <tr>
+                    <td width="40" align="right">Days:</td>
+                    <td align="center">
+                    <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %>
+                  </td>
+                  </tr>
               <% end %>
-              <tr><td><li class="divider"></li></td></tr>
+              <tr><td colspan="2"><li class="divider"></li></td></tr>
               <tr><td colspan="2" align="center"><%= submit_tag("Apply") %></td></tr>
             </table>
           <% end %>

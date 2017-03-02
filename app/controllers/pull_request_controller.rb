@@ -39,6 +39,12 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
 
+    days = filter_value?(:days, 0).to_i
+    if days > 0
+      limit_time = Time.now - days.days
+      pr_data = pr_data.select {|hash| hash[:created_at] > limit_time }
+    end
+
     pr_data = pr_data.where(merged_at: /./) if filter_value?(:unmerged, false) == false
 
     session['view_type'] ||= 'details'
@@ -63,6 +69,10 @@ class PullRequestController < ApplicationController
     [:unmerged, :view_type]
   end
 
+  def numeric_filter_syms
+    [:days]
+  end
+
   def params_to_session
     if params[:view_type].present? && !(VALID_VIEW_TYPES.include? params[:view_type])
       params.delete(:view_type)
@@ -76,6 +86,9 @@ class PullRequestController < ApplicationController
   def set_filters
     filter_syms.each {|sym|
       session[sym.to_s] = params[sym] || false
+    }
+    numeric_filter_syms.each {|sym|
+      session[sym.to_s] = (params[sym] || 0)
     }
     redirect_back fallback_location: root_path
   end

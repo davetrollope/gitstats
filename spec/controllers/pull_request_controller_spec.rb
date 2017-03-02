@@ -40,4 +40,14 @@ RSpec.describe PullRequestController do
     expect(session['view_type']).to eq('details')
     expect(response.code).to eq('200')
   end
+
+  it '#closed filters by number of days' do
+    allow(Time).to receive(:now).and_return(Time.parse("2017-01-12T9:21:51Z"))
+    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+
+    get :closed, params: { days: 1 }, format: 'json'
+
+    json = JSON.parse(response.body)
+    expect(json.count).to eq(1)
+  end
 end
