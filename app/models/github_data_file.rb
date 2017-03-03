@@ -6,7 +6,7 @@ class GithubDataFile
 
     prs = GithubDataCollector.get_prs output_path, user_repos, state, options
 
-    new.export(output_path, "#{prefix}_#{state}", prs)
+    new.export(output_path, "#{prefix}_#{username || GithubDataCollector.username}_#{state}", prs)
   end
 
   def self.get_org_prs(output_path, prefix, orgname, options = {})
@@ -16,7 +16,7 @@ class GithubDataFile
 
     prs = GithubDataCollector.get_prs output_path, user_repos, state, options
 
-    new.export(output_path, "#{prefix}_#{state}", prs)
+    new.export(output_path, "#{prefix}_#{orgname}_#{state}", prs)
   end
 
   def persistable_pr_fields(pr_data)
@@ -38,28 +38,39 @@ class GithubDataFile
     File.write "#{output_path}/#{prefix}_pr_data.json", JSON.pretty_generate(persistable_pr_fields(pr_data))
   end
 
-  def self.prefix_today
-    Time.now.strftime '%Y%m%d'
-  end
+  class << self
+    def prefix_today
+      Time.now.strftime '%Y%m%d'
+    end
 
-  def self.prefix_hour
-    Time.now.strftime '%Y%m%d_%H'
-  end
+    def prefix_hour
+      Time.now.strftime '%Y%m%d_%H'
+    end
 
-  def self.prefix_datetime
-    Time.now.strftime '%Y%m%d_%H%M%S'
-  end
+    def prefix_datetime
+      Time.now.strftime '%Y%m%d_%H%M%S'
+    end
 
-  def self.most_recent(path, pattern)
-    files = Dir["#{path}/#{pattern}"].sort_by { |f| File.mtime(f) }
-    [files.last].compact
-  end
+    def projects(path, pattern)
+      files = Dir["#{path}/#{pattern}"].sort_by { |f| File.mtime(f) }
+      files.map {|s| s.sub(%r{^.*/}, '').sub(/[0-9_]+/, '').split('_')[0]}.uniq
+    end
 
-  def self.load_files(files)
-    files.map { |file|
-      json_data = JSON.parse(File.read(file))
-      json_data.each(&:symbolize_keys!)
-      { filename: file, pr_data: json_data }
-    }
+    def most_recent(path, pattern, project = nil)
+      files = Dir["#{path}/#{pattern}"].sort_by { |f| File.mtime(f) }
+      if project.present?
+        project_regex = Regexp.new "[0-9_]*_#{project}"
+        files = files.select {|s| s.match project_regex}
+      end
+      [files.last].compact
+    end
+
+    def load_files(files)
+      files.map { |file|
+        json_data = JSON.parse(File.read(file))
+        json_data.each(&:symbolize_keys!)
+        { filename: file, pr_data: json_data }
+      }
+    end
   end
 end

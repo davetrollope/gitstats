@@ -43,7 +43,8 @@ RSpec.describe GithubDataFile do
     let(:pr_data) { JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json'))) }
 
     it '.get_user_prs gets a set of closed pull requests for a user' do
-      expect(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
+      expect(File).to receive(:write).with('test/prefix_tester_closed_rawpr_data.json', any_args).and_return(nil)
+      expect(File).to receive(:write).with('test/prefix_tester_closed_pr_data.json', any_args).and_return(nil)
       expect(GithubDataCollector).to receive(:get_repo_list).with('users/tester/repos').and_return(['test_repo'])
       expect(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'closed', {}).and_return(pr_data)
 
@@ -51,7 +52,9 @@ RSpec.describe GithubDataFile do
     end
 
     it '.get_user_prs gets all closed pull requests for the current user' do
-      expect(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
+      expect(GithubDataCollector).to receive(:username).and_return('login')
+      expect(File).to receive(:write).with('test/prefix_login_closed_rawpr_data.json', any_args).and_return(nil)
+      expect(File).to receive(:write).with('test/prefix_login_closed_pr_data.json', any_args).and_return(nil)
       expect(GithubDataCollector).to receive(:get_repo_list).with('user/repos').and_return(['test_repo'])
       expect(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'closed', {}).and_return(pr_data)
 
@@ -59,7 +62,8 @@ RSpec.describe GithubDataFile do
     end
 
     it '.get_org_prs gets a set of closed pull requests for an org' do
-      expect(File).to receive(:write).twice.and_return(nil) # Raw data and summary data
+      expect(File).to receive(:write).with('test/prefix_testorg_closed_rawpr_data.json', any_args).and_return(nil)
+      expect(File).to receive(:write).with('test/prefix_testorg_closed_pr_data.json', any_args).and_return(nil)
       expect(GithubDataCollector).to receive(:get_repo_list).with('orgs/testorg/repos').and_return(['test_repo'])
       expect(GithubDataCollector).to receive(:get_prs).with('test', ['test_repo'], 'closed', {}).and_return(pr_data)
 

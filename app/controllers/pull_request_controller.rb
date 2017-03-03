@@ -3,10 +3,15 @@ class PullRequestController < ApplicationController
   skip_before_action :verify_authenticity_token
   VALID_VIEW_TYPES = %w(author_summary repo_summary details).freeze
 
+  attr_reader :projects
+
   def open
     params_to_session
 
-    file = GithubDataFile.most_recent('archive', '*_open_pr_data.json')
+    pattern = '*_open_pr_data.json'
+    build_project_list pattern
+    sync_session_project
+    file = GithubDataFile.most_recent('archive', pattern, session['project'])
 
     file_data = GithubDataFile.load_files(file)
 
@@ -33,7 +38,12 @@ class PullRequestController < ApplicationController
   def closed
     params_to_session
 
-    file = GithubDataFile.most_recent('archive', '*_closed_pr_data.json')
+    pattern = '*_closed_pr_data.json'
+
+    build_project_list pattern
+    sync_session_project
+
+    file = GithubDataFile.most_recent('archive', pattern, session['project'])
 
     file_data = GithubDataFile.load_files(file)
 
@@ -65,8 +75,16 @@ class PullRequestController < ApplicationController
     end
   end
 
+  def build_project_list(pattern)
+    @projects = GithubDataFile.projects('archive', pattern)
+  end
+
+  def sync_session_project
+    session['project'] = @projects.first unless session['project'].present? && @projects.include?(session['project'])
+  end
+
   def filter_syms
-    [:unmerged, :view_type]
+    [:unmerged, :view_type, :project]
   end
 
   def numeric_filter_syms
@@ -78,7 +96,7 @@ class PullRequestController < ApplicationController
       params.delete(:view_type)
     end
 
-    [filter_syms,numeric_filter_syms].flatten.each {|sym|
+    [filter_syms, numeric_filter_syms].flatten.each {|sym|
       session[sym.to_s] = params[sym] if params[sym].present?
     }
   end

@@ -42,12 +42,31 @@ RSpec.describe PullRequestController do
   end
 
   it '#closed filters by number of days' do
-    allow(Time).to receive(:now).and_return(Time.parse("2017-01-12T9:21:51Z"))
+    allow(Time).to receive(:now).and_return(Time.parse('2017-01-12T9:21:51Z'))
     expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
 
     get :closed, params: { days: 1 }, format: 'json'
 
     json = JSON.parse(response.body)
     expect(json.count).to eq(1)
+  end
+
+  it '#sync_session_project resets the project in the session when not in the project list' do
+    session['project'] = 'junk'
+    expect(GithubDataFile).to receive(:projects).and_return(['project'])
+
+    get :closed
+
+    expect(session['project']).to eq('project')
+  end
+
+  it '#open syncs the session' do
+    expect(controller).to receive(:sync_session_project)
+    get :open
+  end
+
+  it '#closed syncs the session' do
+    expect(controller).to receive(:sync_session_project)
+    get :closed
   end
 end

@@ -2,21 +2,15 @@
     <ul class="nav nav-tabs">
       <li class="<%= 'active' if params[:action] == 'open' %>"><a href="/pull_request/open">Open</a></li>
       <li class="<%= 'active' if params[:action] == 'closed' %>"><a href="/pull_request/closed">Closed</a></li>
+      <% if current_page?(pull_request_closed_path) %>
       <li class="dropdown pull-right">
         <a href="#" data-toggle="dropdown" class="dropdown-toggle">
           <span class="glyphicon glyphicon-cog"></span>
         </a>
+
         <ul class="dropdown-menu">
           <%= form_tag("/pull_request/set_filters", method: "put", remote: true) do %>
             <table align="center" width="100%" style="border-spacing: 3px; border-collapse: separate;">
-              <tr><td colspan="2" align="center">
-              <%= select_tag(:view_type, options_for_select([
-                  ['Repo Summary', 'repo_summary'],
-                  ['Author Summary', 'author_summary'],
-                  ['Details', 'details']
-                ], controller.filter_value?(:view_type, 'details'))) %>
-              </td></tr>
-              <% if current_page?(pull_request_closed_path) %>
                 <tr><td width="40" align="center">
                     <%= check_box_tag(:unmerged, :unmerged, controller.filter_value?(:unmerged, false)) %>
                   </td>
@@ -28,12 +22,31 @@
                     <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %>
                   </td>
                   </tr>
-              <% end %>
               <tr><td colspan="2"><li class="divider"></li></td></tr>
               <tr><td colspan="2" align="center"><%= submit_tag("Apply") %></td></tr>
             </table>
           <% end %>
         </ul>
+      </li>
+      <% end %>
+      <li class="pull-right">
+        <div class="center" style="height: 45px">
+          <%= form_tag("/pull_request/set_filters", method: "put", remote: true, onChange: 'submit();') do %>
+              <%= select_tag(:view_type, options_for_select([
+                                                                ['Repo Summary', 'repo_summary'],
+                                                                ['Author Summary', 'author_summary'],
+                                                                ['Details', 'details']
+                                                            ], controller.filter_value?(:view_type, 'details')), class: 'form-control') %>
+          <% end %>
+        </div>
+      </li>
+      <li class="pull-right">
+        <div class="center" style="height: 45px">
+          <%= form_tag("/pull_request/set_filters", method: "put", remote: true, onChange: 'submit();') do %>
+            <%= select_tag(:project, options_for_select(controller.projects.map {|project| [project,project]},
+                                                        controller.filter_value?(:project, '')), class: 'form-control') %>
+          <% end %>
+        </div>
       </li>
     </ul>
 </div>

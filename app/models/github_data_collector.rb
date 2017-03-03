@@ -9,6 +9,10 @@ class GithubDataCollector
     @options = options
   end
 
+  def self.username
+    AppConfig.github.user
+  end
+
   def fetch_pullrequests(repo, state, constraint = {})
     state = 'all' if state.nil?
 
@@ -34,7 +38,7 @@ class GithubDataCollector
         Rails.logger.debug "Getting #{uri.inspect}"
 
         request = Net::HTTP::Get.new uri.request_uri
-        request.basic_auth AppConfig.github.user, ENV['GITHUB_PASSWORD']
+        request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
 
         response = http.request request # Net::HTTPResponse object
         raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
@@ -64,7 +68,7 @@ class GithubDataCollector
                     verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
 
       request = Net::HTTP::Get.new uri.request_uri
-      request.basic_auth AppConfig.github.user, ENV['GITHUB_PASSWORD']
+      request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
 
       response = http.request request # Net::HTTPResponse object
 
