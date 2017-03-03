@@ -103,10 +103,12 @@ class PullRequestController < ApplicationController
 
   def set_filters
     filter_syms.each {|sym|
-      session[sym.to_s] = params[sym] || false
+      session[sym.to_s] = params[sym] if params[sym].present?
+      session[sym.to_s] = false unless session[sym.to_s].present?
     }
     numeric_filter_syms.each {|sym|
-      session[sym.to_s] = (params[sym] || 0)
+      session[sym.to_s] = params[sym] if params[sym].present?
+      session[sym.to_s] = 0 unless session[sym.to_s].present?
     }
     redirect_back fallback_location: root_path
   end

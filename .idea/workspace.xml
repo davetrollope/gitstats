@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b3ceadd-a62c-4a91-a860-47250584c4c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/assets/stylesheets/application.css" afterPath="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/github_data_collector.rb" afterPath="$PROJECT_DIR$/app/models/github_data_collector.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/github_data_file.rb" afterPath="$PROJECT_DIR$/app/models/github_data_file.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" afterPath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/github_data_file_spec.rb" afterPath="$PROJECT_DIR$/spec/models/github_data_file_spec.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -29,21 +22,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="pull_request_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pull_request_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/pull_request_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="108">
-              <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+            <state relative-caret-position="363">
+              <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="github_data_file.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="github_data_file.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/models/github_data_file.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+            <state relative-caret-position="855">
+              <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -138,8 +131,8 @@
         <option value="$PROJECT_DIR$/spec/models/github_data_file_spec.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
-        <option value="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/github_data_file.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
       </list>
     </option>
   </component>
@@ -683,12 +676,12 @@
       <workItem from="1487176529922" duration="19659000" />
       <workItem from="1487419134908" duration="19830000" />
       <workItem from="1487723913508" duration="3526000" />
-      <workItem from="1487996306278" duration="54216000" />
+      <workItem from="1487996306278" duration="54646000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="131916000" />
+    <option name="totallyTimeSpent" value="132346000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1109,18 +1102,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pull_request_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/models/github_data_file.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="10" column="35" lean-forward="false" selection-start-line="10" selection-start-column="35" selection-end-line="10" selection-end-column="35" />
+        <state relative-caret-position="855">
+          <caret line="57" column="0" lean-forward="false" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/github_data_file.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/pull_request_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="57" column="0" lean-forward="true" selection-start-line="57" selection-start-column="0" selection-end-line="57" selection-end-column="0" />
+        <state relative-caret-position="363">
+          <caret line="100" column="5" lean-forward="false" selection-start-line="100" selection-start-column="5" selection-end-line="100" selection-end-column="5" />
           <folding />
         </state>
       </provider>
