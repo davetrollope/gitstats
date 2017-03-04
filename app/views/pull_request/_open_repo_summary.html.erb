@@ -3,7 +3,7 @@
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
      is shown in the table so this needs to be syncronously loaded.
   -->
-<%= column_chart pr_data.pluck(:repo,:total) %>
+<%= column_chart pr_data.pluck(:repo,:total), ytitle: "Number of PRs" %>
 
 <table id="open_repo_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
