@@ -17,7 +17,7 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
-    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.last) : nil
+    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
 
     days = filter_value?(:days, 0).to_i
     if days > 0
@@ -57,7 +57,7 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
 
-    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.last) : nil
+    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
 
     days = filter_value?(:days, 0).to_i
     if days > 0
