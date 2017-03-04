@@ -17,6 +17,14 @@ class PullRequestController < ApplicationController
 
     pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
+    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.last) : nil
+
+    days = filter_value?(:days, 0).to_i
+    if days > 0
+      limit_time = Time.now - days.days
+      pr_data = pr_data.select {|hash| hash[:created_at] > limit_time }
+    end
+
     session['view_type'] ||= 'details'
 
     view_data = if PrViewDataMappingHelper.respond_to? "open_#{session['view_type']}_json"
@@ -48,6 +56,8 @@ class PullRequestController < ApplicationController
     file_data = GithubDataFile.load_files(file)
 
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
+
+    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.last) : nil
 
     days = filter_value?(:days, 0).to_i
     if days > 0

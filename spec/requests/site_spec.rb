@@ -17,6 +17,16 @@ RSpec.describe 'main endpoints' do
       expect(response.code).to eq('200')
     end
 
+    it "open pull requests #{extension} for 3 days" do
+      get "#{pull_request_open_path}#{extension}?days=3"
+      expect(response.code).to eq('200')
+    end
+
+    it "closed pull requests #{extension} for 3 days" do
+      get "#{pull_request_closed_path}#{extension}?days=3"
+      expect(response.code).to eq('200')
+    end
+
     [:author_summary, :repo_summary, :details].each {|view_type|
       it "open pull requests, view type #{view_type} #{extension}" do
         get "#{pull_request_open_path}#{extension}?view_type=#{view_type}"
