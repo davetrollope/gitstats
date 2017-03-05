@@ -51,6 +51,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # pry works in views, byebug doesnt.
   gem 'pry'
+  gem 'pry-stack_explorer'
 end
 
 group :development do

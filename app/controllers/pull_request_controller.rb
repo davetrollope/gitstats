@@ -1,41 +1,40 @@
 class PullRequestController < ApplicationController
   require 'hash_arrays'
   skip_before_action :verify_authenticity_token
+
   VALID_VIEW_TYPES = %w(author_summary repo_summary details).freeze
 
-  attr_reader :projects
+  before_action :params_to_session, only: [:open, :closed]
+
+  attr_reader :projects, :repos
 
   def open
-    params_to_session
-
     pattern = '*_open_pr_data.json'
     build_project_list pattern
-    sync_session_project
-    file = GithubDataFile.most_recent('archive', pattern, session['project'])
 
-    file_data = GithubDataFile.load_files(file)
-
+    file, file_data = load_most_recent_file pattern
     pr_data = file_data.present? ? file_data.last[:pr_data] : []
 
-    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
+    @start_time = earliest_data pr_data
+    pr_data = reduce_by_time pr_data, :created_at
 
-    days = filter_value?(:days, 0).to_i
-    if days > 0
-      limit_time = Time.now - days.days
-      pr_data = pr_data.select {|hash| hash[:created_at] > limit_time }
+    build_repo_list pr_data
+
+    project_repo_field = "#{session['project']}_repos"
+    if session[project_repo_field].present?
+      pr_data = pr_data.select {|hash| session[project_repo_field].include? hash[:repo]}
     end
 
     session['view_type'] ||= 'details'
 
-    view_data = if PrViewDataMappingHelper.respond_to? "open_#{session['view_type']}_json"
-                  PrViewDataMappingHelper.send("open_#{session['view_type']}_json", pr_data)
-                else
-                  pr_data
-                end
-
+    view_data = customize_data pr_data, "open_#{session['view_type']}_json"
     respond_to do |format|
       format.html {
-        render "_open_#{session['view_type']}", locals: { pr_data: view_data }
+        if view_data.count > 0
+          render "_open_#{session['view_type']}", locals: { pr_data: view_data }
+        else
+          render '_no_data'
+        end
       }
       format.json {
         render json: view_data
@@ -44,53 +43,39 @@ class PullRequestController < ApplicationController
   end
 
   def closed
-    params_to_session
-
     pattern = '*_closed_pr_data.json'
-
     build_project_list pattern
-    sync_session_project
 
-    file = GithubDataFile.most_recent('archive', pattern, session['project'])
-
-    file_data = GithubDataFile.load_files(file)
-
+    file, file_data = load_most_recent_file pattern
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
 
-    @start_time = pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
+    @start_time = earliest_data pr_data
+    pr_data = reduce_by_time pr_data, :closed_at
 
-    days = filter_value?(:days, 0).to_i
-    if days > 0
-      limit_time = Time.now - days.days
-      pr_data = pr_data.select {|hash| hash[:closed_at] > limit_time }
+    pr_data = include_only_merged_prs pr_data
+
+    build_repo_list pr_data
+
+    project_repo_field = "#{session['project']}_repos"
+    if session[project_repo_field].present?
+      pr_data = pr_data.select {|hash| session[project_repo_field].include? hash[:repo]}
     end
-
-    pr_data = pr_data.where(merged_at: /./) if filter_value?(:unmerged, false) == false
 
     session['view_type'] ||= 'details'
 
-    view_data = if PrViewDataMappingHelper.respond_to? "closed_#{session['view_type']}_json"
-                  PrViewDataMappingHelper.send("closed_#{session['view_type']}_json", pr_data)
-                else
-                  pr_data
-                end
-
+    view_data = customize_data pr_data, "closed_#{session['view_type']}_json"
     respond_to do |format|
       format.html {
-        render "_closed_#{session['view_type']}", locals: { pr_data: view_data }
+        if view_data.count > 0
+          render "_closed_#{session['view_type']}", locals: { pr_data: view_data }
+        else
+          render '_no_data'
+        end
       }
       format.json {
         render json: view_data
       }
     end
-  end
-
-  def build_project_list(pattern)
-    @projects = GithubDataFile.projects('archive', pattern)
-  end
-
-  def sync_session_project
-    session['project'] = @projects.first unless session['project'].present? && @projects.include?(session['project'])
   end
 
   def filter_syms
@@ -120,10 +105,66 @@ class PullRequestController < ApplicationController
       session[sym.to_s] = params[sym] if params[sym].present?
       session[sym.to_s] = 0 unless session[sym.to_s].present?
     }
+
+    sync_session_repos
+
     redirect_back fallback_location: root_path
   end
 
   def filter_value?(sym, default_value = true)
     session.include?(sym.to_s) ? session[sym.to_s] : default_value
+  end
+
+  private
+
+  def build_project_list(pattern)
+    @projects = GithubDataFile.projects('archive', pattern)
+    session['project'] = @projects.first unless session['project'].present? && @projects.include?(session['project'])
+    @projects
+  end
+
+  def build_repo_list(pr_data)
+    @repos = pr_data.map {|pr| pr[:repo]}.uniq
+  end
+
+  def sync_session_repos
+    repo_field = "#{session['project']}_repos"
+    if params[repo_field].present?
+      session[repo_field] = params[repo_field]
+    elsif params[:commit].present?
+      # Only the dropdown menu apply button should cause the repo field to be cleared.
+      session.delete repo_field
+    end
+  end
+
+  def load_most_recent_file(pattern)
+    file = GithubDataFile.most_recent('archive', pattern, session['project'])
+    file_data = GithubDataFile.load_files(file)
+    [file, file_data]
+  end
+
+  def earliest_data(pr_data)
+    pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
+  end
+
+  def reduce_by_time(pr_data, field)
+    days = filter_value?(:days, 0).to_i
+    if days > 0
+      limit_time = Time.now - days.days
+      pr_data = pr_data.select {|hash| hash[field] > limit_time }
+    end
+    pr_data
+  end
+
+  def include_only_merged_prs(pr_data)
+    filter_value?(:unmerged, false) == false ? pr_data.where(merged_at: /./) : pr_data
+  end
+
+  def customize_data(pr_data, name)
+    if PrViewDataMappingHelper.respond_to? name
+      PrViewDataMappingHelper.send(name, pr_data)
+    else
+      pr_data
+    end
   end
 end

@@ -6,24 +6,39 @@
       <a href="#" data-toggle="dropdown" class="dropdown-toggle">
         <span class="glyphicon glyphicon-cog"></span>
       </a>
-      <ul class="dropdown-menu" style="width: 200px;">
+      <ul class="dropdown-menu" style="width: 300px;">
         <%= form_tag("/pull_request/set_filters", method: "put", remote: true) do %>
           <table align="center" width="100%" style="border-spacing: 3px; border-collapse: separate;">
             <tr><td colspan="2" align="center">
               <% if @start_time.present? %>
-                  data available:<br>
+                  unfiltered data available:<br>
                   <%= distance_of_time_in_words(@start_time,Time.now) %>
               <% else %>
                   no data
               <% end %>
             </td></tr>
             <tr><td colspan="2"><li class="divider"></li></td></tr>
+
+            <% repo_list = controller.repos.map {|repo| [repo, repo]}
+               if repo_list.count > 1 %>
+              <tr>
+                <td colspan="2" align="center">Repos:<br>
+                  <%=
+                    field_name = "#{(session['project'] || 'default').to_sym}_repos"
+                    select_tag(field_name, options_for_select(repo_list,
+                          controller.filter_value?(field_name, nil)), multiple: true, size: [repo_list.count,8].min)
+                  %>
+                </td>
+              </tr>
+            <% end %>
+
             <tr>
               <td width="40" align="right">Days:</td>
               <td align="center">
                 <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %>
               </td>
             </tr>
+
             <% if current_page?(pull_request_closed_path) %>
               <tr><td width="40" align="right">
                 <%= check_box_tag(:unmerged, :unmerged, controller.filter_value?(:unmerged, false)) %>
@@ -31,6 +46,7 @@
                 <td align="center">Show unmerged</td>
               </tr>
             <% end %>
+
             <tr><td colspan="2"><li class="divider"></li></td></tr>
             <tr><td colspan="2" align="center"><%= submit_tag("Apply Filters") %></td></tr>
           </table>
