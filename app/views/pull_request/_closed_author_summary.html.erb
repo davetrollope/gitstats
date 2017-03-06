@@ -6,6 +6,13 @@
       { name: "Merge Time", data: pr_data.pluck(:author,:merge_time) },
       { name: "Close Time", data: pr_data.pluck(:author,:close_time) }
   ]
+
+  # Establish which columns have useful data
+  mrg_time_enabled = lifecycle_data[0][:data].any? {|value| value[1] > 0 }
+  intg_time_enabled = lifecycle_data[1][:data].any? {|value| value[1] > 0 }
+
+  lifecycle_data.delete_at(1) if !intg_time_enabled
+  lifecycle_data.delete_at(0) if !mrg_time_enabled
 %>
 
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
@@ -22,8 +29,14 @@
     <th>Author</th>
     <th>PR Count</th>
     <th>Repo Count</th>
-    <th>Average Merge Time<br/><sup>(hours)</sup></th>
-    <th>Average Integration Time<br/><sup>(hours)</sup></th>
+    <% if mrg_time_enabled %>
+        <th>Average Merge Time<br/><sup>(hours)</sup></th>
+    <%
+      end
+      if intg_time_enabled
+    %>
+        <th>Average Integration Time<br/><sup>(hours)</sup></th>
+    <% end %>
   </tr></thead>
 
   <tbody>
@@ -32,8 +45,14 @@
         <td><%= author_summary[:author] %></td>
         <td><%= author_summary[:total] %></td>
         <td><%= author_summary[:repo_count] %></td>
-        <td><%= '%.2f' % author_summary[:merge_time] %></td>
-        <td><%= '%.2f' % author_summary[:intg_time] %></td>
+        <% if mrg_time_enabled %>
+            <td><%= '%.2f' % author_summary[:merge_time] %></td>
+        <%
+          end
+          if intg_time_enabled
+        %>
+            <td><%= '%.2f' % author_summary[:intg_time] %></td>
+        <% end %>
       </tr>
   <% } %>
   </tbody>

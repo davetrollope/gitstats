@@ -6,6 +6,13 @@
       { name: "Merge Time", data: pr_data.pluck(:repo,:merge_time) },
       { name: "Close Time", data: pr_data.pluck(:repo,:close_time) }
   ]
+
+  # Establish which columns have useful data
+  mrg_time_enabled = lifecycle_data[0][:data].any? {|value| value[1] > 0 }
+  intg_time_enabled = lifecycle_data[1][:data].any? {|value| value[1] > 0 }
+
+  lifecycle_data.delete_at(1) if !intg_time_enabled
+  lifecycle_data.delete_at(0) if !mrg_time_enabled
   %>
 
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
@@ -20,8 +27,14 @@
     <th>Repo</th>
     <th>PR Count</th>
     <th>Authors</th>
-    <th>Average Merge Time<br/><sup>(hours)</sup></th>
-    <th>Average Integration Time<br/><sup>(hours)</sup></th>
+    <% if mrg_time_enabled %>
+      <th>Average Merge Time<br/><sup>(hours)</sup></th>
+    <%
+      end
+      if intg_time_enabled
+    %>
+      <th>Average Integration Time<br/><sup>(hours)</sup></th>
+    <% end %>
   </tr></thead>
 
   <tbody>
@@ -30,8 +43,14 @@
         <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
         <td><%= repo_summary[:total] %></td>
         <td><%= repo_summary[:authors] %></td>
-        <td><%= '%.2f' % repo_summary[:merge_time] %></td>
-        <td><%= '%.2f' % repo_summary[:intg_time] %></td>
+        <% if mrg_time_enabled %>
+          <td><%= '%.2f' % repo_summary[:merge_time] %></td>
+        <%
+          end
+          if intg_time_enabled
+        %>
+          <td><%= '%.2f' % repo_summary[:intg_time] %></td>
+        <% end %>
       </tr>
   <% } %>
   </tbody>
