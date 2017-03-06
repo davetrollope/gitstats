@@ -46,10 +46,10 @@ RSpec.describe PullRequestController do
     expect(response.code).to eq('200')
   end
 
-  it '#params_to_session deletes invalid view types and defaults to details' do
+  it '#params_to_session deletes invalid view types and defaults to repo_summary' do
     get :open, params: { view_type: :invalid }
 
-    expect(session['view_type']).to eq('details')
+    expect(session['view_type']).to eq('repo_summary')
     expect(response.code).to eq('200')
   end
 

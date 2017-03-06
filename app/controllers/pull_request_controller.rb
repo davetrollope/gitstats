@@ -77,7 +77,7 @@ class PullRequestController < ApplicationController
 
     pr_data = reduce_to_current_repos pr_data
 
-    session['view_type'] ||= 'details'
+    session['view_type'] ||= 'repo_summary'
 
     view_data = customize_data pr_data, "#{state}_#{session['view_type']}_json"
     respond_to do |format|
