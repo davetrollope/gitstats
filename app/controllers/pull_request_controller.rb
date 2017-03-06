@@ -48,6 +48,10 @@ class PullRequestController < ApplicationController
 
     sync_session_repos
 
+    if params[:commit].present?
+      session.delete 'unmerged' if params[:unmerged].nil?
+    end
+
     redirect_back fallback_location: root_path
   end
 
