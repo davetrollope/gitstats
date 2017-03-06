@@ -33,17 +33,17 @@
             <% end %>
 
             <tr>
-              <td width="40" align="right">Days:</td>
-              <td align="center">
+              <td width="50%" align="right" style="padding: 5px;">Days:</td>
+              <td align="left">
                 <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %>
               </td>
             </tr>
 
             <% if current_page?(pull_request_closed_path) %>
-              <tr><td width="40" align="right">
+              <tr><td width="50%" align="right" style="padding: 5px;">
                 <%= check_box_tag(:unmerged, :unmerged, controller.filter_value?(:unmerged, false)) %>
               </td>
-                <td align="center">Show unmerged</td>
+                <td align="left">Show unmerged</td>
               </tr>
             <% end %>
 

@@ -1,3 +1,8 @@
+<%
+  # Establish which columns have useful data
+  mrg_time_enabled = pr_data.any? {|pr| PrViewDataMappingHelper.merged_time(pr) > 0 if pr[:merged_at].present? }
+  intg_time_enabled = pr_data.any? {|pr| PrViewDataMappingHelper.integration_time(pr) > 0 if pr[:merged_at].present? }
+%>
 <h1 align="center">Closed Pull Request Data</h1><h2 align="center">Detailed View</h2>
 
 <table id="closed_prs" class="table table-condensed table-striped" width="100%">
@@ -7,8 +12,14 @@
     <th>Created</th>
     <th>Closed</th>
     <th>Author</th>
-    <th>Merge Time<br/><sup>(hours)</sup></th>
-    <th>Integration Time<br/><sup>(hours)</sup></th>
+    <% if mrg_time_enabled %>
+      <th>Merge Time<br/><sup>(hours)</sup></th>
+    <%
+    end
+    if intg_time_enabled
+    %>
+      <th>Integration Time<br/><sup>(hours)</sup></th>
+    <% end %>
   </tr></thead>
 
   <tbody>
@@ -19,15 +30,14 @@
         <td><%= Time.parse pr[:created_at] %></td>
         <td><%= Time.parse pr[:closed_at] %></td>
         <td><%= pr[:author] %></td>
-        <td>
-          <% if pr[:merged_at].present? %>
-              <%= (Time.parse(pr[:merged_at]) - Time.parse(pr[:created_at])).to_i / 3600 %>
-          <% end %>
-        </td><td>
-        <% if pr[:merged_at].present? %>
-            <%= (Time.parse(pr[:closed_at]) - Time.parse(pr[:merged_at])).to_i / 3600 %>
+        <% if mrg_time_enabled %>
+          <td><%= PrViewDataMappingHelper.merged_time(pr) if pr[:merged_at].present? %></td>
+        <%
+        end
+        if intg_time_enabled
+        %>
+          <td><%= PrViewDataMappingHelper.integration_time(pr) if pr[:merged_at].present? %></td>
         <% end %>
-      </td>
       </tr>
   <% } %>
   </tbody>
