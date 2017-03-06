@@ -9,73 +9,13 @@ class PullRequestController < ApplicationController
   attr_reader :projects, :repos
 
   def open
-    pattern = '*_open_pr_data.json'
-    build_project_list pattern
-
-    file, file_data = load_most_recent_file pattern
-    pr_data = file_data.present? ? file_data.last[:pr_data] : []
-
-    @start_time = earliest_data pr_data
-    pr_data = reduce_by_time pr_data, :created_at
-
-    build_repo_list pr_data
-
-    project_repo_field = "#{session['project']}_repos"
-    if session[project_repo_field].present?
-      pr_data = pr_data.select {|hash| session[project_repo_field].include? hash[:repo]}
-    end
-
-    session['view_type'] ||= 'details'
-
-    view_data = customize_data pr_data, "open_#{session['view_type']}_json"
-    respond_to do |format|
-      format.html {
-        if view_data.count > 0
-          render "_open_#{session['view_type']}", locals: { pr_data: view_data }
-        else
-          render '_no_data'
-        end
-      }
-      format.json {
-        render json: view_data
-      }
-    end
+    current 'open', :created_at
   end
 
   def closed
-    pattern = '*_closed_pr_data.json'
-    build_project_list pattern
-
-    file, file_data = load_most_recent_file pattern
-    pr_data = file_data.present? ? file_data.last[:pr_data].where(state: 'closed') : []
-
-    @start_time = earliest_data pr_data
-    pr_data = reduce_by_time pr_data, :closed_at
-
-    pr_data = include_only_merged_prs pr_data
-
-    build_repo_list pr_data
-
-    project_repo_field = "#{session['project']}_repos"
-    if session[project_repo_field].present?
-      pr_data = pr_data.select {|hash| session[project_repo_field].include? hash[:repo]}
-    end
-
-    session['view_type'] ||= 'details'
-
-    view_data = customize_data pr_data, "closed_#{session['view_type']}_json"
-    respond_to do |format|
-      format.html {
-        if view_data.count > 0
-          render "_closed_#{session['view_type']}", locals: { pr_data: view_data }
-        else
-          render '_no_data'
-        end
-      }
-      format.json {
-        render json: view_data
-      }
-    end
+    current('closed', :closed_at) {|pr_data|
+      include_only_merged_prs pr_data
+    }
   end
 
   def filter_syms
@@ -116,6 +56,39 @@ class PullRequestController < ApplicationController
   end
 
   private
+
+  def current(state, primary_field)
+    pattern = "*_#{state}_pr_data.json"
+    build_project_list pattern
+
+    file, file_data = load_most_recent_file pattern
+    pr_data = file_data.present? ? file_data.last[:pr_data].where(state: state) : []
+
+    @start_time = earliest_data pr_data
+    pr_data = reduce_by_time pr_data, primary_field
+
+    pr_data = yield(pr_data) if block_given?
+
+    build_repo_list pr_data
+
+    pr_data = reduce_to_current_repos pr_data
+
+    session['view_type'] ||= 'details'
+
+    view_data = customize_data pr_data, "#{state}_#{session['view_type']}_json"
+    respond_to do |format|
+      format.html {
+        if view_data.count > 0
+          render "_#{state}_#{session['view_type']}", locals: { pr_data: view_data }
+        else
+          render '_no_data'
+        end
+      }
+      format.json {
+        render json: view_data
+      }
+    end
+  end
 
   def build_project_list(pattern)
     @projects = GithubDataFile.projects('archive', pattern)
@@ -158,6 +131,12 @@ class PullRequestController < ApplicationController
 
   def include_only_merged_prs(pr_data)
     filter_value?(:unmerged, false) == false ? pr_data.where(merged_at: /./) : pr_data
+  end
+
+  def reduce_to_current_repos(pr_data)
+    project_repo_field = "#{session['project']}_repos"
+
+    session[project_repo_field].present? ? pr_data.select {|hash| session[project_repo_field].include? hash[:repo]} : pr_data
   end
 
   def customize_data(pr_data, name)
