@@ -4,9 +4,9 @@ class GithubDataFile
 
     state = options[:state] || 'closed'
 
-    prs = GithubDataCollector.get_prs output_path, user_repos, state, options
+    aggregated_pr_data = GithubDataCollector.get_prs output_path, user_repos, state, options
 
-    new.export(output_path, "#{prefix}_#{username || GithubDataCollector.username}_#{state}", prs)
+    new.export(output_path, "#{prefix}_#{username || GithubDataCollector.username}_#{state}", aggregated_pr_data)
   end
 
   def self.get_org_prs(output_path, prefix, orgname, options = {})
@@ -14,13 +14,19 @@ class GithubDataFile
 
     state = options[:state] || 'closed'
 
-    prs = GithubDataCollector.get_prs output_path, user_repos, state, options
+    aggregated_pr_data = GithubDataCollector.get_prs output_path, user_repos, state, options
 
-    new.export(output_path, "#{prefix}_#{orgname}_#{state}", prs)
+    new.export(output_path, "#{prefix}_#{orgname}_#{state}", aggregated_pr_data)
   end
 
-  def persistable_pr_fields(pr_data)
-    pr_data.map { |pr|
+  def pr_comment_count(comments, pr)
+    comments.select {|comment|
+      comment['pull_request_url'] == pr['url']
+    }.count
+  end
+
+  def persistable_pr_fields(aggregated_pr_data)
+    aggregated_pr_data[:prs].map { |pr|
       {
         repo: pr['base']['repo']['full_name'],
         id: pr['number'],
@@ -28,14 +34,18 @@ class GithubDataFile
         merged_at: pr['merged_at'],
         closed_at: pr['closed_at'],
         state: pr['state'],
-        author: pr['user']['login']
+        author: pr['user']['login'],
+        comment_count: pr_comment_count(aggregated_pr_data[:comments], pr)
       }
     }
   end
 
-  def export(output_path, prefix, pr_data)
+  def export(output_path, prefix, aggregated_pr_data)
+    pr_data = aggregated_pr_data[:prs]
+
+    File.write "#{output_path}/#{prefix}_rawcomment_data.json", JSON.pretty_generate(aggregated_pr_data[:comments])
     File.write "#{output_path}/#{prefix}_rawpr_data.json", JSON.pretty_generate(pr_data)
-    File.write "#{output_path}/#{prefix}_pr_data.json", JSON.pretty_generate(persistable_pr_fields(pr_data))
+    File.write "#{output_path}/#{prefix}_pr_data.json", JSON.pretty_generate(persistable_pr_fields(aggregated_pr_data))
   end
 
   class << self

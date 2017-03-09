@@ -1,0 +1,94 @@
+[
+  {
+    "url": "https://api.github.com/repos/rails/actioncable-examples/pulls/comments/34551580",
+    "pull_request_review_id": null,
+    "id": 34551580,
+    "diff_hunk": "@@ -0,0 +1,38 @@\n+---\n+# The Redis Container:\n+redis:\n+  image: redis:3.0\n+  ports:\n+    - \"6379:6379\" # Bind host port 6379 to Redis container's port 6379\n+\n+# The Web container:\n+web: &app_base\n+  image: vovimayhem/app-dev:mri-2.2",
+    "path": "docker-compose.yml",
+    "position": 10,
+    "original_position": 10,
+    "commit_id": "76696b56e28950f76121eba007d61a07999e7701",
+    "original_commit_id": "76696b56e28950f76121eba007d61a07999e7701",
+    "user": {
+      "login": "syndbg",
+      "id": 6031925,
+      "avatar_url": "https://avatars0.githubusercontent.com/u/6031925?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/syndbg",
+      "html_url": "https://github.com/syndbg",
+      "followers_url": "https://api.github.com/users/syndbg/followers",
+      "following_url": "https://api.github.com/users/syndbg/following{/other_user}",
+      "gists_url": "https://api.github.com/users/syndbg/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/syndbg/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/syndbg/subscriptions",
+      "organizations_url": "https://api.github.com/users/syndbg/orgs",
+      "repos_url": "https://api.github.com/users/syndbg/repos",
+      "events_url": "https://api.github.com/users/syndbg/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/syndbg/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "body": "Why not an image from https://registry.hub.docker.com/_/rails/ ? \n",
+    "created_at": "2015-07-14T09:41:06Z",
+    "updated_at": "2015-07-14T09:41:06Z",
+    "html_url": "https://github.com/rails/actioncable-examples/pull/8#discussion_r34551580",
+    "pull_request_url": "https://api.github.com/repos/rails/actioncable-examples/pulls/34",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/rails/actioncable-examples/pulls/comments/34551580"
+      },
+      "html": {
+        "href": "https://github.com/rails/actioncable-examples/pull/8#discussion_r34551580"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/rails/actioncable-examples/pulls/8"
+      }
+    }
+  },
+  {
+    "url": "https://api.github.com/repos/rails/actioncable-examples/pulls/comments/34598739",
+    "pull_request_review_id": null,
+    "id": 34598739,
+    "diff_hunk": "@@ -0,0 +1,38 @@\n+---\n+# The Redis Container:\n+redis:\n+  image: redis:3.0\n+  ports:\n+    - \"6379:6379\" # Bind host port 6379 to Redis container's port 6379\n+\n+# The Web container:\n+web: &app_base\n+  image: vovimayhem/app-dev:mri-2.2",
+    "path": "docker-compose.yml",
+    "position": 10,
+    "original_position": 10,
+    "commit_id": "76696b56e28950f76121eba007d61a07999e7701",
+    "original_commit_id": "76696b56e28950f76121eba007d61a07999e7701",
+    "user": {
+      "login": "vovimayhem",
+      "id": 1915931,
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1915931?v=3",
+      "gravatar_id": "",
+      "url": "https://api.github.com/users/vovimayhem",
+      "html_url": "https://github.com/vovimayhem",
+      "followers_url": "https://api.github.com/users/vovimayhem/followers",
+      "following_url": "https://api.github.com/users/vovimayhem/following{/other_user}",
+      "gists_url": "https://api.github.com/users/vovimayhem/gists{/gist_id}",
+      "starred_url": "https://api.github.com/users/vovimayhem/starred{/owner}{/repo}",
+      "subscriptions_url": "https://api.github.com/users/vovimayhem/subscriptions",
+      "organizations_url": "https://api.github.com/users/vovimayhem/orgs",
+      "repos_url": "https://api.github.com/users/vovimayhem/repos",
+      "events_url": "https://api.github.com/users/vovimayhem/events{/privacy}",
+      "received_events_url": "https://api.github.com/users/vovimayhem/received_events",
+      "type": "User",
+      "site_admin": false
+    },
+    "body": "@syndbg The example rails app uses an unreleased version of Rails 5.0 (as it's currently being developed), so you'll not find it on the official Docker library.\n\nI also admit that although there's an official Ruby image, I find this one easier to use, as it does not require any building step besides the `bundle install`. (I remember having to run some sort of building step in the official ruby image)\n",
+    "created_at": "2015-07-14T18:01:35Z",
+    "updated_at": "2015-07-14T18:02:11Z",
+    "html_url": "https://github.com/rails/actioncable-examples/pull/8#discussion_r34598739",
+    "pull_request_url": "https://api.github.com/repos/rails/actioncable-examples/pulls/34",
+    "_links": {
+      "self": {
+        "href": "https://api.github.com/repos/rails/actioncable-examples/pulls/comments/34598739"
+      },
+      "html": {
+        "href": "https://github.com/rails/actioncable-examples/pull/8#discussion_r34598739"
+      },
+      "pull_request": {
+        "href": "https://api.github.com/repos/rails/actioncable-examples/pulls/8"
+      }
+    }
+  }
+]

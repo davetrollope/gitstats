@@ -1,2 +1,2 @@
 thread_pool:
-  size: 10
+  size: 1
