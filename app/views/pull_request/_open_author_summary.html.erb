@@ -1,3 +1,4 @@
+<% comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? } %>
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Author Summary</h2>
 
 <% authors = pr_data.map {|pr| pr[:author]}.uniq %>
@@ -17,15 +18,21 @@
     <th>PR Count</th>
     <th>Repo Count</th>
     <th>Open Time<br/><sup>(hours)</sup></th>
+    <% if comment_count_enabled %>
+        <th># of PR Comments</th>
+    <% end %>
   </tr></thead>
 
   <tbody>
-  <% pr_data.each {|author_summary| %>
+  <% pr_data.each {|summary| %>
       <tr>
-        <td><%= author_summary[:author] %></td>
-        <td><%= author_summary[:total] %></td>
-        <td><%= author_summary[:repo_count] %></td>
-        <td><%= '%.2f' % author_summary[:open_time] %></td>
+        <td><%= summary[:author] %></td>
+        <td><%= summary[:total] %></td>
+        <td><%= summary[:repo_count] %></td>
+        <td><%= '%.2f' % summary[:open_time] %></td>
+        <% if comment_count_enabled %>
+            <td><%= summary[:comment_count] %></td>
+        <% end %>
       </tr>
   <% } %>
   </tbody>

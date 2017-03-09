@@ -1,3 +1,4 @@
+<% comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? } %>
 <h1>Open Pull Request Data</h1>
 
 <table id="open_prs" class="table table-striped" width="100%">
@@ -7,6 +8,9 @@
     <th>Created</th>
     <th>Author</th>
     <th>Open Time<br/><sup>(hours)</sup></th>
+    <% if comment_count_enabled %>
+        <th># of Comments</th>
+    <% end %>
   </tr></thead>
 
   <tbody>
@@ -17,6 +21,9 @@
         <td><%= Time.parse pr[:created_at] %></td>
         <td><%= pr[:author] %></td>
         <td><%= (Time.now - Time.parse(pr[:created_at])).to_i / 3600 %></td>
+        <% if comment_count_enabled %>
+            <td><%= pr[:comment_count] %></td>
+        <% end %>
       </tr>
   <% } %>
   </tbody>

@@ -1,3 +1,4 @@
+<% comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? } %>
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
@@ -11,15 +12,21 @@
     <th>PR Count</th>
     <th>Authors</th>
     <th>Open Time<br/><sup>(hours)</sup></th>
+    <% if comment_count_enabled %>
+        <th># of Comments</th>
+    <% end %>
   </tr></thead>
 
   <tbody>
-  <% pr_data.each {|repo_summary| %>
+  <% pr_data.each {|summary| %>
       <tr>
-        <td><%= link_to repo_summary[:repo], PullRequestHelper.github_repo_path(repo_summary[:repo]) %></td>
-        <td><%= repo_summary[:total] %></td>
-        <td><%= repo_summary[:authors] %></td>
-        <td><%= '%.2f' % repo_summary[:open_time] %></td>
+        <td><%= link_to summary[:repo], PullRequestHelper.github_repo_path(summary[:repo]) %></td>
+        <td><%= summary[:total] %></td>
+        <td><%= summary[:authors] %></td>
+        <td><%= '%.2f' % summary[:open_time] %></td>
+        <% if comment_count_enabled %>
+            <td><%= summary[:comment_count] %></td>
+        <% end %>
       </tr>
   <% } %>
   </tbody>
