@@ -15,7 +15,8 @@ module PrViewDataMappingHelper
           open_time: author_prs.map {|pr|
                        ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
                      }.sum / author_prs.count,
-          comment_count: author_prs.map {|pr| pr[:comment_count]}.sum
+          comment_count: author_prs.map {|pr| pr[:comment_count]}.sum,
+          mergeable: author_prs.map {|pr| pr[:mergeable]}.sum
         }
       }
     end
@@ -35,7 +36,8 @@ module PrViewDataMappingHelper
           open_time: repo_prs.map {|pr|
                        ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
                      }.sum / repo_prs.count,
-          comment_count: repo_prs.map {|pr| pr[:comment_count]}.sum
+          comment_count: repo_prs.map {|pr| pr[:comment_count]}.sum,
+          mergeable: repo_prs.map {|pr| pr[:mergeable]}.sum
         }
       }
     end

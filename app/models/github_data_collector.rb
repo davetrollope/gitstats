@@ -13,7 +13,7 @@ class GithubDataCollector
     AppConfig.github.user
   end
 
-  def fetch_pullrequests(repo, state, constraint = {})
+  def fetch_pullrequest_list(repo, state, constraint = {})
     state = 'all' if state.nil?
 
     require 'net/http'
@@ -59,7 +59,7 @@ class GithubDataCollector
     response_data.flatten!
   end
 
-  def fetch_pr_comments(repo, pr_data)
+  def fetch_pullrequests(repo, pr_data)
     state = 'all' if state.nil?
 
     require 'net/http'
@@ -72,33 +72,29 @@ class GithubDataCollector
                     use_ssl: uri.scheme == 'https',
                     verify_mode: OpenSSL::SSL::VERIFY_NONE) do |http|
       pr_data.each {|pr|
-        page = 0
-        pages = 1
+        # We could look at the pr updated_at field to limit the number of requests
+        # we make - but we'd have to load all data for the past N days
+        # in the controller and find a way to keep that in sync. Maybe use the earliest
+        # time in the PR list data to drive that?
 
-        begin
-          uri = URI("#{pr['review_comments_url']}?per_page=100&page=#{page + 1}")
+        uri = URI("#{pr['url']}")
 
-          Rails.logger.debug "Getting #{uri.inspect}"
+        Rails.logger.debug "Getting #{uri.inspect}"
 
-          request = Net::HTTP::Get.new uri.request_uri
-          request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
+        request = Net::HTTP::Get.new uri.request_uri
+        request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
 
-          response = http.request request # Net::HTTPResponse object
-          raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
+        response = http.request request # Net::HTTPResponse object
 
-          GithubDataCollector.log_rate_limits response.header
-          if response.header['link'].present?
-            page_str = response.header['link'].split(',').select {|s| s =~ /\"last\"/}.first
-            pages = page_str[/[?&]page=[0-9]+/].scan(/[0-9]+/).first.to_i if page_str
-          end
+        raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
 
-          response_data << JSON.parse(response.body)
-          page += 1
-        end while page < pages # rubocop:disable Lint/Loop - using a loop increases branch complexity
+        GithubDataCollector.log_rate_limits response.header
+
+        response_data << JSON.parse(response.body)
       }
     end
 
-    response_data.flatten!
+    response_data
   end
 
   def self.get_repo_list(uri = 'user/repos')
@@ -128,8 +124,8 @@ class GithubDataCollector
   def self.get_prs(_output_path, repo_list, state, options = {})
     require 'thread/pool'
 
+    all_repo_prs = []
     all_prs = []
-    all_comments = []
     exceptions = []
 
     pool = Thread.pool(AppConfig.github_data_collector.thread_pool.size)
@@ -140,16 +136,16 @@ class GithubDataCollector
       pool.process {
         begin
           data_collector = new options
-          repo_pr_data = data_collector.fetch_pullrequests(
+          repo_pr_data = data_collector.fetch_pullrequest_list(
             repo, state, state == 'closed' ? { 'closed_at' => (options[:closed_days] || 30).days } : {}
           )
 
           if repo_pr_data.present?
-            repo_comment_data = data_collector.fetch_pr_comments repo, repo_pr_data if state == 'open'
+            pr_data = data_collector.fetch_pullrequests repo, repo_pr_data if state == 'open'
 
             merge_mutex.synchronize {
-              all_prs = (all_prs << repo_pr_data).flatten
-              all_comments = (all_comments << repo_comment_data).flatten if repo_comment_data.present?
+              all_repo_prs = (all_repo_prs << repo_pr_data).flatten
+              all_prs = (all_prs << pr_data).flatten if pr_data.present?
             }
           end
         rescue StandardError, WebMock::NetConnectNotAllowedError => e
@@ -163,7 +159,7 @@ class GithubDataCollector
     pool.shutdown
 
     exceptions.each {|e| raise e }
-    { prs: all_prs, comments: all_comments }
+    { repo_prs: all_repo_prs, pr_data: all_prs }
   end
 
   def self.log_rate_limits(header)

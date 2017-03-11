@@ -19,14 +19,14 @@ class GithubDataFile
     new.export(output_path, "#{prefix}_#{orgname}_#{state}", aggregated_pr_data)
   end
 
-  def pr_comment_count(comments, pr)
-    comments.select {|comment|
-      comment['pull_request_url'] == pr['url']
-    }.count
+  def pr_field_sum(pr_data, repo_pr)
+    pr_data.select {|pr|
+      repo_pr['url'] == pr['url']
+    }.map {|pr| yield(pr)}.sum
   end
 
   def persistable_pr_fields(aggregated_pr_data)
-    aggregated_pr_data[:prs].map { |pr|
+    aggregated_pr_data[:repo_prs].map { |pr|
       {
         repo: pr['base']['repo']['full_name'],
         id: pr['number'],
@@ -35,16 +35,15 @@ class GithubDataFile
         closed_at: pr['closed_at'],
         state: pr['state'],
         author: pr['user']['login'],
-        comment_count: pr_comment_count(aggregated_pr_data[:comments], pr)
+        comment_count: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pr| pr['comments'] },
+        mergeable: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pr| pr['mergeable'] ? 1 : 0 }
       }
     }
   end
 
   def export(output_path, prefix, aggregated_pr_data)
-    pr_data = aggregated_pr_data[:prs]
-
-    File.write "#{output_path}/#{prefix}_rawcomment_data.json", JSON.pretty_generate(aggregated_pr_data[:comments])
-    File.write "#{output_path}/#{prefix}_rawpr_data.json", JSON.pretty_generate(pr_data)
+    File.write "#{output_path}/#{prefix}_rawpr_data.json", JSON.pretty_generate(aggregated_pr_data[:pr_data])
+    File.write "#{output_path}/#{prefix}_rawrepopr_data.json", JSON.pretty_generate(aggregated_pr_data[:repo_prs])
     File.write "#{output_path}/#{prefix}_pr_data.json", JSON.pretty_generate(persistable_pr_fields(aggregated_pr_data))
   end
 

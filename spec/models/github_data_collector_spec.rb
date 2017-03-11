@@ -36,49 +36,49 @@ RSpec.describe GithubDataCollector do
       json.to_json
     end
 
-    let(:open_pr_data) { File.read(Rails.root.join('spec', 'fixtures', 'user_open.json')) }
-    let(:closed_pr_data) { update_closed_time(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json'))) }
+    let(:open_pr_list) { File.read(Rails.root.join('spec', 'fixtures', 'user_open.json')) }
+    let(:closed_pr_list) { update_closed_time(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json'))) }
 
     def stub_comments(pr_data_file)
       pr_data = JSON.parse(pr_data_file)
 
       pr_data.each {|pr|
-        stub_request(:get, "#{pr['review_comments_url']}?page=1&per_page=100")
-          .to_return(status: 200, body: [].to_json, headers: {})
+        stub_request(:get, "#{pr['url']}").
+            to_return(:status => 200, :body => [].to_json, :headers => {})
       }
     end
 
     it 'gets open prs' do
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open')
-        .to_return(status: 200, body: open_pr_data, headers: {})
+        .to_return(status: 200, body: open_pr_list, headers: {})
 
-      stub_comments(open_pr_data)
+      stub_comments(open_pr_list)
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'open')
-      expect(aggregated_pr_data[:prs].count).to eq(JSON.parse(open_pr_data).count)
-      expect(aggregated_pr_data[:comments].count).to eq(0)
+      expect(aggregated_pr_data[:repo_prs].count).to eq(JSON.parse(open_pr_list).count)
+      expect(aggregated_pr_data[:pr_data].count).to eq(0)
     end
 
     it 'gets closed prs within 30 days' do
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
-        .to_return(status: 200, body: closed_pr_data, headers: {})
+        .to_return(status: 200, body: closed_pr_list, headers: {})
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'closed')
-      expect(aggregated_pr_data[:prs].count).to eq(1)
-      expect(aggregated_pr_data[:comments].count).to eq(0)
+      expect(aggregated_pr_data[:repo_prs].count).to eq(1)
+      expect(aggregated_pr_data[:pr_data].count).to eq(0)
     end
 
     it 'gets closed prs within 60 days' do
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
-        .to_return(status: 200, body: closed_pr_data, headers: {})
+        .to_return(status: 200, body: closed_pr_list, headers: {})
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'closed', closed_days: 60.days)
-      expect(aggregated_pr_data[:prs].count).to eq(2)
-      expect(aggregated_pr_data[:comments].count).to eq(0)
+      expect(aggregated_pr_data[:repo_prs].count).to eq(2)
+      expect(aggregated_pr_data[:pr_data].count).to eq(0)
     end
 
     it 'propogates exceptions' do
-      expect(described_class).to receive_message_chain(:new, :fetch_pullrequests).and_raise(GithubBadResponse.new('test exception'))
+      expect(described_class).to receive_message_chain(:new, :fetch_pullrequest_list).and_raise(GithubBadResponse.new('test exception'))
 
       expect { described_class.get_prs('testdir', ['test/repo'], 'open') }.to raise_error(GithubBadResponse)
     end
@@ -90,39 +90,31 @@ RSpec.describe GithubDataCollector do
       }
 
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=closed')
-        .to_return(status: 200, body: closed_pr_data, headers: response_header)
+        .to_return(status: 200, body: closed_pr_list, headers: response_header)
 
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=2&per_page=100&state=closed')
-        .to_return(status: 200, body: closed_pr_data, headers: {})
+        .to_return(status: 200, body: closed_pr_list, headers: {})
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'closed')
-      expect(aggregated_pr_data[:prs].count).to eq(2)
-      expect(aggregated_pr_data[:comments].count).to eq(0)
+      expect(aggregated_pr_data[:repo_prs].count).to eq(2)
+      expect(aggregated_pr_data[:pr_data].count).to eq(0)
     end
 
-    let(:open_comment_data) { File.read(Rails.root.join('spec', 'fixtures', 'open_comments.json')) }
+    let(:open_pr_data) { File.read(Rails.root.join('spec', 'fixtures', 'open_pr.json')) }
 
-    it 'handles paginated comment responses' do
-      response_header = {
-        link: '<https://api.github.com/repositories/8514/pulls/26703/comments?per_page=100&page=1>; rel="next",'\
-            ' <https://api.github.com/repositories/8514/pulls/26703/comments?per_page=100&page=2>; rel="last"'
-      }
-
+    it 'open pr gets specific pr data' do
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open')
-        .to_return(status: 200, body: open_pr_data, headers: {})
+          .to_return(status: 200, body: open_pr_list, headers: {})
 
-      stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/26/comments?page=1&per_page=100')
-        .to_return(status: 200, body: [].to_json, headers: {})
+      stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/26')
+          .to_return(status: 200, body: [].to_json, headers: {})
 
-      stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/34/comments?page=1&per_page=100')
-        .to_return(status: 200, body: open_comment_data, headers: response_header)
-
-      stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/34/comments?page=2&per_page=100')
-        .to_return(status: 200, body: open_comment_data, headers: {})
+      stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/34')
+          .to_return(status: 200, body: open_pr_data, headers: {})
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'open')
-      expect(aggregated_pr_data[:prs].count).to eq(2)
-      expect(aggregated_pr_data[:comments].count).to eq(4)
+      expect(aggregated_pr_data[:repo_prs].count).to eq(JSON.parse(open_pr_list).count)
+      expect(aggregated_pr_data[:pr_data].count).to eq(2)
     end
   end
 

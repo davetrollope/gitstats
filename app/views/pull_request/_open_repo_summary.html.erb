@@ -15,6 +15,7 @@
     <% if comment_count_enabled %>
         <th># of Comments</th>
     <% end %>
+    <th># Mergeable</th>
   </tr></thead>
 
   <tbody>
@@ -27,6 +28,7 @@
         <% if comment_count_enabled %>
             <td><%= summary[:comment_count] %></td>
         <% end %>
+        <td><%= summary[:mergeable] %></td>
       </tr>
   <% } %>
   </tbody>

@@ -11,6 +11,7 @@
     <% if comment_count_enabled %>
         <th># of Comments</th>
     <% end %>
+    <th>Mergeable?</th>
   </tr></thead>
 
   <tbody>
@@ -24,6 +25,7 @@
         <% if comment_count_enabled %>
             <td><%= pr[:comment_count] %></td>
         <% end %>
+        <td><%= pr[:mergeable] == 1 ? 'Yes' : 'No' %></td>
       </tr>
   <% } %>
   </tbody>
