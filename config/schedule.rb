@@ -23,15 +23,15 @@
 
 # Open PRs
 every 1.hours do
-  runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jmmastey', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
+  # runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jmmastey', state: 'open'"
 end
 
 # Closed PRs
 every 1.day, at: '6:00 am' do
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today"
-  runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails'"
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jmmastey'"
-  # runner "GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'jsor', closed_days: 60"
-  # runner "GithubDataFile.get_org_prs 'archive', GithubDataFile.prefix_today, 'enova'"
+  # runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today"
+  runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails'"
+  # runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jmmastey'"
+  # runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'jsor', closed_days: 60"
+  # runner "require 'github_data_file'; GithubDataFile.get_org_prs 'archive', GithubDataFile.prefix_today, 'enova'"
 end
