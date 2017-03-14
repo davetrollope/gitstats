@@ -32,7 +32,7 @@ module PrViewDataMappingHelper
         {
           repo: repo,
           total: repo_prs.count,
-          authors: repo_prs.map {|pr| pr[:author]}.count,
+          authors: repo_prs.map {|pr| pr[:author]}.uniq.count,
           open_time: repo_prs.map {|pr|
                        ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
                      }.sum / repo_prs.count,
@@ -94,7 +94,7 @@ module PrViewDataMappingHelper
         {
           repo: repo,
           total: repo_prs.count,
-          authors: repo_prs.map {|pr| pr[:author]}.count,
+          authors: repo_prs.map {|pr| pr[:author]}.uniq.count,
           merge_time: repo_prs.map {|pr|
                         (pr[:merged_at].present? ? merged_time(pr) : 0).to_f
                       }.sum / repo_prs.count,
