@@ -1,7 +1,7 @@
 <div class="settings">
   <ul class="nav nav-tabs">
-    <li class="<%= 'active' if params[:action] == 'open' %>"><a href="/pull_request/open">Open</a></li>
-    <li class="<%= 'active' if params[:action] == 'closed' %>"><a href="/pull_request/closed">Closed</a></li>
+    <li class="<%= 'active' if params[:action] == 'open' %>"><%= link_to 'Open', pull_request_open_path(controller.current_settings) %></li>
+    <li class="<%= 'active' if params[:action] == 'closed' %>"><%= link_to 'Closed', pull_request_closed_path(controller.current_settings) %></li>
     <li class="dropdown pull-right">
       <a href="#" data-toggle="dropdown" class="dropdown-toggle">
         <span class="glyphicon glyphicon-cog"></span>

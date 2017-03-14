@@ -31,9 +31,21 @@ class PullRequestController < ApplicationController
       params.delete(:view_type)
     end
 
+    if params[:unmerged].present? && params[:unmerged] == 'false'
+      params.delete(:unmerged)
+    end
+
     [filter_syms, numeric_filter_syms].flatten.each {|sym|
       session[sym.to_s] = params[sym] if params[sym].present?
     }
+  end
+
+  def current_settings
+    # intersecting with session.keys ensures we only return things in the session
+    # and don't try and access settings that aren't there. Subtle, but safe - handles nil values
+    (session.keys & [filter_syms, numeric_filter_syms].flatten.map(&:to_s)).map {|k|
+      [k.to_sym, session[k.to_sym]]
+    }.to_h
   end
 
   def set_filters
@@ -52,7 +64,7 @@ class PullRequestController < ApplicationController
       session.delete 'unmerged' if params[:unmerged].nil?
     end
 
-    redirect_back fallback_location: root_path
+    redirect_to request.referer.nil? ? root_path : "#{request.referer.split('?')[0]}?#{current_settings.to_query}"
   end
 
   def filter_value?(sym, default_value = true)

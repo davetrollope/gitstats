@@ -43,8 +43,8 @@ RSpec.describe GithubDataCollector do
       pr_data = JSON.parse(pr_data_file)
 
       pr_data.each {|pr|
-        stub_request(:get, "#{pr['url']}").
-            to_return(:status => 200, :body => [].to_json, :headers => {})
+        stub_request(:get, (pr['url']).to_s)
+          .to_return(status: 200, body: [].to_json, headers: {})
       }
     end
 
@@ -78,7 +78,8 @@ RSpec.describe GithubDataCollector do
     end
 
     it 'propogates exceptions' do
-      expect(described_class).to receive_message_chain(:new, :fetch_pullrequest_list).and_raise(GithubBadResponse.new('test exception'))
+      expect(described_class).to receive_message_chain(:new,
+                                                       :fetch_pullrequest_list).and_raise(GithubBadResponse.new('test exception'))
 
       expect { described_class.get_prs('testdir', ['test/repo'], 'open') }.to raise_error(GithubBadResponse)
     end
@@ -104,13 +105,13 @@ RSpec.describe GithubDataCollector do
 
     it 'open pr gets specific pr data' do
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open')
-          .to_return(status: 200, body: open_pr_list, headers: {})
+        .to_return(status: 200, body: open_pr_list, headers: {})
 
       stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/26')
-          .to_return(status: 200, body: [].to_json, headers: {})
+        .to_return(status: 200, body: [].to_json, headers: {})
 
       stub_request(:get, 'https://api.github.com/repos/test/actioncable-examples/pulls/34')
-          .to_return(status: 200, body: open_pr_data, headers: {})
+        .to_return(status: 200, body: open_pr_data, headers: {})
 
       aggregated_pr_data = described_class.get_prs('testdir', ['test/repo'], 'open')
       expect(aggregated_pr_data[:repo_prs].count).to eq(JSON.parse(open_pr_list).count)

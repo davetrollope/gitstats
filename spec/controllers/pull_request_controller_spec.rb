@@ -33,9 +33,18 @@ RSpec.describe PullRequestController do
   it '#closed includes unmerged data when selected' do
     expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
 
-    get :closed, session: { unmerged: 'unmerged', 'view_type' => 'repo_summary' }
+    get :closed, session: { 'unmerged' => 'unmerged', 'view_type' => 'repo_summary' }
 
     expect(response.code).to eq('200')
+  end
+
+  it '#closed doesnt include unmerged data when passed "false"' do
+    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+
+    get :closed, params: { 'unmerged' => 'false', 'view_type' => 'details' }
+
+    expect(response.code).to eq('200')
+    expect(session['unmerged']).to be_nil
   end
 
   it '#open uses default data when there is no custom method' do
