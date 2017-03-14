@@ -77,7 +77,7 @@ class GithubDataCollector
         # in the controller and find a way to keep that in sync. Maybe use the earliest
         # time in the PR list data to drive that?
 
-        uri = URI("#{pr['url']}")
+        uri = URI((pr['url']).to_s)
 
         Rails.logger.debug "Getting #{uri.inspect}"
 

@@ -20,9 +20,7 @@ class GithubDataFile
   end
 
   def pr_field_sum(pr_data, repo_pr)
-    pr_data.select {|pr|
-      repo_pr['url'] == pr['url']
-    }.map {|pr| yield(pr)}.sum
+    pr_data.select {|pr| repo_pr['url'] == pr['url'] }.map {|pr| yield(pr)}.sum
   end
 
   def persistable_pr_fields(aggregated_pr_data)
@@ -35,8 +33,8 @@ class GithubDataFile
         closed_at: pr['closed_at'],
         state: pr['state'],
         author: pr['user']['login'],
-        comment_count: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pr| pr['comments'] },
-        mergeable: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pr| pr['mergeable'] ? 1 : 0 }
+        comment_count: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pullrequest| pullrequest['comments'] },
+        mergeable: pr_field_sum(aggregated_pr_data[:pr_data], pr) {|pullrequest| pullrequest['mergeable'] ? 1 : 0 }
       }
     }
   end
