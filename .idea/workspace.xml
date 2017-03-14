@@ -3,13 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="3b3ceadd-a62c-4a91-a860-47250584c4c4" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.rubocop.yml" afterPath="$PROJECT_DIR$/.rubocop.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/github_data_collector.rb" afterPath="$PROJECT_DIR$/app/models/github_data_collector.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/github_data_file.rb" afterPath="$PROJECT_DIR$/app/models/github_data_file.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" afterPath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/models/github_data_collector_spec.rb" afterPath="$PROJECT_DIR$/spec/models/github_data_collector_spec.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/layouts/application.html.erb" afterPath="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -29,31 +23,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="_navbar.html.erb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/views/application/_navbar.html.erb">
+      <file leaf-file-name="application.html.erb" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="43" column="97" lean-forward="false" selection-start-line="43" selection-start-column="92" selection-end-line="43" selection-end-column="97" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pull_request_controller.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/controllers/pull_request_controller.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="35" column="7" lean-forward="false" selection-start-line="35" selection-start-column="7" selection-end-line="35" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pull_request_controller_spec.rb" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
-              <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="400">
+              <caret line="29" column="106" lean-forward="false" selection-start-line="29" selection-start-column="106" selection-end-line="29" selection-end-column="106" />
               <folding />
             </state>
           </provider>
@@ -134,7 +108,6 @@
         <option value="$PROJECT_DIR$/app/helpers/view_data_mapping_helper.rb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/spec/requests/site_spec.rb" />
-        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pull_request/_no_data.html.erb" />
         <option value="$PROJECT_DIR$/spec/fixtures/user_closed_summary.json" />
         <option value="$PROJECT_DIR$/spec/fixtures/user_open_summary.json" />
@@ -154,6 +127,7 @@
         <option value="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
         <option value="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
+        <option value="$PROJECT_DIR$/app/views/layouts/application.html.erb" />
       </list>
     </option>
   </component>
@@ -693,12 +667,12 @@
       <workItem from="1487176529922" duration="19659000" />
       <workItem from="1487419134908" duration="19830000" />
       <workItem from="1487723913508" duration="3526000" />
-      <workItem from="1487996306278" duration="108632000" />
+      <workItem from="1487996306278" duration="109437000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="186332000" />
+    <option name="totallyTimeSpent" value="187137000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1032,14 +1006,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pull_request/_closed_details.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="17" column="7" lean-forward="true" selection-start-line="14" selection-start-column="3" selection-end-line="17" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pull_request/_closed_author_summary.html.erb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1068,14 +1034,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="610">
-          <caret line="43" column="9" lean-forward="true" selection-start-line="43" selection-start-column="9" selection-end-line="43" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -1128,10 +1086,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/application/_navbar.html.erb">
+    <entry file="file://$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="43" column="97" lean-forward="false" selection-start-line="43" selection-start-column="92" selection-end-line="43" selection-end-column="97" />
+        <state relative-caret-position="375">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1144,10 +1102,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/application/_navbar.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="480">
+          <caret line="43" column="97" lean-forward="false" selection-start-line="43" selection-start-column="92" selection-end-line="43" selection-end-column="97" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/pull_request/_closed_details.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="54" lean-forward="true" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/layouts/application.html.erb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="400">
+          <caret line="29" column="106" lean-forward="false" selection-start-line="29" selection-start-column="106" selection-end-line="29" selection-end-column="106" />
           <folding />
         </state>
       </provider>
