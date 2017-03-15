@@ -32,11 +32,11 @@ RSpec.describe PullRequestController do
   end
 
   it '#set_closed_columns replaces the session closed columns' do
-    session[:closed_columns] = 'prcount,authors'
+    session[:closed_columns] = 'prcount,repo_count'
 
     post :set_closed_columns, params: { 'total' => 'total', 'authors' => 'authors' }
 
-    expect(session[:closed_columns]).to eq('total,authors')
+    expect(session[:closed_columns]).to eq('total,authors,repo_count')
     expect(response).to redirect_to(root_path)
   end
 

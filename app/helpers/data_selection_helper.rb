@@ -9,7 +9,7 @@ module DataSelectionHelper
   }.freeze
 
   def open_column?(column)
-    (session[:open_columns] || '').include?(column.to_s)
+    (session[:open_columns] || 'total').include?(column.to_s)
   end
 
   def open_columns
@@ -52,7 +52,7 @@ module DataSelectionHelper
   }.freeze
 
   def closed_column?(column)
-    (session[:closed_columns] || '').include?(column.to_s)
+    (session[:closed_columns] || 'total').include?(column.to_s)
   end
 
   def closed_columns

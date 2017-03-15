@@ -59,6 +59,8 @@ class PullRequestController < ApplicationController
       end
     }.compact.join ','
 
+    session.delete :open_columns if session[:open_columns].blank?
+
     redirect_back fallback_location: root_path
   end
 
@@ -70,6 +72,8 @@ class PullRequestController < ApplicationController
         session_closed_columns.include?(column) ? column.to_s : nil
       end
     }.compact.join ','
+
+    session.delete :closed_columns if session[:closed_columns].blank?
 
     redirect_back fallback_location: root_path
   end
