@@ -51,7 +51,17 @@ class PullRequestController < ApplicationController
   end
 
   def set_open_columns
-    session[:open_columns] = open_columns.map {|column| params[column]}.compact.join ','
+    session[:open_columns] = open_columns.map {|column|
+      open_view_columns.include?(column) ? params[column] : session_open_columns.include?(column) ? column.to_s : nil
+    }.compact.join ','
+
+    redirect_back fallback_location: root_path
+  end
+
+  def set_closed_columns
+    session[:closed_columns] = closed_columns.map {|column|
+      closed_view_columns.include?(column) ? params[column] : session_closed_columns.include?(column) ? column.to_s : nil
+    }.compact.join ','
 
     redirect_back fallback_location: root_path
   end
