@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b3ceadd-a62c-4a91-a860-47250584c4c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/data_selection_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/data_selection_helper.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pull_request/_init_table.html.erb" afterPath="$PROJECT_DIR$/app/views/pull_request/_init_table.html.erb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb" afterPath="$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pull_request/_open_repo_summary.html.erb" afterPath="$PROJECT_DIR$/app/views/pull_request/_open_repo_summary.html.erb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -58,8 +55,8 @@
       <file leaf-file-name="_open_author_summary.html.erb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+            <state relative-caret-position="240">
+              <caret line="16" column="81" lean-forward="true" selection-start-line="16" selection-start-column="81" selection-end-line="16" selection-end-column="81" />
               <folding />
             </state>
           </provider>
@@ -736,12 +733,12 @@
       <workItem from="1487419134908" duration="19830000" />
       <workItem from="1487723913508" duration="3526000" />
       <workItem from="1487996306278" duration="109629000" />
-      <workItem from="1489529590009" duration="17755000" />
+      <workItem from="1489529590009" duration="18125000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="205084000" />
+    <option name="totallyTimeSpent" value="205454000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1160,8 +1157,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+        <state relative-caret-position="240">
+          <caret line="16" column="81" lean-forward="true" selection-start-line="16" selection-start-column="81" selection-end-line="16" selection-end-column="81" />
           <folding />
         </state>
       </provider>
