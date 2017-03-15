@@ -3,6 +3,7 @@ module DataSelectionHelper
     open_time: { axis: 1, title: 'Time Open' },
     total: { axis: 0, title: 'Number of PRs' },
     authors: { axis: 0, title: 'Number of Authors' },
+    repo_count: { axis: 0, title: 'Number of Repos' },
     comment_count: { axis: 0, title: 'Number of Comments' },
     mergeable: { axis: 0, title: 'Mergeable' }
   }.freeze
@@ -27,10 +28,8 @@ module DataSelectionHelper
     OPEN_COLUMN_DEFS.select {|_k, v| v[:axis] == column_field(column, :axis) }.count > 1 ? '' : column_field(column, :title)
   end
 
-  def create_open_graph_data(pr_data)
-    columns = session_open_columns
-
-    chart_data = columns.map {|column| { name: column_field(column, :title), data: pr_data.pluck(:repo, column) } }
+  def create_open_graph_data(columns, pr_data, key)
+    chart_data = columns.map {|column| { name: column_field(column, :title), data: pr_data.pluck(key, column) } }
     series = columns.map.with_index {|column, index| [index, { targetAxisIndex: column_field(column, :axis) }] }.to_h
     axis = columns.map {|column| [column_field(column, :axis), { logScale: false, title: axis_title(column) }]}.to_h
 

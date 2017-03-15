@@ -1,7 +1,6 @@
 <%
   comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? }
-
-  chart_data, series, axis = controller.create_open_graph_data pr_data
+  chart_data, series, axis = controller.create_open_graph_data controller.session_open_columns, pr_data, :repo
 %>
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
@@ -45,7 +44,4 @@
 
 <% end %>
 
-<script>
-    $('input[type=checkbox]').click(function(event) {event.stopPropagation()});
-</script>
-<%= render 'init_table', locals: { table_name: 'open_repo_prs' } %>
+<%= render 'init_table', locals: { table_name: 'open_repo_prs', checkboxes: true } %>
