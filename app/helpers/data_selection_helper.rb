@@ -1,11 +1,11 @@
 module DataSelectionHelper
   OPEN_COLUMN_DEFS = {
-    open_time: { axis: 1, title: 'Time Open', view_types: ['repo_summary', 'author_summary'] },
-    total: { axis: 0, title: 'Number of PRs', view_types: ['repo_summary', 'author_summary']  },
+    open_time: { axis: 1, title: 'Time Open', view_types: %w(repo_summary author_summary) },
+    total: { axis: 0, title: 'Number of PRs', view_types: %w(repo_summary author_summary) },
     authors: { axis: 0, title: 'Number of Authors', view_types: ['repo_summary'] },
     repo_count: { axis: 0, title: 'Number of Repos', view_types: ['author_summary'] },
-    comment_count: { axis: 0, title: 'Number of Comments', view_types: ['repo_summary', 'author_summary']  },
-    mergeable: { axis: 0, title: 'Mergeable', view_types: ['repo_summary', 'author_summary']  }
+    comment_count: { axis: 0, title: 'Number of Comments', view_types: %w(repo_summary author_summary) },
+    mergeable: { axis: 0, title: 'Mergeable', view_types: %w(repo_summary author_summary) }
   }.freeze
 
   def open_column?(column)
@@ -16,12 +16,8 @@ module DataSelectionHelper
     OPEN_COLUMN_DEFS.keys
   end
 
-  def open_conditionals
-    OPEN_COLUMN_DEFS.select {|_k, v| v[:conditional] }.keys
-  end
-
   def open_view_columns
-    OPEN_COLUMN_DEFS.select {|k,v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
+    OPEN_COLUMN_DEFS.select {|_k, v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
   end
 
   def session_open_columns
@@ -48,9 +44,9 @@ module DataSelectionHelper
   end
 
   CLOSED_COLUMN_DEFS = {
-    merge_time: { axis: 1, title: 'Merge Time', view_types: ['repo_summary', 'author_summary'] },
-    intg_time: { axis: 1, title: 'Integration Time', view_types: ['repo_summary', 'author_summary'] },
-    total: { axis: 0, title: 'Number of PRs', view_types: ['repo_summary', 'author_summary'] },
+    merge_time: { axis: 1, title: 'Merge Time', view_types: %w(repo_summary author_summary) },
+    intg_time: { axis: 1, title: 'Integration Time', view_types: %w(repo_summary author_summary) },
+    total: { axis: 0, title: 'Number of PRs', view_types: %w(repo_summary author_summary) },
     authors: { axis: 0, title: 'Number of Authors', view_types: ['repo_summary'] },
     repo_count: { axis: 0, title: 'Number of Repos', view_types: ['author_summary'] }
   }.freeze
@@ -64,7 +60,7 @@ module DataSelectionHelper
   end
 
   def closed_view_columns
-    CLOSED_COLUMN_DEFS.select {|k,v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
+    CLOSED_COLUMN_DEFS.select {|_k, v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
   end
 
   def session_closed_columns
