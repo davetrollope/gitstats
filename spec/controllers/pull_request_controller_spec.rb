@@ -22,6 +22,15 @@ RSpec.describe PullRequestController do
     expect(response).to redirect_to(root_path)
   end
 
+  it '#set_open_columns replaces the session open columns' do
+    session[:open_columns] = 'prcount'
+
+    post :set_open_columns, params: { 'total' => 'total', 'authors' => 'authors' }
+
+    expect(session[:open_columns]).to eq('total,authors')
+    expect(response).to redirect_to(root_path)
+  end
+
   it '#closed uses default data when there is no custom method' do
     expect(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
 

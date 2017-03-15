@@ -1,21 +1,28 @@
-<% comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? } %>
+<%
+  comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? }
+
+  chart_data, series, axis = controller.create_open_graph_data pr_data
+%>
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Repo Summary</h2>
 
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
      is shown in the table so this needs to be syncronously loaded.
   -->
-<%= column_chart pr_data.pluck(:repo,:total), ytitle: "Number of PRs" %>
+
+<%= column_chart chart_data, library: { vAxes: axis, series: series } %>
+
+<%= form_tag("/pull_request/open/set_columns", method: "put", remote: true, onChange: 'submit();') do %>
 
 <table id="open_repo_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Repo</th>
-    <th>PR Count</th>
-    <th>Authors</th>
-    <th>Open Time<br/><sup>(hours)</sup></th>
+    <th>PR Count <%= check_box_tag(:total, :total, controller.open_column?(:total)) %></th>
+    <th>Authors <%= check_box_tag(:authors, :authors, controller.open_column?(:authors)) %></th>
+    <th>Open Time<br/><sup>(hours)</sup> <%= check_box_tag(:open_time, :open_time, controller.open_column?(:open_time)) %></th>
     <% if comment_count_enabled %>
-        <th># of Comments</th>
+        <th># of Comments <%= check_box_tag(:comment_count, :comment_count, controller.open_column?(:comment_count)) %></th>
     <% end %>
-    <th># Mergeable</th>
+    <th># Mergeable <%= check_box_tag(:mergeable, :mergeable, controller.open_column?(:mergeable)) %></th>
   </tr></thead>
 
   <tbody>
@@ -34,5 +41,9 @@
   </tbody>
 </table>
 
-<%= render 'init_table', locals: { table_name: 'open_repo_prs' } %>
+<% end %>
 
+<script>
+    $('input[type=checkbox]').click(function(event) {event.stopPropagation()});
+</script>
+<%= render 'init_table', locals: { table_name: 'open_repo_prs' } %>

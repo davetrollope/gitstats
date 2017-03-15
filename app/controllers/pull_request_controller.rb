@@ -2,6 +2,8 @@ class PullRequestController < ApplicationController
   require 'hash_arrays'
   skip_before_action :verify_authenticity_token
 
+  include DataSelectionHelper
+
   VALID_VIEW_TYPES = %w(author_summary repo_summary details).freeze
 
   before_action :params_to_session, only: [:open, :closed]
@@ -46,6 +48,12 @@ class PullRequestController < ApplicationController
     (session.keys & [filter_syms, numeric_filter_syms].flatten.map(&:to_s)).map {|k|
       [k.to_sym, session[k.to_sym]]
     }.to_h
+  end
+
+  def set_open_columns
+    session[:open_columns] = open_columns.map {|column| params[column]}.compact.join ','
+
+    redirect_back fallback_location: root_path
   end
 
   def set_filters
