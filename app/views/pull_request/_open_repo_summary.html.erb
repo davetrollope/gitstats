@@ -16,13 +16,15 @@
 <table id="open_repo_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Repo</th>
-    <th>PR Count <%= check_box_tag(:total, :total, controller.open_column?(:total)) %></th>
-    <th>Authors <%= check_box_tag(:authors, :authors, controller.open_column?(:authors)) %></th>
-    <th>Open Time<br/><sup>(hours)</sup> <%= check_box_tag(:open_time, :open_time, controller.open_column?(:open_time)) %></th>
+    <th>PR Count <%= check_box_tag(:total, :total, controller.open_column?(:total), class: 'header_checkbox') %></th>
+    <th>Authors <%= check_box_tag(:authors, :authors, controller.open_column?(:authors), class: 'header_checkbox') %></th>
+    <th>Open Time<br/><sup>(hours)</sup> <%= check_box_tag(:open_time, :open_time,
+                                                           controller.open_column?(:open_time), class: 'header_checkbox') %></th>
     <% if comment_count_enabled %>
-        <th># of Comments <%= check_box_tag(:comment_count, :comment_count, controller.open_column?(:comment_count)) %></th>
+        <th># of Comments <%= check_box_tag(:comment_count, :comment_count,
+                                            controller.open_column?(:comment_count), class: 'header_checkbox') %></th>
     <% end %>
-    <th># Mergeable <%= check_box_tag(:mergeable, :mergeable, controller.open_column?(:mergeable)) %></th>
+    <th># Mergeable <%= check_box_tag(:mergeable, :mergeable, controller.open_column?(:mergeable), class: 'header_checkbox') %></th>
   </tr></thead>
 
   <tbody>

@@ -29,3 +29,5 @@ hr{
 .center form {
     display: inline-block;
 }
+
+.header_checkbox { float: right }
