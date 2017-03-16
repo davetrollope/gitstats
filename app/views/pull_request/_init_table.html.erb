@@ -1,10 +1,10 @@
 <% if locals[:checkboxes] %>
-    <script>
+    <script type="text/javascript">
         $('input[type=checkbox]').click(function(event) {event.stopPropagation()});
     </script>
 <% end %>
 
-<script>
+<script type="text/javascript">
     $(document).ready(function(){
         $('#<%= locals[:table_name] %>').DataTable({
             fixedHeader: true,
