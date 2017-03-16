@@ -1,4 +1,5 @@
 # GitStats
+[![Build Status](https://travis-ci.org/davetrollope/gitstats.svg?branch=master)](https://travis-ci.org/davetrollope/gitstats)
 
 This application provides collection and visualization of pull request data from Github. It is a [Rails 5](http://rubyonrails.org) application
 
