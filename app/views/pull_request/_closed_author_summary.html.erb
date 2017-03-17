@@ -14,8 +14,8 @@
   lifecycle_data.delete_at(1) if !intg_time_enabled
   lifecycle_data.delete_at(0) if !mrg_time_enabled
 
-  columns = controller.session_closed_columns.reject {|v| v == :merge_time || v == :intg_time}
-  chart_data, series, axis = controller.create_closed_graph_data columns, pr_data, :author
+  columns = controller.closed_columns.reject {|v| v == :merge_time || v == :intg_time}
+  chart_data, series, axis = controller.create_graph_data controller.closed_column_defs, columns, pr_data, :author
 %>
 
 <!-- We could use ajax to retrieve the data, but we don't want to get different data than
@@ -23,7 +23,7 @@
   -->
 <%= column_chart chart_data, library: { vAxes: axis, series: series } %>
 
-<% if controller.session_closed_columns.include?(:merge_time) || controller.session_closed_columns.include?(:intg_time) %>
+<% if controller.closed_columns.include?(:merge_time) || controller.closed_columns.include?(:intg_time) %>
   <%= bar_chart lifecycle_data, stacked: true, xtitle: "PR Lifecycle (hours)", height: "#{[(authors.count*1.25).to_i,200].max}px",
                 library: {'chartArea': {'width': '80%', 'height': '70%'}}
   %>
@@ -34,17 +34,17 @@
 <table id="closed_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Author</th>
-    <th>PR Count <%= check_box_tag(:total, :total, controller.closed_column?(:total), class: 'header_checkbox') %></th>
-    <th>Repo Count <%= check_box_tag(:repo_count, :repo_count, controller.closed_column?(:repo_count), class: 'header_checkbox') %></th>
+    <th>PR Count <%= check_box_tag(:total, :total, controller.closed_column_selected?(:total), class: 'header_checkbox') %></th>
+    <th>Repo Count <%= check_box_tag(:repo_count, :repo_count, controller.closed_column_selected?(:repo_count), class: 'header_checkbox') %></th>
     <% if mrg_time_enabled %>
         <th>Average Merge Time<br/><sup>(hours)</sup> <%= check_box_tag(:merge_time, :merge_time,
-                                                                        controller.closed_column?(:merge_time), class: 'header_checkbox') %></th>
+                                                                        controller.closed_column_selected?(:merge_time), class: 'header_checkbox') %></th>
     <%
       end
       if intg_time_enabled
     %>
         <th>Average Integration Time<br/><sup>(hours)</sup> <%= check_box_tag(:intg_time, :intg_time,
-                                                                              controller.closed_column?(:intg_time), class: 'header_checkbox') %></th>
+                                                                              controller.closed_column_selected?(:intg_time), class: 'header_checkbox') %></th>
     <% end %>
   </tr></thead>
 

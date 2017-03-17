@@ -17,12 +17,16 @@ class ColumnSelection
     definitions.keys
   end
 
-  def column_field(column, field)
+  def get_field(column, field)
     definitions[column][field]
   end
 
-  def view_columns(view_type)
+  def select_columns_by_view(view_type)
     definitions.select {|_k, v| v[:view_types].include?(view_type || default_view)}.keys
+  end
+
+  def view_includes_column?(view_type, column)
+    select_columns_by_view(view_type).include? column
   end
 
   def match_columns(current_columns)
@@ -30,6 +34,6 @@ class ColumnSelection
   end
 
   def select_field(column, field)
-    definitions.select {|_k, v| v[field] == column_field(column, field) }
+    definitions.select {|_k, v| v[field] == get_field(column, field) }
   end
 end

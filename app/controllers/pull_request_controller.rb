@@ -2,17 +2,19 @@ class PullRequestController < ApplicationController
   require 'hash_arrays'
   skip_before_action :verify_authenticity_token
 
-  include DataSelectionHelper
+  include ColumnSelectionHelper
 
   VALID_VIEW_TYPES = %w(author_summary repo_summary details).freeze
 
   before_action :params_to_session, only: [:open, :closed]
 
   attr_reader :projects, :repos
+  attr_accessor :open_column_defs, :closed_column_defs
 
   def initialize
     super
-    create_column_defs
+    @open_column_defs = ColumnSelection.new OPEN_COLUMN_DEFS, 'total', 'repo_summary'
+    @closed_column_defs = ColumnSelection.new CLOSED_COLUMN_DEFS, 'total', 'repo_summary'
   end
 
   def open
@@ -55,32 +57,8 @@ class PullRequestController < ApplicationController
     }.to_h
   end
 
-  def set_open_columns
-    session[:open_columns] = open_columns.map {|column|
-      if open_view_columns.include?(column)
-        params[column]
-      else
-        session_open_columns.include?(column) ? column.to_s : nil
-      end
-    }.compact.join ','
-
-    session.delete :open_columns if session[:open_columns].blank?
-
-    redirect_back fallback_location: root_path
-  end
-
-  def set_closed_columns
-    session[:closed_columns] = closed_columns.map {|column|
-      if closed_view_columns.include?(column)
-        params[column]
-      else
-        session_closed_columns.include?(column) ? column.to_s : nil
-      end
-    }.compact.join ','
-
-    session.delete :closed_columns if session[:closed_columns].blank?
-
-    redirect_back fallback_location: root_path
+  def view_type
+    session['view_type']
   end
 
   def set_filters

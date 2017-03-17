@@ -1,7 +1,7 @@
 <%
   comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? }
-  columns = controller.session_open_columns.reject {|v| v == :open_time}
-  chart_data, series, axis = controller.create_open_graph_data columns, pr_data, :author
+  columns = controller.open_columns.reject {|v| v == :open_time}
+  chart_data, series, axis = controller.create_graph_data controller.open_column_defs, columns, pr_data, :author
 %>
 <h1 align="center">Open Pull Request Data</h1><h2 align="center">Author Summary</h2>
 
@@ -12,7 +12,7 @@
   -->
 <%= column_chart chart_data, library: { vAxes: axis, series: series } %>
 
-<% if controller.session_open_columns.include? :open_time %>
+<% if controller.open_columns.include? :open_time %>
   <%= bar_chart pr_data.pluck(:author,:open_time), xtitle: "Average Time Open (hours)", height: "#{[(authors.count*1.25).to_i,200].max}px",
                               library: {'chartArea': {'width': '80%', 'height': '70%'}}
 %>
@@ -23,15 +23,15 @@
 <table id="open_author_prs" class="table table-condensed table-striped" width="100%">
   <thead><tr align="left">
     <th>Author</th>
-    <th>PR Count <%= check_box_tag(:total, :total, controller.open_column?(:total), class: 'header_checkbox') %></th>
-    <th>Repo Count <%= check_box_tag(:repo_count, :repo_count, controller.open_column?(:repo_count), class: 'header_checkbox') %></th>
+    <th>PR Count <%= check_box_tag(:total, :total, controller.open_column_selected?(:total), class: 'header_checkbox') %></th>
+    <th>Repo Count <%= check_box_tag(:repo_count, :repo_count, controller.open_column_selected?(:repo_count), class: 'header_checkbox') %></th>
     <th>Open Time<br/><sup>(hours)</sup> <%= check_box_tag(:open_time, :open_time,
-                                                           controller.open_column?(:open_time), class: 'header_checkbox') %></th>
+                                                           controller.open_column_selected?(:open_time), class: 'header_checkbox') %></th>
     <% if comment_count_enabled %>
         <th># of PR Comments <%= check_box_tag(:comment_count, :comment_count,
-                                               controller.open_column?(:comment_count), class: 'header_checkbox') %></th>
+                                               controller.open_column_selected?(:comment_count), class: 'header_checkbox') %></th>
     <% end %>
-    <th># Mergeable <%= check_box_tag(:mergeable, :mergeable, controller.open_column?(:mergeable), class: 'header_checkbox') %></th>
+    <th># Mergeable <%= check_box_tag(:mergeable, :mergeable, controller.open_column_selected?(:mergeable), class: 'header_checkbox') %></th>
   </tr></thead>
 
   <tbody>
