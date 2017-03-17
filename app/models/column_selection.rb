@@ -22,11 +22,11 @@ class ColumnSelection
   end
 
   def select_columns_by_view(view_type)
-    definitions.select {|_k, v| v[:view_types].include?(view_type || default_view)}.keys
+    definitions.select {|_k, v| v[:view_types].include?(view_type || default_view)}
   end
 
   def view_includes_column?(view_type, column)
-    select_columns_by_view(view_type).include? column
+    select_columns_by_view(view_type).keys.include? column
   end
 
   def match_columns(current_columns)
