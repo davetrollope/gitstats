@@ -8,29 +8,35 @@ module DataSelectionHelper
     mergeable: { axis: 0, title: 'Mergeable', view_types: %w(repo_summary author_summary) }
   }.freeze
 
+  attr_accessor :open_column_defs, :closed_column_defs
+
+  def create_column_defs
+    @open_column_defs = ColumnSelection.new OPEN_COLUMN_DEFS, :open_columns, 'total', 'repo_summary'
+    @closed_column_defs = ColumnSelection.new CLOSED_COLUMN_DEFS, :closed_columns, 'total', 'repo_summary'
+  end
+
   def open_column?(column)
-    (session[:open_columns] || 'total').include?(column.to_s)
+    open_column_defs.selected?(session, column)
   end
 
   def open_columns
-    OPEN_COLUMN_DEFS.keys
+    open_column_defs.columns
   end
 
   def open_view_columns
-    OPEN_COLUMN_DEFS.select {|_k, v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
+    open_column_defs.view_columns(session)
   end
 
   def session_open_columns
-    open_columns & (session[:open_columns] || 'total').split(',').map(&:to_sym)
+    open_column_defs.session_columns(session)
   end
 
   def open_column_field(column, field)
-    OPEN_COLUMN_DEFS[column][field]
+    open_column_defs.column_field(column, field)
   end
 
   def open_axis_title(column)
-    corresponding_columns = OPEN_COLUMN_DEFS.select {|_k, v| v[:axis] == open_column_field(column, :axis) }
-    corresponding_columns.count > 1 ? '' : open_column_field(column, :title)
+    open_column_defs.select_field(column, :axis).count > 1 ? '' : open_column_field(column, :title)
   end
 
   def create_open_graph_data(columns, pr_data, key)
@@ -52,28 +58,27 @@ module DataSelectionHelper
   }.freeze
 
   def closed_column?(column)
-    (session[:closed_columns] || 'total').include?(column.to_s)
+    closed_column_defs.selected?(session, column)
   end
 
   def closed_columns
-    CLOSED_COLUMN_DEFS.keys
+    closed_column_defs.columns
   end
 
   def closed_view_columns
-    CLOSED_COLUMN_DEFS.select {|_k, v| v[:view_types].include?(session['view_type'] || 'repo_summary')}.keys
+    closed_column_defs.view_columns(session)
   end
 
   def session_closed_columns
-    closed_columns & (session[:closed_columns] || 'total').split(',').map(&:to_sym)
+    closed_column_defs.session_columns(session)
   end
 
   def closed_column_field(column, field)
-    CLOSED_COLUMN_DEFS[column][field]
+    closed_column_defs.column_field(column, field)
   end
 
   def closed_axis_title(column)
-    corresponding_columns = CLOSED_COLUMN_DEFS.select {|_k, v| v[:axis] == closed_column_field(column, :axis) }
-    corresponding_columns.count > 1 ? '' : closed_column_field(column, :title)
+    closed_column_defs.select_field(column, :axis).count > 1 ? '' : open_column_field(column, :title)
   end
 
   def create_closed_graph_data(columns, pr_data, key)

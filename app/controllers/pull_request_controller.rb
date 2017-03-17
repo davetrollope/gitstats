@@ -10,6 +10,11 @@ class PullRequestController < ApplicationController
 
   attr_reader :projects, :repos
 
+  def initialize
+    super
+    create_column_defs
+  end
+
   def open
     current 'open', :created_at
   end
