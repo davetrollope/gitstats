@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b3ceadd-a62c-4a91-a860-47250584c4c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/models/column_selection.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Gemfile" afterPath="$PROJECT_DIR$/Gemfile" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/data_selection_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/data_selection_helper.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/column_selection.rb" afterPath="$PROJECT_DIR$/app/models/column_selection.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -25,24 +22,24 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5318792">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="_open_author_summary.html.erb" pinned="false" current-in-tab="true">
+          <file leaf-file-name="_open_author_summary.html.erb" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="30">
-                  <caret line="2" column="72" lean-forward="false" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+                  <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="column_selection.rb" pinned="false" current-in-tab="false">
+          <file leaf-file-name="column_selection.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/models/column_selection.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="435">
-                  <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
+                <state relative-caret-position="30">
+                  <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -105,8 +102,8 @@
           <file leaf-file-name="data_selection_helper.rb" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/helpers/data_selection_helper.rb">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="225">
-                  <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+                <state relative-caret-position="300">
+                  <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
                   <folding />
                 </state>
               </provider>
@@ -216,8 +213,8 @@
         <option value="$PROJECT_DIR$/Gemfile" />
         <option value="$PROJECT_DIR$/app/assets/javascripts/application.js" />
         <option value="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
-        <option value="$PROJECT_DIR$/app/models/column_selection.rb" />
         <option value="$PROJECT_DIR$/app/helpers/data_selection_helper.rb" />
+        <option value="$PROJECT_DIR$/app/models/column_selection.rb" />
       </list>
     </option>
   </component>
@@ -228,8 +225,8 @@
     <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="63" />
-    <option name="y" value="122" />
+    <option name="x" value="47" />
+    <option name="y" value="97" />
     <option name="width" value="1495" />
     <option name="height" value="900" />
   </component>
@@ -799,12 +796,12 @@
       <workItem from="1487723913508" duration="3526000" />
       <workItem from="1487996306278" duration="109629000" />
       <workItem from="1489529590009" duration="24509000" />
-      <workItem from="1489672585170" duration="3862000" />
+      <workItem from="1489672585170" duration="4670000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="215700000" />
+    <option name="totallyTimeSpent" value="216508000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -816,7 +813,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="63" y="122" width="1495" height="900" extended-state="0" />
+    <frame x="47" y="97" width="1495" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17962836" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -1205,14 +1202,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/models/column_selection.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="29" column="33" lean-forward="false" selection-start-line="29" selection-start-column="33" selection-end-line="29" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/controllers/pull_request_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="870">
@@ -1221,18 +1210,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/helpers/data_selection_helper.rb">
+    <entry file="file://$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="30" column="45" lean-forward="false" selection-start-line="30" selection-start-column="45" selection-end-line="30" selection-end-column="45" />
+        <state relative-caret-position="30">
+          <caret line="2" column="36" lean-forward="false" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/pull_request/_open_author_summary.html.erb">
+    <entry file="file://$PROJECT_DIR$/app/helpers/data_selection_helper.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/models/column_selection.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="30">
-          <caret line="2" column="72" lean-forward="false" selection-start-line="2" selection-start-column="72" selection-end-line="2" selection-end-column="72" />
+          <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
           <folding />
         </state>
       </provider>

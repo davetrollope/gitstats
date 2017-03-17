@@ -11,24 +11,24 @@ module DataSelectionHelper
   attr_accessor :open_column_defs, :closed_column_defs
 
   def create_column_defs
-    @open_column_defs = ColumnSelection.new OPEN_COLUMN_DEFS, :open_columns, 'total', 'repo_summary'
-    @closed_column_defs = ColumnSelection.new CLOSED_COLUMN_DEFS, :closed_columns, 'total', 'repo_summary'
+    @open_column_defs = ColumnSelection.new OPEN_COLUMN_DEFS, 'total', 'repo_summary'
+    @closed_column_defs = ColumnSelection.new CLOSED_COLUMN_DEFS, 'total', 'repo_summary'
   end
 
   def open_column?(column)
-    open_column_defs.selected?(session, column)
+    open_column_defs.selected?(session[:open_columns], column)
   end
 
   def open_columns
-    open_column_defs.columns
+    open_column_defs.column_names
   end
 
   def open_view_columns
-    open_column_defs.view_columns(session)
+    open_column_defs.view_columns(session['view_type'])
   end
 
   def session_open_columns
-    open_column_defs.session_columns(session)
+    open_column_defs.match_columns(session[:open_columns])
   end
 
   def open_column_field(column, field)
@@ -58,19 +58,19 @@ module DataSelectionHelper
   }.freeze
 
   def closed_column?(column)
-    closed_column_defs.selected?(session, column)
+    closed_column_defs.selected?(session[:closed_columns], column)
   end
 
   def closed_columns
-    closed_column_defs.columns
+    closed_column_defs.column_names
   end
 
   def closed_view_columns
-    closed_column_defs.view_columns(session)
+    closed_column_defs.view_columns(session['view_type'])
   end
 
   def session_closed_columns
-    closed_column_defs.session_columns(session)
+    closed_column_defs.match_columns(session[:closed_columns])
   end
 
   def closed_column_field(column, field)
