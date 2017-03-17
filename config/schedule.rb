@@ -22,10 +22,13 @@
 # Some example gitstats jobs
 
 # Open PRs
-every 1.hours do
-  runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
+every :hour, at: 0 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'ruby', state: 'open'"
   # runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jmmastey', state: 'open'"
+end
+
+every :hour, at: 15 do
+  runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
 end
 
 # Closed PRs
