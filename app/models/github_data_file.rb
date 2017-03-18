@@ -1,3 +1,5 @@
+require 'github_data_collector'
+
 class GithubDataFile
   def self.get_user_prs(output_path, prefix, username = nil, options = {})
     user_repos = GithubDataCollector.get_repo_list username.nil? ? 'user/repos' : "users/#{username}/repos"
