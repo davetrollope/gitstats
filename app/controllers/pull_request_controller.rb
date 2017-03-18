@@ -90,8 +90,9 @@ class PullRequestController < ApplicationController
     pattern = "*_#{state}_pr_data.json"
     build_project_list pattern
 
-    file, file_data = load_most_recent_file pattern
+    files, file_data = load_most_recent_file pattern
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: state) : []
+    @file = files.count > 0 ? files.first : ''
 
     @start_time = earliest_data pr_data
     pr_data = reduce_by_time pr_data, primary_field
