@@ -98,4 +98,3 @@ end
 every :day, at: '8:02 am' do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_today, 'clojure'"
 end
-
