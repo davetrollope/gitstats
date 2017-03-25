@@ -18,7 +18,11 @@ class PullRequestController < ApplicationController
   end
 
   def open
-    current 'open', :created_at
+    if session[:trend]
+      trend 'open', :created_at
+    else
+      current 'open', :created_at
+    end
   end
 
   def closed
@@ -28,11 +32,15 @@ class PullRequestController < ApplicationController
   end
 
   def filter_syms
-    [:unmerged, :view_type, :project]
+    [:unmerged, :view_type, :project, :trend]
   end
 
   def numeric_filter_syms
     [:days]
+  end
+
+  def boolean_syms
+    [:unmerged, :trend]
   end
 
   def params_to_session
@@ -40,9 +48,9 @@ class PullRequestController < ApplicationController
       params.delete(:view_type)
     end
 
-    if params[:unmerged].present? && params[:unmerged] == 'false'
-      params.delete(:unmerged)
-    end
+    boolean_syms.each {|sym|
+      params.delete(sym) if params[sym].present? && params[sym] == 'false'
+    }
 
     [filter_syms, numeric_filter_syms].flatten.each {|sym|
       session[sym.to_s] = params[sym] if params[sym].present?
@@ -74,7 +82,11 @@ class PullRequestController < ApplicationController
     sync_session_repos
 
     if params[:commit].present?
+      # There is a bug here. Since unmerged is a closed only filter,
+      # it gets deleted when editing open filters - look at referrer?
       session.delete 'unmerged' if params[:unmerged].nil?
+
+      session.delete 'trend' if params[:trend].nil?
     end
 
     redirect_to request.referer.nil? ? root_path : "#{request.referer.split('?')[0]}?#{current_settings.to_query}"
@@ -90,9 +102,9 @@ class PullRequestController < ApplicationController
     pattern = "*_#{state}_pr_data.json"
     build_project_list pattern
 
-    files, file_data = load_most_recent_file pattern
+    file_data = GithubDataFile.load_most_recent_file 'archive', pattern, session['project']
     pr_data = file_data.present? ? file_data.last[:pr_data].where(state: state) : []
-    @file = files.count > 0 ? files.first : ''
+    @file = file_data.present? ? file_data.last[:filename] : ''
 
     @start_time = earliest_data pr_data
     pr_data = reduce_by_time pr_data, primary_field
@@ -110,6 +122,49 @@ class PullRequestController < ApplicationController
       format.html {
         if view_data.count > 0
           render "_#{state}_#{session['view_type']}", locals: { pr_data: view_data }
+        else
+          render '_no_data'
+        end
+      }
+      format.json {
+        render json: view_data
+      }
+    end
+  end
+
+  def trend(state, primary_field)
+    pattern = "*_#{state}_pr_data.json"
+    build_project_list pattern
+
+    if view_type == 'details'
+      pr_data = GithubDataFile.load_unique_data 'archive', pattern, session['project']
+
+      view_data = [{ pr_data: pr_data }]
+    else
+      view_data = GithubDataFile.load_files 'archive', pattern, session['project'] {|f, json|
+        start_time = earliest_data json[:pr_data]
+        @start_time = start_time if @start_time.nil? || start_time < @start_time
+
+        json[:pr_data] = reduce_by_time json[:pr_data], primary_field
+
+        customize_load f, json, "#{state}_#{session['view_type']}_trend_json"
+      }
+    end
+    @file = ''
+
+    repos = []
+    view_data.each {|file_hash|
+      repos << build_repo_list(file_hash[:pr_data])
+      file_hash[:pr_data] = reduce_to_current_repos file_hash[:pr_data]
+    }
+    @repos = repos.flatten.uniq
+
+    session['view_type'] ||= 'repo_summary'
+
+    respond_to do |format|
+      format.html {
+        if view_data.count > 0
+          render "_#{state}_#{session['view_type']}_trend", locals: { file_data: view_data }
         else
           render '_no_data'
         end
@@ -140,12 +195,6 @@ class PullRequestController < ApplicationController
     end
   end
 
-  def load_most_recent_file(pattern)
-    file = GithubDataFile.most_recent('archive', pattern, session['project'])
-    file_data = GithubDataFile.load_files(file)
-    [file, file_data]
-  end
-
   def earliest_data(pr_data)
     pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
   end
@@ -174,6 +223,14 @@ class PullRequestController < ApplicationController
       PrViewDataMappingHelper.send(name, pr_data)
     else
       pr_data
+    end
+  end
+
+  def customize_load(f, json, name)
+    if PrViewDataMappingHelper.respond_to? name
+      PrViewDataMappingHelper.send(name, f, json)
+    else
+      json
     end
   end
 end

@@ -41,10 +41,20 @@
             </tr>
 
             <% if current_page?(pull_request_closed_path) %>
-              <tr><td width="50%" align="right" style="padding: 5px;">
-                <%= check_box_tag(:unmerged, :unmerged, controller.filter_value?(:unmerged, false)) %>
-              </td>
+              <tr>
+                <td width="50%" align="right" style="padding: 5px;">
+                  <%= check_box_tag(:unmerged, :unmerged, controller.filter_value?(:unmerged, false)) %>
+                </td>
                 <td align="left">Show unmerged</td>
+              </tr>
+            <% end %>
+
+            <% if current_page?(pull_request_open_path) %>
+              <tr>
+                <td width="50%" align="right" style="padding: 5px;">
+                  <%= check_box_tag(:trend, :trend, controller.filter_value?(:trend, false)) %>
+                </td>
+                <td align="left">Show Trend</td>
               </tr>
             <% end %>
 
@@ -68,8 +78,8 @@
     <li class="pull-right">
       <div class="center" style="height: 45px">
         <%= form_tag("/pull_request/set_filters", method: "put", remote: true, onChange: 'submit();') do %>
-          <%= select_tag(:project, options_for_select(controller.projects.map {|project| [project,project]},
-                                                      controller.filter_value?(:project, '')), class: 'form-control') %>
+            <%= select_tag(:project, options_for_select(controller.projects.map {|project| [project,project]},
+                                                        controller.filter_value?(:project, '')), class: 'form-control') %>
         <% end %>
       </div>
     </li>

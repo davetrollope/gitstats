@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/ModuleLength
 module PrViewDataMappingHelper
   class << self
     def open_author_summary_json(pr_data)
@@ -12,11 +13,9 @@ module PrViewDataMappingHelper
           author: author,
           total: author_prs.count,
           repo_count: author_prs.map {|pr| pr[:repo]}.uniq.count,
-          open_time: author_prs.map {|pr|
-                       ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
-                     }.sum / author_prs.count,
-          comment_count: author_prs.map {|pr| pr[:comment_count]}.sum,
-          mergeable: author_prs.map {|pr| pr[:mergeable]}.sum
+          open_time: author_prs.map {|pr| open_time(pr).to_f}.sum / author_prs.count,
+          comment_count: author_prs.map {|pr| pr[:comment_count] || 0}.sum,
+          mergeable: author_prs.map {|pr| pr[:mergeable] || 0}.sum
         }
       }
     end
@@ -33,17 +32,41 @@ module PrViewDataMappingHelper
           repo: repo,
           total: repo_prs.count,
           authors: repo_prs.map {|pr| pr[:author]}.uniq.count,
-          open_time: repo_prs.map {|pr|
-                       ((Time.now - Time.parse(pr[:created_at])).to_i / 3600).to_f
-                     }.sum / repo_prs.count,
-          comment_count: repo_prs.map {|pr| pr[:comment_count]}.sum,
-          mergeable: repo_prs.map {|pr| pr[:mergeable]}.sum
+          open_time: repo_prs.map {|pr| open_time(pr).to_f}.sum / repo_prs.count,
+          comment_count: repo_prs.map {|pr| pr[:comment_count] || 0}.sum,
+          mergeable: repo_prs.map {|pr| pr[:mergeable] || 0}.sum
         }
       }
     end
 
     def open_details_json(pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
+    end
+
+    def open_repo_summary_trend_json(_f, file_hash)
+      file_hash[:pr_data].each {|pr|
+        pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
+      }
+      pr_data = file_hash[:pr_data]
+
+      file_hash[:pr_data] = open_repo_summary_json(pr_data)
+
+      file_hash
+    end
+
+    def open_author_summary_trend_json(_f, file_hash)
+      file_hash[:pr_data].each {|pr|
+        pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
+      }
+      pr_data = file_hash[:pr_data]
+
+      file_hash[:pr_data] = open_author_summary_json(pr_data)
+
+      file_hash
+    end
+
+    def open_time(pr)
+      ((pr[:closed_at] || Time.now) - Time.parse(pr[:created_at])).to_i / 3600
     end
 
     def merged_time(pr)

@@ -65,21 +65,57 @@ class GithubDataFile
       files.map {|s| s.sub(%r{^.*/}, '').sub(/[0-9_]+/, '').split('_')[0]}.uniq
     end
 
-    def most_recent(path, pattern, project = nil)
+    def file_set(path, pattern, project = nil)
       files = Dir["#{path}/#{pattern}"].sort_by { |f| File.mtime(f) }
       if project.present?
         project_regex = Regexp.new "[0-9_]*_#{project}"
         files = files.select {|s| s.match project_regex}
       end
-      [files.last].compact
+      files
     end
 
-    def load_files(files)
-      files.map { |file|
-        json_data = JSON.parse(File.read(file))
-        json_data.each(&:symbolize_keys!)
-        { filename: file, pr_data: json_data }
+    def most_recent(path, pattern, project = nil)
+      files = file_set(path, pattern, project)
+      files.last
+    end
+
+    def load_file(file)
+      json_data = JSON.parse(File.read(file))
+      json_data.each(&:symbolize_keys!)
+      { filename: file, pr_data: json_data, file_date: file.scan(/[0-9_]*[0-9]/)[0] }
+    end
+
+    def load_most_recent_file(path, pattern, project)
+      file = GithubDataFile.most_recent(path, pattern, project)
+      file_data = GithubDataFile.load_file(file)
+      [ file_data ]
+    end
+
+    def load_files(path, pattern, project)
+      files = file_set(path, pattern, project)
+      files.map {|file|
+        file_hash = load_file(file)
+        file_hash = yield(file, file_hash) if block_given?
+        file_hash
       }
+    end
+
+    def load_unique_data(path, pattern, project)
+      files = file_set(path, pattern, project)
+
+      pr_data = {}
+
+      files.each {|file|
+        file_hash = load_file(file)
+
+        file_hash[:pr_data].each {|pr|
+          id = "#{pr[:repo]}/#{pr[:id]}"
+          pr_data[id] = pr
+          pr_data[id][:file_date] = file_hash[:file_date]
+        }
+      }
+
+      pr_data.values
     end
   end
 end

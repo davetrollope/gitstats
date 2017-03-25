@@ -49,7 +49,7 @@ RSpec.describe PullRequestController do
   end
 
   it '#closed includes unmerged data when selected' do
-    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
     get :closed, session: { 'unmerged' => 'unmerged', 'view_type' => 'repo_summary' }
 
@@ -57,7 +57,7 @@ RSpec.describe PullRequestController do
   end
 
   it '#closed doesnt include unmerged data when passed "false"' do
-    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
     get :closed, params: { 'unmerged' => 'false', 'view_type' => 'details' }
 
@@ -82,7 +82,7 @@ RSpec.describe PullRequestController do
 
   it '#closed filters by number of days' do
     allow(Time).to receive(:now).and_return(Time.parse('2017-01-12T9:21:51Z'))
-    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
     get :closed, params: { days: 1 }, format: 'json'
 
@@ -92,6 +92,7 @@ RSpec.describe PullRequestController do
 
   it '#sync_session_project resets the project in the session when not in the project list' do
     session['project'] = 'junk'
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
     expect(GithubDataFile).to receive(:projects).and_return(['project'])
 
     get :closed
@@ -112,7 +113,7 @@ RSpec.describe PullRequestController do
   it '#open filters by repo' do
     allow(Time).to receive(:now).and_return(Time.parse('2017-01-12T9:21:51Z'))
     expect(GithubDataFile).to receive(:projects).and_return(['test'])
-    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_open_summary.json'])
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
 
     get :open, session: { 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
 
@@ -123,11 +124,27 @@ RSpec.describe PullRequestController do
   it '#closed filters by repo' do
     allow(Time).to receive(:now).and_return(Time.parse('2017-01-12T9:21:51Z'))
     expect(GithubDataFile).to receive(:projects).and_return(['test'])
-    expect(GithubDataFile).to receive(:most_recent).and_return(['spec/fixtures/user_closed_summary.json'])
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
     get :closed, session: { 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
 
     json = JSON.parse(response.body)
     expect(json.count).to eq(1)
+  end
+
+  it 'customize_load returns original data if no mapping helper' do
+    allow(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
+    get :open, format: 'json', session: { 'trend': 'trend' }
+
+    expect(response.code).to eq('200')
+  end
+
+  context 'trend' do
+    it 'opens json when there is no data' do
+      expect(GithubDataFile).to receive(:load_files).and_return([])
+      get :open, session: { 'trend': 'trend' }
+
+      expect(response.code).to eq('200')
+    end
   end
 end

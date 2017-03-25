@@ -77,4 +77,35 @@ module ColumnSelectionHelper
 
     [chart_data, series.to_h, axis.to_h]
   end
+
+  def create_trend_graph_data(defs, columns, file_data)
+    columns &= file_data.first[:pr_data].map(&:keys).flatten.uniq
+
+    chart_data = []
+    file_data.each {|file_hash|
+      next unless file_hash[:file_date].present?
+      columns.each {|column|
+        name = defs.get_field(column, :title)
+        data = file_hash[:pr_data].pluck(column).prepend(file_hash[:file_date])
+
+        series_data = chart_data.select {|h| h[:name] == name }
+
+        if series_data.empty?
+          chart_data << { name: name, data: [data] }
+        else
+          series_data[0][:data] << data
+        end
+      }
+    }
+
+    series = []
+    axis = []
+    columns.each_with_index {|column, index|
+      series << [index, { targetAxisIndex: defs.get_field(column, :axis) }]
+      axis << [defs.get_field(column, :axis), { logScale: false, title: axis_title(defs, column) }]
+    }
+    # binding.pry
+
+    [chart_data, series.to_h, axis.to_h]
+  end
 end

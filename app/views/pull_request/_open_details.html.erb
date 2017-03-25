@@ -1,5 +1,5 @@
 <% comment_count_enabled = pr_data.any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? } %>
-<h1>Open Pull Request Data</h1>
+<h1>Open Pull Request <%= @trend.present? ? 'Trend Data' : 'Data' %></h1>
 
 <table id="open_prs" class="table table-striped" width="100%">
   <thead><tr align="left">

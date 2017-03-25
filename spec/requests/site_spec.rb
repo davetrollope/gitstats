@@ -33,8 +33,14 @@ RSpec.describe 'main endpoints' do
         expect(response.code).to eq('200')
       end
 
-      it 'closed pull requests #{extension}' do
+      it 'closed pull requests #{view_type} #{extension}' do
         get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}"
+        expect(response.code).to eq('200')
+      end
+
+      it "open pull requests, view type #{view_type} #{extension} trend" do
+        get "#{pull_request_open_path}#{extension}?view_type=#{view_type}",
+            params: { trend: 'trend' }
         expect(response.code).to eq('200')
       end
     }

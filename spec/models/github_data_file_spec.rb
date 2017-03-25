@@ -19,24 +19,11 @@ RSpec.describe GithubDataFile do
     expect(described_class.prefix_datetime).to eq('20171115_010200')
   end
 
-  it '.load_file parses multiple files' do
-    expect(JSON).to receive(:parse).twice.and_return(JSON.parse([].to_json))
-    expect(File).to receive(:read).twice.and_return([].to_json.to_s)
-
-    files = %w(a b)
-    data = described_class.load_files files
-
-    expect(data.count).to eq(2)
-    expect(files.include?(data[0][:filename])).to be true
-    expect(files.include?(data[1][:filename])).to be true
-    expect(data[0][:filename]).not_to eq(data[1][:filename])
-  end
-
   it '.most_recent returns the most recent file' do
     expect(Dir).to receive(:[]).and_return(%w(a b))
     expect(File).to receive(:mtime).twice.and_return(Time.now)
 
-    expect(described_class.most_recent('archive', '*')).to eq(['b'])
+    expect(described_class.most_recent('archive', '*')).to eq('b')
   end
 
   context 'closed pull requests' do
