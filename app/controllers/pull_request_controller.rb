@@ -157,6 +157,11 @@ class PullRequestController < ApplicationController
       repos << build_repo_list(file_hash[:pr_data])
       file_hash[:pr_data] = reduce_to_current_repos file_hash[:pr_data]
     }
+
+    # trim empty data from the head only
+    head = true
+    view_data.delete_if {|file_hash| head &&= file_hash[:pr_data].empty?}
+
     @repos = repos.flatten.uniq
 
     session['view_type'] ||= 'repo_summary'
