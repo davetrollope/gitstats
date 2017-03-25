@@ -34,9 +34,10 @@
             <% end %>
 
             <tr>
-              <td width="50%" align="right" style="padding: 5px;">Days:</td>
+              <td width="50%" align="right" style="padding: 5px;">
+                <%= current_page?(pull_request_closed_path) ? 'Closed within' : 'Created within' %> </td>
               <td align="left">
-                <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %>
+                <%= number_field_tag(:days, controller.filter_value?(:days, 0), min: 0, max: 999) %> days
               </td>
             </tr>
 
