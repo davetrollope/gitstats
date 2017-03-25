@@ -79,7 +79,7 @@ module ColumnSelectionHelper
   end
 
   def create_trend_graph_data(defs, columns, file_data)
-    columns &= file_data.first[:pr_data].map(&:keys).flatten.uniq
+    columns &= file_data.map {|h| h[:pr_data].map(&:keys)}.flatten.uniq
 
     chart_data = []
     file_data.each {|file_hash|
