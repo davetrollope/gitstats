@@ -41,6 +41,8 @@ RSpec.describe PullRequestController do
   end
 
   it '#closed uses default data when there is no custom method' do
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
+
     expect(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
 
     get :closed
@@ -66,6 +68,8 @@ RSpec.describe PullRequestController do
   end
 
   it '#open uses default data when there is no custom method' do
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
+
     expect(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
 
     get :open
@@ -74,6 +78,8 @@ RSpec.describe PullRequestController do
   end
 
   it '#params_to_session deletes invalid view types and defaults to repo_summary' do
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
+
     get :open, params: { view_type: :invalid }
 
     expect(session['view_type']).to eq('repo_summary')
@@ -101,11 +107,15 @@ RSpec.describe PullRequestController do
   end
 
   it '#open syncs the session' do
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
+
     expect(controller).to receive(:build_project_list)
     get :open
   end
 
   it '#closed syncs the session' do
+    expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
+
     expect(controller).to receive(:build_project_list)
     get :closed
   end
