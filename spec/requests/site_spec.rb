@@ -7,56 +7,64 @@ RSpec.describe 'main endpoints' do
   end
 
   ['', '.json'].each {|extension|
-    it "open pull requests #{extension}" do
-      expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
+    context 'open' do
+      before(:each) do
+        expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/20170101_user_open_summary.json')
+      end
 
-      get "#{pull_request_open_path}#{extension}"
-      expect(response.code).to eq('200')
-    end
-
-    it "closed pull requests #{extension}" do
-      expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
-
-      get "#{pull_request_closed_path}#{extension}"
-      expect(response.code).to eq('200')
-    end
-
-    it "open pull requests #{extension} for 3 days" do
-      expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
-
-      get "#{pull_request_open_path}#{extension}?days=3"
-      expect(response.code).to eq('200')
-    end
-
-    it "closed pull requests #{extension} for 3 days" do
-      expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
-
-      get "#{pull_request_closed_path}#{extension}?days=3"
-      expect(response.code).to eq('200')
-    end
-
-    [:author_summary, :repo_summary, :details].each {|view_type|
-      it "open pull requests, view type #{view_type} #{extension}" do
-        expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_open_summary.json')
-
-        get "#{pull_request_open_path}#{extension}?view_type=#{view_type}"
+      it "pull requests #{extension}" do
+        get "#{pull_request_open_path}#{extension}"
         expect(response.code).to eq('200')
       end
 
-      it 'closed pull requests #{view_type} #{extension}' do
+      it "pull requests #{extension} for 3 days" do
+        get "#{pull_request_open_path}#{extension}?days=3"
+        expect(response.code).to eq('200')
+      end
+
+      [:author_summary, :repo_summary, :details].each {|view_type|
+        it "pull requests, view type #{view_type} #{extension}" do
+          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}"
+          expect(response.code).to eq('200')
+        end
+      }
+    end
+
+    context 'open trend' do
+      before(:each) do
+        expect(GithubDataFile).to receive(:file_set).and_return(['spec/fixtures/20170101_user_open_summary.json',
+                                                                 'spec/fixtures/20170102_user_open_summary.json'])
+      end
+
+      [:author_summary, :repo_summary, :details].each {|view_type|
+        it "pull requests, view type #{view_type} #{extension} trend" do
+          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}", params: { trend: 'trend' }
+          expect(response.code).to eq('200')
+        end
+      }
+    end
+
+    context 'closed' do
+      before(:each) do
         expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
+      end
 
-        get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}"
+      it "pull requests #{extension}" do
+        get "#{pull_request_closed_path}#{extension}"
         expect(response.code).to eq('200')
       end
 
-      it "open pull requests, view type #{view_type} #{extension} trend" do
-        expect(GithubDataFile).to receive(:file_set).and_return(['spec/fixtures/user_open_summary.json'])
-
-        get "#{pull_request_open_path}#{extension}?view_type=#{view_type}",
-            params: { trend: 'trend' }
+      it "pull requests #{extension} for 3 days" do
+        get "#{pull_request_closed_path}#{extension}?days=3"
         expect(response.code).to eq('200')
       end
-    }
+
+      [:author_summary, :repo_summary, :details].each {|view_type|
+        it 'pull requests #{view_type} #{extension}' do
+          get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}"
+          expect(response.code).to eq('200')
+        end
+      }
+    end
   }
 end

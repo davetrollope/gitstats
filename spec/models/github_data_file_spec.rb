@@ -26,6 +26,12 @@ RSpec.describe GithubDataFile do
     expect(described_class.most_recent('archive', '*')).to eq('b')
   end
 
+  it '.file_set with a project returns project files only' do
+    expect(Dir).to receive(:[]).and_return(%w(1_prj 2_a))
+    expect(File).to receive(:mtime).twice.and_return(Time.now)
+    expect(described_class.file_set('dir', '*', 'prj')).to eq(['1_prj'])
+  end
+
   context 'closed pull requests' do
     let(:pr_data) { { repo_prs: JSON.parse(File.read(Rails.root.join('spec', 'fixtures', 'user_closed.json'))), pr_data: [] } }
 
