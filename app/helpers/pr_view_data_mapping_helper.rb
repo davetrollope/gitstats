@@ -1,7 +1,7 @@
 # rubocop:disable Metrics/ModuleLength
 module PrViewDataMappingHelper
   class << self
-    def open_author_summary_json(pr_data)
+    def open_author_summary_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:author].downcase}
 
       authors = pr_data.map {|pr| pr[:author]}.uniq
@@ -20,7 +20,7 @@ module PrViewDataMappingHelper
       }
     end
 
-    def open_repo_summary_json(pr_data)
+    def open_repo_summary_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
 
       repos = pr_data.map {|pr| pr[:repo]}.uniq
@@ -39,28 +39,28 @@ module PrViewDataMappingHelper
       }
     end
 
-    def open_details_json(pr_data)
+    def open_details_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
     end
 
-    def open_repo_summary_trend_json(_f, file_hash)
+    def open_repo_summary_trend_json(filename, file_hash)
       file_hash[:pr_data].each {|pr|
         pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
       }
       pr_data = file_hash[:pr_data]
 
-      file_hash[:pr_data] = open_repo_summary_json(pr_data)
+      file_hash[:pr_data] = open_repo_summary_json(filename, pr_data)
 
       file_hash
     end
 
-    def open_author_summary_trend_json(_f, file_hash)
+    def open_author_summary_trend_json(filename, file_hash)
       file_hash[:pr_data].each {|pr|
         pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
       }
       pr_data = file_hash[:pr_data]
 
-      file_hash[:pr_data] = open_author_summary_json(pr_data)
+      file_hash[:pr_data] = open_author_summary_json(filename, pr_data)
 
       file_hash
     end
@@ -81,7 +81,7 @@ module PrViewDataMappingHelper
       (Time.parse(pr[:closed_at]) - Time.parse(pr[:created_at])).to_i / 3600
     end
 
-    def closed_author_summary_json(pr_data)
+    def closed_author_summary_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:author].downcase}
 
       authors = pr_data.map {|pr| pr[:author]}.uniq
@@ -106,7 +106,7 @@ module PrViewDataMappingHelper
       }
     end
 
-    def closed_repo_summary_json(pr_data)
+    def closed_repo_summary_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
 
       repos = pr_data.map {|pr| pr[:repo]}.uniq
@@ -131,7 +131,7 @@ module PrViewDataMappingHelper
       }
     end
 
-    def closed_details_json(pr_data)
+    def closed_details_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
     end
   end

@@ -93,9 +93,9 @@ class GithubDataFile
 
     def load_files(path, pattern, project)
       files = file_set(path, pattern, project)
-      files.map {|file|
-        file_hash = load_file(file)
-        file_hash = yield(file, file_hash) if block_given?
+      files.map {|filename|
+        file_hash = load_file(filename)
+        file_hash = yield(filename, file_hash) if block_given?
         file_hash
       }
     end

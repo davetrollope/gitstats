@@ -117,7 +117,7 @@ class PullRequestController < ApplicationController
 
     session['view_type'] ||= 'repo_summary'
 
-    view_data = customize_data pr_data, "#{state}_#{session['view_type']}_json"
+    view_data = customize_load @file, pr_data, "#{state}_#{session['view_type']}_json"
     respond_to do |format|
       format.html {
         if view_data.count > 0
@@ -221,14 +221,6 @@ class PullRequestController < ApplicationController
     project_repo_field = "#{session['project']}_repos"
 
     session[project_repo_field].present? ? pr_data.select {|hash| session[project_repo_field].include? hash[:repo]} : pr_data
-  end
-
-  def customize_data(pr_data, name)
-    if PrViewDataMappingHelper.respond_to? name
-      PrViewDataMappingHelper.send(name, pr_data)
-    else
-      pr_data
-    end
   end
 
   def customize_load(f, json, name)
