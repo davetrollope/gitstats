@@ -128,7 +128,7 @@ class GithubDataCollector
     all_prs = []
     exceptions = []
 
-    pool = Thread.pool(AppConfig.github_data_collector.thread_pool.size)
+    pool = Thread.pool(AppConfig.github_data_collector.thread_pool.pool_size)
     merge_mutex = Mutex.new
     exception_mutex = Mutex.new
 
