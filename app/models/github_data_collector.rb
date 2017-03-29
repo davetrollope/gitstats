@@ -41,7 +41,7 @@ class GithubDataCollector
         request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
 
         response = http.request request # Net::HTTPResponse object
-        raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
+        raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
 
         GithubDataCollector.log_rate_limits response.header
         if response.header['link'].present?
@@ -86,7 +86,7 @@ class GithubDataCollector
 
         response = http.request request # Net::HTTPResponse object
 
-        raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
+        raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
 
         GithubDataCollector.log_rate_limits response.header
 
@@ -111,7 +111,7 @@ class GithubDataCollector
 
       response = http.request request # Net::HTTPResponse object
 
-      raise GithubBadResponse.new msg: "Bad response from github #{response.code}", response: response if response.code != '200'
+      raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
 
       log_rate_limits(response.header)
 
