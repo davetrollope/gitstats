@@ -99,25 +99,35 @@ class PullRequestController < ApplicationController
   private
 
   def current(state, primary_field)
+    session['view_type'] ||= 'repo_summary'
+
     pattern = "*_#{state}_pr_data.json"
     build_project_list pattern
 
-    file_data = GithubDataFile.load_most_recent_file 'archive', pattern, session['project']
-    pr_data = file_data.present? ? file_data.last[:pr_data].where(state: state) : []
-    @file = file_data.present? ? file_data.last[:filename] : ''
+    file_data = GithubDataFile.load_most_recent_file 'archive', pattern, session['project'] {|_filename, file_hash|
+      @file = file_hash[:filename]
 
-    @start_time = earliest_data pr_data
-    pr_data = reduce_by_time pr_data, primary_field
+      pr_data = file_hash[:pr_data].where(state: state)
+      @start_time = earliest_data pr_data
 
-    pr_data = yield(pr_data) if block_given?
+      pr_data = reduce_by_time pr_data, primary_field
 
-    build_repo_list pr_data
+      pr_data = yield(pr_data) if block_given?
 
-    pr_data = reduce_to_current_repos pr_data
+      build_repo_list pr_data
 
-    session['view_type'] ||= 'repo_summary'
+      pr_data = reduce_to_current_repos pr_data
 
-    view_data = customize_load @file, pr_data, "#{state}_#{session['view_type']}_json"
+      pr_data = customize_load @file, pr_data, "#{state}_#{session['view_type']}_json"
+
+      file_hash[:pr_data] = pr_data
+
+      file_hash
+    }
+
+    @file ||= ''
+
+    view_data = file_data.present? ? file_data.first[:pr_data] : []
     respond_to do |format|
       format.html {
         if view_data.count > 0

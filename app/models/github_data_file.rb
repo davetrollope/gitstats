@@ -86,9 +86,12 @@ class GithubDataFile
     end
 
     def load_most_recent_file(path, pattern, project)
-      file = GithubDataFile.most_recent(path, pattern, project)
-      file_data = GithubDataFile.load_file(file)
-      [ file_data ]
+      filename = GithubDataFile.most_recent(path, pattern, project)
+      return [] if filename.nil?
+
+      file_hash = GithubDataFile.load_file(filename)
+      file_hash = yield(filename, file_hash) if block_given?
+      [ file_hash ]
     end
 
     def load_files(path, pattern, project)

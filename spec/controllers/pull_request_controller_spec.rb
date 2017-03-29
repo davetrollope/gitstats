@@ -157,6 +157,16 @@ RSpec.describe PullRequestController do
     expect(response.code).to eq('200')
   end
 
+  [:author_summary, :repo_summary, :details].each {|view_type|
+    it "#current handles no files #{view_type}" do
+      expect(GithubDataFile).to receive(:most_recent).and_return(nil)
+
+      get :open, session: { 'view_type': view_type.to_s }
+
+      expect(response.code).to eq('200')
+    end
+  }
+
   context 'trend' do
     it 'opens json when there is no data' do
       expect(GithubDataFile).to receive(:load_files).and_return([])
