@@ -20,11 +20,6 @@ class GithubDataCollector
 
     response_data = []
 
-    if constraint.count > 0
-      limit_field = constraint.first[0]
-      limit_time = Time.now - constraint.first[1]
-    end
-
     all_responses = []
     exceptions = []
 
@@ -32,17 +27,16 @@ class GithubDataCollector
     merge_mutex = Mutex.new
     exception_mutex = Mutex.new
 
-    pages, response_json = fetch_pullrequest_page(constraint, limit_field, limit_time, 0, 1, repo, state)
+    pages, response_json = fetch_pullrequest_page(constraint, 0, 1, repo, state)
     response_data << response_json
 
     page = 1
-    batch_size = 25
+    batch_size = AppConfig.github_data_collector.thread_pool.batch_size.to_i
 
     while page < pages
       pool.process(page) {|lpage|
         begin
-          lpages, response_json = fetch_pullrequest_page(constraint, limit_field, limit_time,
-                                                         lpage, [ batch_size, pages - lpage ].min, repo, state)
+          lpages, response_json = fetch_pullrequest_page(constraint, lpage, [ batch_size, pages - lpage ].min, repo, state)
 
           merge_mutex.synchronize {
             response_data << response_json
@@ -64,10 +58,15 @@ class GithubDataCollector
     response_data.flatten!
   end
 
-  def fetch_pullrequest_page(constraint, limit_field, limit_time, page, num_pages, repo, state)
+  def fetch_pullrequest_page(constraint, page, num_pages, repo, state)
     pages = 1
     last_page = page + num_pages
     response_data = []
+
+    if constraint.count > 0
+      limit_field = constraint.first[0]
+      limit_time = Time.now - constraint.first[1]
+    end
 
     uri = URI("#{AppConfig.github.server}/repos/#{repo}/pulls")
 
@@ -78,24 +77,7 @@ class GithubDataCollector
       begin
         uri = URI("#{AppConfig.github.server}/repos/#{repo}/pulls?state=#{state}&per_page=100&page=#{page + 1}")
 
-        response = nil
-        begin
-          retries ||= 0
-          Rails.logger.debug "Getting #{uri.inspect}"
-
-          request = Net::HTTP::Get.new uri.request_uri
-          request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
-
-          response = http.request request # Net::HTTPResponse object
-          if response.code == '403' && (retries += 1) < 3
-            Rails.logger.info 'github returned 403, retrying in ~5s'
-            sleep(4 + (rand(2000) / 1000.0))
-            raise
-          end
-        rescue
-          retry
-        end
-        raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
+        response = GithubDataCollector.github_http_request(http, uri)
 
         GithubDataCollector.log_rate_limits response.header
         if response.header['link'].present?
@@ -108,7 +90,7 @@ class GithubDataCollector
         response_data << response_json
 
         page += 1
-      end while page < last_page
+      end while page < last_page # rubocop:disable Lint/Loop - using a loop increases branch complexity
     end
 
     [pages, response_data.flatten!]
@@ -134,12 +116,7 @@ class GithubDataCollector
 
         uri = URI((pr['url']).to_s)
 
-        Rails.logger.debug "Getting #{uri.inspect}"
-
-        request = Net::HTTP::Get.new uri.request_uri
-        request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
-
-        response = http.request request # Net::HTTPResponse object
+        response = GithubDataCollector.github_http_request(http, uri)
 
         raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
 
@@ -228,5 +205,28 @@ class GithubDataCollector
     elsif force || (remaining % 100).zero?
       Rails.logger.info "RATE LIMITS #{limit}/#{remaining}/#{reset_time}"
     end
+  end
+
+  def self.github_http_request(http, uri)
+    response = nil
+    begin
+      retries ||= 0
+      Rails.logger.debug "Getting #{uri.inspect}"
+
+      request = Net::HTTP::Get.new uri.request_uri
+      request.basic_auth GithubDataCollector.username, ENV['GITHUB_PASSWORD']
+
+      response = http.request request # Net::HTTPResponse object
+      if response.code == '403' && (retries += 1) < 3
+        sleep_time = (response.header['Retry-After'] || 4).to_i
+        Rails.logger.info "github returned 403, retrying in ~#{sleep_time}s"
+        sleep(sleep_time + (rand(2000) / 1000.0))
+        raise
+      end
+    rescue
+      retry
+    end
+    raise GithubBadResponse.new "Bad response from github #{response.code} #{response.body}" if response.code != '200'
+    response
   end
 end

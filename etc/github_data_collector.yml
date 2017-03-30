@@ -1,5 +1,7 @@
 # Public github is averse to high concurrency and will rate limit access.
 # Increase these settings for an enterprise server to increase parallelism.
+# pr_pool_size is *per repo*, so number of threads can be as large as repo_pool_size * pr_pool_size
 thread_pool:
-  repo_pool_size: 2
+  repo_pool_size: 1
   pr_pool_size: 2
+  batch_size: 25
