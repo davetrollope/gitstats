@@ -85,15 +85,15 @@ RSpec.describe GithubDataCollector do
 
     it 'paginated prs propogates exceptions' do
       response_header = {
-          link: '<https://api.github.com/repositories/3711416/pulls?state=open&per_page=100&page=1>; rel="next",'\
-              ' <https://api.github.com/repositories/3711416/pulls?state=open&per_page=100&page=2>; rel="last"'
+        link: '<https://api.github.com/repositories/3711416/pulls?state=open&per_page=100&page=1>; rel="next",'\
+            ' <https://api.github.com/repositories/3711416/pulls?state=open&per_page=100&page=2>; rel="last"'
       }
 
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=1&per_page=100&state=open')
-          .to_return(status: 200, body: open_pr_list, headers: response_header)
+        .to_return(status: 200, body: open_pr_list, headers: response_header)
 
       stub_request(:get, 'https://api.github.com/repos/test/repo/pulls?page=2&per_page=100&state=open')
-          .to_return(status: 403, body: open_pr_list, headers: {})
+        .to_return(status: 403, body: open_pr_list, headers: {})
 
       expect { described_class.get_prs('testdir', ['test/repo'], 'open') }.to raise_error(GithubBadResponse)
     end
@@ -177,7 +177,7 @@ RSpec.describe GithubDataCollector do
       uri = URI('http://localhost/repos/1/pulls')
 
       stub = stub_request(:get, 'http://localhost/repos/1/pulls')
-        .to_return(status: 403, body: '', headers: { 'Retry-After' => 2 })
+             .to_return(status: 403, body: '', headers: { 'Retry-After' => 2 })
 
       Net::HTTP.start(uri.host, uri.port) do |http|
         expect { described_class.github_http_request(http, uri) }.to raise_error(GithubBadResponse)

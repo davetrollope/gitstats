@@ -29,9 +29,7 @@
 <% end %>
 
 <%
-
   authors.each {|author|
-
     author_data = file_data.map {|file_hash|
       { filename: file_hash[:filename],
         file_date: file_hash[:file_date],

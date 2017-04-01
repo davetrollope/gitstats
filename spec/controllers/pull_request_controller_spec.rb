@@ -174,5 +174,30 @@ RSpec.describe PullRequestController do
 
       expect(response.code).to eq('200')
     end
+
+    it 'aggregates multiple days data' do
+      json_data = JSON.parse(File.read('spec/fixtures/20170101_user_open_summary.json'))
+      json_data.each(&:symbolize_keys!)
+
+      json2_data = json_data.clone
+      json2_data.delete(json2_data.first)
+
+      expect(GithubDataFile).to receive(:file_set).and_return(
+        ['000000_01_open_data.json', '000000_02_open_data.json', '0000001_01_open_data.json']
+      )
+      expect(GithubDataFile).to receive(:load_file).and_return(
+        filename: '000000_01_open_data.json', pr_data: json_data, file_date: '000000'
+      )
+      expect(GithubDataFile).to receive(:load_file).and_return(
+        filename: '000000_02_open_data.json', pr_data: json2_data, file_date: '000000'
+      )
+      expect(GithubDataFile).to receive(:load_file).and_return(
+        filename: '000001_01_open_data.json', pr_data: json2_data, file_date: '000001'
+      )
+
+      get :open, session: { 'trend': 'trend' }
+
+      expect(response.code).to eq('200')
+    end
   end
 end

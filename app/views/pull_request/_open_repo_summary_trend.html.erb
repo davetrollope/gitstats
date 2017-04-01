@@ -2,6 +2,11 @@
   comment_count_enabled = file_data.any? {|file_hash|
     file_hash[:pr_data].any? {|pr| pr[:comment_count] > 0 if pr[:comment_count].present? }
   }
+
+  repos = file_data.map {|file_hash|
+    file_hash[:pr_data].map {|pr| pr[:repo]}
+  }.flatten.uniq
+
 %>
 
   <h1 align="center">Open Pull Request Trends</h1><h2 align="center">Repo Summary</h2>
@@ -27,8 +32,7 @@
 
 <%
 
-  controller.repos.each {|repo|
-
+  repos.each {|repo|
     repo_data = file_data.map {|file_hash|
       { filename: file_hash[:file_name],
         file_date: file_hash[:file_date],
