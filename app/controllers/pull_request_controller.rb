@@ -143,6 +143,8 @@ class PullRequestController < ApplicationController
   end
 
   def trend(state, primary_field)
+    session[:days] = 7 if session[:days] == 0
+
     pattern = "*_#{state}_pr_data.json"
     build_project_list pattern
 
