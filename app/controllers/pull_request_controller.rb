@@ -219,7 +219,7 @@ class PullRequestController < ApplicationController
   end
 
   def reduce_by_time(pr_data, field)
-    days = filter_value?(:days, 0).to_i
+    days = filter_value?(:days, 7).to_i
     if days > 0
       limit_time = Time.now - days.days
       pr_data = pr_data.select {|hash| hash[field] > limit_time }
