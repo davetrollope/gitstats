@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe 'main endpoints' do
+  def days_since_test_data
+    ((Time.now - Time.parse('1/1/2017'))/60/60/24).to_i + 1
+  end
+
   it 'home page' do
     get root_path
     expect(response).to redirect_to(pull_request_open_path)
@@ -24,7 +28,7 @@ RSpec.describe 'main endpoints' do
 
       [:author_summary, :repo_summary, :details].each {|view_type|
         it "pull requests, view type #{view_type} #{extension}" do
-          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}"
+          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}", params: { 'days': days_since_test_data }
           expect(response.code).to eq('200')
         end
       }
@@ -38,7 +42,7 @@ RSpec.describe 'main endpoints' do
 
       [:author_summary, :repo_summary, :details].each {|view_type|
         it "pull requests, view type #{view_type} #{extension} trend" do
-          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}", params: { trend: 'trend' }
+          get "#{pull_request_open_path}#{extension}?view_type=#{view_type}", params: { trend: 'trend', 'days': days_since_test_data }
           expect(response.code).to eq('200')
         end
       }
@@ -61,7 +65,7 @@ RSpec.describe 'main endpoints' do
 
       [:author_summary, :repo_summary, :details].each {|view_type|
         it 'pull requests #{view_type} #{extension}' do
-          get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}"
+          get "#{pull_request_closed_path}#{extension}?view_type=#{view_type}", params: { 'days': days_since_test_data }
           expect(response.code).to eq('200')
         end
       }

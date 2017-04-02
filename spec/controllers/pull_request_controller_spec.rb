@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe PullRequestController do
   let(:test_repos) { [ 'test/doctrine-postgis' ] }
 
+  def days_since_test_data
+    ((Time.now - Time.parse('1/1/2017'))/60/60/24).to_i + 1
+  end
+
   context '#set_filters' do
     it 'validates filters are copied to the session' do
       post :set_filters, params: { view_type: 'details', project: 'test', test_repos: test_repos, commit: true }
@@ -47,7 +51,7 @@ RSpec.describe PullRequestController do
       expect(GithubDataFile).to receive(:projects).and_return(['test'])
       expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/20170101_user_open_summary.json')
 
-      get :open, session: { 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
+      get :open, session: { 'days' => days_since_test_data, 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
 
       json = JSON.parse(response.body)
       expect(json.count).to eq(1)
@@ -68,7 +72,7 @@ RSpec.describe PullRequestController do
     it 'includes unmerged data when selected' do
       expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
-      get :closed, session: { 'unmerged' => 'unmerged', 'view_type' => 'repo_summary' }
+      get :closed, session: { 'days' => days_since_test_data, 'unmerged' => 'unmerged', 'view_type' => 'repo_summary' }
 
       expect(response.code).to eq('200')
     end
@@ -76,7 +80,7 @@ RSpec.describe PullRequestController do
     it 'doesnt include unmerged data when passed "false"' do
       expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
-      get :closed, params: { 'unmerged' => 'false', 'view_type' => 'details' }
+      get :closed, params: { 'days' => days_since_test_data, 'unmerged' => 'false', 'view_type' => 'details' }
 
       expect(response.code).to eq('200')
       expect(session['unmerged']).to be_nil
@@ -94,7 +98,7 @@ RSpec.describe PullRequestController do
       expect(GithubDataFile).to receive(:projects).and_return(['test'])
       expect(GithubDataFile).to receive(:most_recent).and_return('spec/fixtures/user_closed_summary.json')
 
-      get :closed, session: { 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
+      get :closed, session: { 'days' => days_since_test_data, 'project' => 'test', 'test_repos' => test_repos }, format: 'json'
 
       json = JSON.parse(response.body)
       expect(json.count).to eq(1)
@@ -114,7 +118,7 @@ RSpec.describe PullRequestController do
   it '#set_open_columns replaces the session open columns' do
     session[:open_columns] = 'prcount'
 
-    post :set_open_columns, params: { 'total' => 'total', 'authors' => 'authors' }
+    post :set_open_columns, params: { 'days' => days_since_test_data, 'total' => 'total', 'authors' => 'authors' }
 
     expect(session[:open_columns]).to eq('total,authors')
     expect(response).to redirect_to(root_path)
@@ -123,7 +127,7 @@ RSpec.describe PullRequestController do
   it '#set_closed_columns replaces the session closed columns' do
     session[:closed_columns] = 'prcount,repo_count'
 
-    post :set_closed_columns, params: { 'total' => 'total', 'authors' => 'authors' }
+    post :set_closed_columns, params: { 'days' => days_since_test_data, 'total' => 'total', 'authors' => 'authors' }
 
     expect(session[:closed_columns]).to eq('total,authors,repo_count')
     expect(response).to redirect_to(root_path)
@@ -152,7 +156,7 @@ RSpec.describe PullRequestController do
     expect(GithubDataFile).to receive(:file_set).and_return(['spec/fixtures/20170101_user_open_summary.json'])
 
     allow(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
-    get :open, format: 'json', session: { 'trend': 'trend' }
+    get :open, format: 'json', session: { 'days': days_since_test_data, 'trend': 'trend' }
 
     expect(response.code).to eq('200')
   end
@@ -161,7 +165,7 @@ RSpec.describe PullRequestController do
     it "#current handles no files #{view_type}" do
       expect(GithubDataFile).to receive(:most_recent).and_return(nil)
 
-      get :open, session: { 'view_type': view_type.to_s }
+      get :open, session: { 'days' => days_since_test_data, 'view_type': view_type.to_s }
 
       expect(response.code).to eq('200')
     end
@@ -170,7 +174,7 @@ RSpec.describe PullRequestController do
   context 'trend' do
     it 'opens json when there is no data' do
       expect(GithubDataFile).to receive(:load_files).and_return([])
-      get :open, session: { 'trend': 'trend' }
+      get :open, session: { 'days': days_since_test_data, 'trend': 'trend' }
 
       expect(response.code).to eq('200')
     end
@@ -195,7 +199,7 @@ RSpec.describe PullRequestController do
         filename: '000001_01_open_data.json', pr_data: json2_data, file_date: '000001'
       )
 
-      get :open, session: { 'trend': 'trend' }
+      get :open, session: { 'days': days_since_test_data, 'trend': 'trend' }
 
       expect(response.code).to eq('200')
     end
