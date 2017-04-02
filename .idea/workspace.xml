@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3b3ceadd-a62c-4a91-a860-47250584c4c4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" afterPath="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" afterPath="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
     </list>
     <ignored path="$PROJECT_DIR$/.bundle/" />
     <ignored path="$PROJECT_DIR$/components/" />
@@ -37,8 +35,8 @@
       <file leaf-file-name="pull_request_controller_spec.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2910">
-              <caret line="194" column="35" lean-forward="false" selection-start-line="194" selection-start-column="35" selection-end-line="194" selection-end-column="35" />
+            <state relative-caret-position="495">
+              <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -211,13 +209,13 @@
         <option value="$PROJECT_DIR$/etc/github_data_collector.yml" />
         <option value="$PROJECT_DIR$/spec/fixtures/20170101_user_open_summary.json" />
         <option value="$PROJECT_DIR$/spec/fixtures/20170102_user_open_summary.json" />
-        <option value="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
         <option value="$PROJECT_DIR$/app/helpers/pr_view_data_mapping_helper.rb" />
         <option value="$PROJECT_DIR$/app/views/pull_request/_open_author_summary_trend.html.erb" />
         <option value="$PROJECT_DIR$/app/views/pull_request/_open_repo_summary_trend.html.erb" />
         <option value="$PROJECT_DIR$/app/assets/stylesheets/application.css" />
         <option value="$PROJECT_DIR$/app/views/application/_navbar.html.erb" />
         <option value="$PROJECT_DIR$/app/controllers/pull_request_controller.rb" />
+        <option value="$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb" />
       </list>
     </option>
   </component>
@@ -801,12 +799,12 @@
       <workItem from="1489529590009" duration="24509000" />
       <workItem from="1489672585170" duration="59361000" />
       <workItem from="1490748173732" duration="8879000" />
-      <workItem from="1490762555914" duration="23775000" />
+      <workItem from="1490762555914" duration="24263000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="303853000" />
+    <option name="totallyTimeSpent" value="304341000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -819,9 +817,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="26" y="35" width="1313" height="1084" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21872541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21872541" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.49699247" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32880434" sideWeight="0.50300753" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1246,8 +1244,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/spec/controllers/pull_request_controller_spec.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2910">
-          <caret line="194" column="35" lean-forward="false" selection-start-line="194" selection-start-column="35" selection-end-line="194" selection-end-column="35" />
+        <state relative-caret-position="495">
+          <caret line="54" column="5" lean-forward="false" selection-start-line="54" selection-start-column="5" selection-end-line="54" selection-end-column="5" />
           <folding />
         </state>
       </provider>
