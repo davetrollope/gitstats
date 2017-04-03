@@ -8,7 +8,10 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+gem 'sqlite3', platform: 'ruby'
+#gem 'activerecord-jdbcsqlite3-adapter', platform: 'jruby'
+gem 'activerecord-jdbcmysql-adapter', '~> 5.0.pre1', platform: 'jruby'
+
 # Use Puma as the app server
 gem 'puma', '~> 3.0'
 # Use SCSS for stylesheets
@@ -21,6 +24,7 @@ gem 'coffee-rails', '~> 4.2'
 install_if -> { RUBY_PLATFORM =~ /linux/ } do
   gem 'therubyracer', platforms: :ruby
 end
+gem 'therubyrhino', platforms: :jruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
@@ -52,7 +56,7 @@ group :development, :test do
   gem 'byebug', platform: :mri
   # pry works in views, byebug doesnt.
   gem 'pry'
-  gem 'pry-stack_explorer'
+  gem 'pry-stack_explorer', platform: 'ruby'
 end
 
 group :development do
