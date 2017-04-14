@@ -88,5 +88,27 @@ RSpec.describe GithubDataFile do
 
       described_class.get_org_prs('test', 'prefix', 'testorg', state: 'open')
     end
+
+    it '.get_consolidated_user_prs creates a combined file' do
+      consolidated_filename = '000000_tester_open_consolidated_pr_data.json'
+
+      # Get user PR stubs
+      expect(described_class).to receive(:get_user_prs).with('test', '000000', 'tester', state: 'open')
+
+      # Consolidated file stubs/verification
+      expect(described_class).to receive(:file_set).with('test', '*_open_pr_data.json', 'tester').and_return(
+        ['000000_01_open_pr_data.json', '000000_02_open_pr_data.json']
+      )
+      expect(described_class).to receive(:load_file).with('000000_01_open_pr_data.json').and_return(
+        filename: '000000_01_open_pr_data.json', pr_data: [repo: 'x', a: 1], file_date: '000000'
+      )
+      expect(described_class).to receive(:load_file).with('000000_02_open_pr_data.json').and_return(
+        filename: '000000_02_open_pr_data.json', pr_data: [repo: 'x', a: 2], file_date: '000000'
+      )
+      expect(File).to receive(:write).with("test/#{consolidated_filename}",
+                                           [file_date: '000000', pr_data: [{ repo: 'x', a: 1.5 }]].to_json).and_return(nil)
+
+      described_class.get_consolidated_user_prs('test', '*_open_pr_data.json', '000000', :repo, 'tester', state: 'open')
+    end
   end
 end

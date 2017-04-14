@@ -4,7 +4,7 @@ RSpec.describe PullRequestController do
   let(:test_repos) { [ 'test/doctrine-postgis' ] }
 
   def days_since_test_data
-    ((Time.now - Time.parse('1/1/2017'))/60/60/24).to_i + 1
+    ((Time.now - Time.parse('1/1/2017')) / 60 / 60 / 24).to_i + 1
   end
 
   context '#set_filters' do

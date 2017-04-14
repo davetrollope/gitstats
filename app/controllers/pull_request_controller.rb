@@ -143,7 +143,7 @@ class PullRequestController < ApplicationController
   end
 
   def trend(state, primary_field)
-    session[:days] = 7 if session[:days] == 0
+    session[:days] = 7 if session[:days].to_i.zero?
 
     pattern = "*_#{state}_pr_data.json"
     build_project_list pattern
@@ -174,7 +174,7 @@ class PullRequestController < ApplicationController
     head = true
     view_data.delete_if {|file_hash| head &&= file_hash[:pr_data].empty?}
 
-    view_data = reduce_files_by_time view_data, session['view_type'] == 'author_summary' ? :author : :repo
+    view_data = GithubDataFile.reduce_json_files_by_time view_data, session['view_type'] == 'author_summary' ? :author : :repo
 
     @repos = repos.flatten.uniq
 
@@ -225,63 +225,6 @@ class PullRequestController < ApplicationController
       pr_data = pr_data.select {|hash| hash[field] > limit_time }
     end
     pr_data
-  end
-
-  def reduce_files_by_time(view_data, view_field)
-    dates = view_data.map {|file_hash| file_hash[:file_date] && file_hash[:file_date].sub(/_.*/, '') }.uniq
-    if dates.count < view_data.count
-      new_data = []
-
-      dates.each {|date|
-        r = Regexp.new "^#{date}"
-        day_data = view_data.select {|file_hash| file_hash[:file_date] =~ r }
-
-        dated_pr_data = []
-        dated_file_hash = { file_date: date, pr_data: dated_pr_data }
-        new_data << dated_file_hash
-
-        primary_data = day_data.map {|file_hash| file_hash[:pr_data].map {|summary| summary[view_field]}}.flatten.uniq
-        primary_data.each {|primary_value|
-          aggregate_day(dated_pr_data, day_data, view_field, primary_value)
-        }
-      }
-      view_data = new_data
-    end
-
-    view_data
-  end
-
-  def aggregate_day(dated_pr_data, day_data, view_field, value)
-    repo_pr_data = dated_pr_data.find { |pr_summary| pr_summary[view_field] == value }
-    if repo_pr_data.nil?
-      repo_pr_data = { repo: value, count: 0 }
-      dated_pr_data << repo_pr_data
-    end
-
-    day_data.each { |file_hash|
-      repo_day_data = file_hash[:pr_data].select { |summary| summary[view_field] == value }
-      repo_pr_data[:count] += repo_day_data.count
-      repo_pr_data[view_field] = value
-
-      next unless repo_day_data.present?
-      repo_day_data.first.keys.each { |key|
-        next unless [:repo, :author].exclude? key
-
-        day_total = repo_day_data.pluck(key).sum
-        if repo_pr_data[key].nil?
-          repo_pr_data[key] = day_total
-        else
-          repo_pr_data[key] += day_total
-        end
-      }
-    }
-
-    # Now divide totals to get average
-    repo_pr_data.keys.each { |key|
-      if [:repo, :author, :count].exclude? key
-        repo_pr_data[key] = repo_pr_data[key] / repo_pr_data[:count]
-      end
-    }
   end
 
   def include_only_merged_prs(pr_data)
