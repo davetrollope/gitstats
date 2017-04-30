@@ -25,9 +25,8 @@ class GithubDataFile
     new.export(output_path, expand_prefix(prefix, orgname, state), aggregated_pr_data)
   end
 
-  # rubocop:disable Metrics/ParameterLists
-  def self.get_consolidated_user_prs(output_path, pattern, prefix, primary_key, username = nil, options = {})
-    get_user_prs(output_path, prefix, username, options)
+  def self.get_consolidated_user_prs(output_path, pattern, prefix, username = nil, options = {})
+    get_user_prs(output_path, prefix, username, options) if options[:skip_fetch].nil?
 
     state = options[:state] || 'closed'
 
@@ -36,17 +35,9 @@ class GithubDataFile
 
     files = file_set(output_path, pattern, username)
 
-    reduce_files_by_time("#{output_path}/#{expanded_prefix}_consolidated_pr_data.json", files, prefix, primary_key)
-  end
-
-  def self.reduce_files_by_time(output_file, files, filedate, primary_key)
-    files.select {|file| file_date(file) == filedate}
-
-    alljson = files.map {|file| load_file(file) }
-
-    alljson = reduce_json_files_by_time alljson, primary_key
-
-    File.write(output_file, alljson.to_json)
+    reduce_files_by_time("#{output_path}/#{expanded_prefix}_consolidated_pr_data.json", files, prefix, [:repo, :author]) {|f, json|
+      GithubDataFile.customize_load f, json, "#{state}_consolidated_json"
+    }
   end
 
   def pr_field_sum(pr_data, repo_pr)
@@ -93,7 +84,23 @@ class GithubDataFile
       files.map {|s| s.sub(%r{^.*/}, '').sub(/[0-9_]+/, '').split('_')[0]}.uniq
     end
 
-    def reduce_json_files_by_time(json_data, view_field)
+    def reduce_files_by_time(output_file, files, filedate, primary_keys)
+      files.select {|file| file_date(file) == filedate}
+
+      alljson = files.map {|file|
+        file_hash = load_file(file)
+
+        file_hash[:pr_data] = yield(file, file_hash[:pr_data]) if block_given?
+
+        file_hash
+      }
+
+      alljson = reduce_json_files_by_time alljson, primary_keys
+
+      File.write(output_file, JSON.pretty_generate(alljson))
+    end
+
+    def reduce_json_files_by_time(json_data, view_fields)
       dates = json_data.map {|file_hash| file_hash[:file_date] && file_hash[:file_date].sub(/_.*/, '') }.uniq
       if dates.count < json_data.count
         new_data = []
@@ -106,12 +113,17 @@ class GithubDataFile
           dated_file_hash = { file_date: date, pr_data: dated_pr_data }
           new_data << dated_file_hash
 
-          primary_data = day_data.map {|file_hash| file_hash[:pr_data].map {|summary| summary[view_field]}}.flatten.uniq
-          primary_data.each {|primary_value|
-            aggregate_day(dated_pr_data, day_data, view_field, primary_value)
+          view_fields.each {|view_field|
+            primary_data = day_data.map {|file_hash|
+              file_hash[:pr_data].select {|summary| summary[view_field].present? }.map {|summary|
+                summary[view_field]
+              }
+            }.flatten.uniq
+            primary_data.each {|primary_value|
+              aggregate_day(dated_pr_data, day_data, view_field, primary_value)
+            }
           }
         }
-        new_data.each {|dated_file_hash| dated_file_hash[:pr_data].each {|summary| summary.delete(:count) } }
         json_data = new_data
       end
 
@@ -121,7 +133,7 @@ class GithubDataFile
     def aggregate_day(dated_pr_data, day_data, view_field, value)
       repo_pr_data = dated_pr_data.find { |pr_summary| pr_summary[view_field] == value }
       if repo_pr_data.nil?
-        repo_pr_data = { repo: value, count: 0 }
+        repo_pr_data = { view_field => value, count: 0 }
         dated_pr_data << repo_pr_data
       end
 
@@ -132,7 +144,7 @@ class GithubDataFile
 
         next unless repo_day_data.present?
         repo_day_data.first.keys.each { |key|
-          next unless [:repo, :author].exclude? key
+          next unless [:repo, :author, :created_at, :merged_at, :closed_at].exclude? key
 
           day_total = repo_day_data.pluck(key).compact.sum
           if repo_pr_data[key].nil?
@@ -148,6 +160,8 @@ class GithubDataFile
         if [:repo, :author, :count].exclude? key
           repo_pr_data[key] = repo_pr_data[key].to_f / repo_pr_data[:count]
         end
+
+        repo_pr_data[:total] = repo_pr_data[:count] / day_data.count
       }
     end
 
@@ -193,22 +207,12 @@ class GithubDataFile
       }
     end
 
-    def load_unique_data(path, pattern, project)
-      files = file_set(path, pattern, project)
-
-      pr_data = {}
-
-      files.each {|file|
-        file_hash = load_file(file)
-
-        file_hash[:pr_data].each {|pr|
-          id = "#{pr[:repo]}/#{pr[:id]}"
-          pr_data[id] = pr
-          pr_data[id][:file_date] = file_hash[:file_date]
-        }
-      }
-
-      pr_data.values
+    def customize_load(f, json, name)
+      if PrViewDataMappingHelper.respond_to? name
+        PrViewDataMappingHelper.send(name, f, json)
+      else
+        json
+      end
     end
   end
 end

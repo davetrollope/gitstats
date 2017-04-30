@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe PullRequestController do
   let(:test_repos) { [ 'test/doctrine-postgis' ] }
 
-  def days_since_test_data
-    ((Time.now - Time.parse('1/1/2017')) / 60 / 60 / 24).to_i + 1
+  def days_since_test_data(date = '1/1/2017')
+    ((Time.now - Time.parse(date)) / 60 / 60 / 24).to_i + 1
   end
 
   context '#set_filters' do
@@ -152,15 +152,6 @@ RSpec.describe PullRequestController do
     expect(session['project']).to eq('project')
   end
 
-  it '#customize_load returns original data if no mapping helper' do
-    expect(GithubDataFile).to receive(:file_set).and_return(['spec/fixtures/20170101_user_open_summary.json'])
-
-    allow(PrViewDataMappingHelper).to receive(:respond_to?).and_return(false)
-    get :open, format: 'json', session: { 'days': days_since_test_data, 'trend': 'trend' }
-
-    expect(response.code).to eq('200')
-  end
-
   [:author_summary, :repo_summary, :details].each {|view_type|
     it "#current handles no files #{view_type}" do
       expect(GithubDataFile).to receive(:most_recent).and_return(nil)
@@ -179,27 +170,55 @@ RSpec.describe PullRequestController do
       expect(response.code).to eq('200')
     end
 
-    it 'aggregates multiple days data' do
-      json_data = JSON.parse(File.read('spec/fixtures/20170101_user_open_summary.json'))
-      json_data.each(&:symbolize_keys!)
+    it 'renders multiple days' do
+      expect(GithubDataFile).to receive(:file_set).and_return([
+                                                                'spec/fixtures/20170412_open_consolidated_pr_data.json',
+                                                                'spec/fixtures/20170413_open_consolidated_pr_data.json'
+                                                              ])
 
-      json2_data = json_data.clone
-      json2_data.delete(json2_data.first)
+      expected_data = []
+      expected_data << JSON.parse(File.read('spec/fixtures/20170412_open_consolidated_pr_data.json'))
+      expected_data << JSON.parse(File.read('spec/fixtures/20170413_open_consolidated_pr_data.json'))
+      expected_data.flatten!
 
-      expect(GithubDataFile).to receive(:file_set).and_return(
-        ['000000_01_open_data.json', '000000_02_open_data.json', '0000001_01_open_data.json']
-      )
-      expect(GithubDataFile).to receive(:load_file).and_return(
-        filename: '000000_01_open_data.json', pr_data: json_data, file_date: '000000'
-      )
-      expect(GithubDataFile).to receive(:load_file).and_return(
-        filename: '000000_02_open_data.json', pr_data: json2_data, file_date: '000000'
-      )
-      expect(GithubDataFile).to receive(:load_file).and_return(
-        filename: '000001_01_open_data.json', pr_data: json2_data, file_date: '000001'
-      )
+      expected_data.each {|file_hash|
+        file_hash.symbolize_keys!
+        file_hash[:pr_data].each {|pr|
+          pr.symbolize_keys!
+          pr[:created_at] = Time.parse(file_hash[:file_date]).to_s
+        }
+        file_hash[:pr_data].reject! {|pr| pr[:author].present? || pr[:repo].nil?} # Getting repo summary so reject authors
+      }
 
-      get :open, session: { 'days': days_since_test_data, 'trend': 'trend' }
+      expect(controller).to receive(:render).with('_open_repo_summary_trend',
+                                                  locals: { file_data: expected_data }).and_call_original
+
+      get :open, session: { 'days': days_since_test_data('2017/4/12'), 'trend': 'trend' }
+
+      expect(response.code).to eq('200')
+    end
+
+    it 'filters old days' do
+      expect(GithubDataFile).to receive(:file_set).and_return([
+                                                                  'spec/fixtures/20170412_open_consolidated_pr_data.json',
+                                                                  'spec/fixtures/20170413_open_consolidated_pr_data.json'
+                                                              ])
+
+      expected_data = JSON.parse(File.read('spec/fixtures/20170413_open_consolidated_pr_data.json'))
+
+      expected_data.each {|file_hash|
+        file_hash.symbolize_keys!
+        file_hash[:pr_data].each {|pr|
+          pr.symbolize_keys!
+          pr[:created_at] = Time.parse(file_hash[:file_date]).to_s
+        }
+        file_hash[:pr_data].reject! {|pr| pr[:author].present? || pr[:repo].nil?} # Getting repo summary so reject authors
+      }
+
+      expect(controller).to receive(:render).with('_open_repo_summary_trend',
+                                                  locals: { file_data: expected_data }).and_call_original
+
+      get :open, session: { 'days': days_since_test_data('2017/4/13'), 'trend': 'trend' }
 
       expect(response.code).to eq('200')
     end

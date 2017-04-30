@@ -1,0 +1,1421 @@
+[
+  {
+    "file_date": "20170413",
+    "pr_data": [
+      {
+        "repo": "python/asyncio",
+        "count": 38,
+        "total": 19,
+        "authors": 8.263157894736842,
+        "open_time": 10840.099615018116,
+        "comment_count": 47.73684210526316,
+        "mergeable": 10.578947368421053,
+        "author": null
+      },
+      {
+        "repo": "python/community-starter-kit",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 44667.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/core-workflow",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 340.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/cpython",
+        "count": 2,
+        "total": 1,
+        "authors": 104.0,
+        "open_time": 751.1436170212766,
+        "comment_count": 611.5,
+        "mergeable": 153.0
+      },
+      {
+        "repo": "python/devguide",
+        "count": 2,
+        "total": 1,
+        "authors": 2.5,
+        "open_time": 667.8333333333333,
+        "comment_count": 11.0,
+        "mergeable": 2.5
+      },
+      {
+        "repo": "python/mypy",
+        "count": 2,
+        "total": 1,
+        "authors": 11.0,
+        "open_time": 721.9347826086956,
+        "comment_count": 61.0,
+        "mergeable": 13.0
+      },
+      {
+        "repo": "python/peps",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 242.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/psf-chef",
+        "count": 2,
+        "total": 1,
+        "authors": 2.0,
+        "open_time": 11926.5,
+        "comment_count": 3.0,
+        "mergeable": 2.0
+      },
+      {
+        "repo": "python/psf-docs",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 43225.0,
+        "comment_count": 0.0,
+        "mergeable": 2.0
+      },
+      {
+        "repo": "python/psf-fastly",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 22375.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/psf-salt",
+        "count": 2,
+        "total": 1,
+        "authors": 2.0,
+        "open_time": 13356.0,
+        "comment_count": 0.0,
+        "mergeable": 0.0
+      },
+      {
+        "repo": "python/pycon-code-of-conduct",
+        "count": 2,
+        "total": 1,
+        "authors": 3.0,
+        "open_time": 24509.666666666668,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/pypi-salt",
+        "count": 2,
+        "total": 1,
+        "authors": 3.0,
+        "open_time": 16036.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "repo": "python/pythondotorg",
+        "count": 2,
+        "total": 1,
+        "authors": 4.0,
+        "open_time": 7586.571428571428,
+        "comment_count": 8.0,
+        "mergeable": 5.0
+      },
+      {
+        "repo": "python/pythonineducation.org",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 6291.0,
+        "comment_count": 6.0,
+        "mergeable": 0.0
+      },
+      {
+        "repo": "python/typed_ast",
+        "count": 2,
+        "total": 1,
+        "authors": 1.0,
+        "open_time": 5776.0,
+        "comment_count": 5.0,
+        "mergeable": 0.0
+      },
+      {
+        "repo": "python/typeshed",
+        "count": 2,
+        "total": 1,
+        "authors": 6.0,
+        "open_time": 1065.142857142857,
+        "comment_count": 20.0,
+        "mergeable": 2.5
+      },
+      {
+        "repo": "python/typing",
+        "count": 2,
+        "total": 1,
+        "authors": 2.0,
+        "open_time": 873.0,
+        "comment_count": 1.0,
+        "mergeable": 3.0
+      },
+      {
+        "repo": null,
+        "count": 274,
+        "total": 137,
+        "repo_count": 1.1204379562043796,
+        "open_time": 3003.183270500789,
+        "comment_count": 6.200729927007299,
+        "mergeable": 1.437956204379562
+      },
+      {
+        "author": "1st1",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 3953.3333333333335,
+        "comment_count": 63.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "4kir4",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 736.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "adisbladis",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 905.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "akash0x53",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1322.0,
+        "comment_count": 14.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "akruis",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 185.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "aktech",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1386.5,
+        "comment_count": 7.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "aliles",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 43225.0,
+        "comment_count": 0.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "ambv",
+        "count": 1,
+        "total": 0,
+        "repo_count": 1.0,
+        "open_time": 549.0,
+        "comment_count": 12.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ameily",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 183.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ammaraskar",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 779.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "andreif",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1230.0,
+        "comment_count": 10.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "andrewnester",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1469.25,
+        "comment_count": 16.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "animalize",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 294.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ankostis",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 958.0,
+        "comment_count": 17.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "anton-ryzhov",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 675.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "appeltel",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1530.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "AraHaan",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1065.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "asvetlov",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 3763.0,
+        "comment_count": 7.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "berkerpeksag",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 7793.666666666667,
+        "comment_count": 3.0,
+        "mergeable": 5.0
+      },
+      {
+        "author": "bladebryan",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 246.0,
+        "comment_count": 1.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "bmwiedemann",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1216.0,
+        "comment_count": 14.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "Carreau",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1200.5,
+        "comment_count": 7.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "cblegare",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 599.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "chkumar246",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1396.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "chrysn",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 597.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "cocoatomo",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 395.5,
+        "comment_count": 3.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "csabella",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 415.0,
+        "comment_count": 12.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "CuriousLearner",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1394.0,
+        "comment_count": 10.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "daxlab",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 392.0,
+        "comment_count": 10.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "demianbrecht",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 256.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "denisra",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 3617.0,
+        "comment_count": 10.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "dhimmel",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1256.0,
+        "comment_count": 14.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "DimitrisJim",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 399.0,
+        "comment_count": 9.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "dmerejkowsky",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1456.0,
+        "comment_count": 8.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "dmoisset",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 90.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "doobeh",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 2303.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "dpoirier",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 13721.0,
+        "comment_count": 0.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "dsoprea",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1526.0,
+        "comment_count": 8.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "dstufft",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 26659.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "Eijebong",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 261.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "elazarg",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 802.875,
+        "comment_count": 16.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "embg",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 933.0,
+        "comment_count": 19.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ethanhs",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 591.75,
+        "comment_count": 8.0,
+        "mergeable": 0.5
+      },
+      {
+        "author": "euresti",
+        "count": 1,
+        "total": 0,
+        "repo_count": 1.0,
+        "open_time": 95.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ewdurbin",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 9828.5,
+        "comment_count": 0.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "fafhrd91",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1039.0,
+        "comment_count": 32.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "fgallaire",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1495.0,
+        "comment_count": 10.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "garvitdelhi",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 802.0,
+        "comment_count": 5.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "Ghost-script",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1395.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "giampaolo",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 236.5,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "gvanrossum",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 298.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "habnabit",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1574.0,
+        "comment_count": 10.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "harshul1610",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1366.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "haubi",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 721.5,
+        "comment_count": 3.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "haypo",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 619.8461538461538,
+        "comment_count": 24.0,
+        "mergeable": 8.0
+      },
+      {
+        "author": "holdenweb",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 35564.0,
+        "comment_count": 0.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "iamalbert",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 500.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ilevkivskyi",
+        "count": 2,
+        "total": 1,
+        "repo_count": 3.0,
+        "open_time": 820.75,
+        "comment_count": 6.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "inglesp",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 6291.0,
+        "comment_count": 6.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "ioanatia",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1410.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "jbarlow83",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1407.0,
+        "comment_count": 8.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "JDLH",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1541.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "JelleZijlstra",
+        "count": 2,
+        "total": 1,
+        "repo_count": 3.0,
+        "open_time": 702.3333333333334,
+        "comment_count": 25.0,
+        "mergeable": 0.5
+      },
+      {
+        "author": "jgarst",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 680.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "jkleint",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 760.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "johnw42",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 222.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "jstasiak",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1523.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "juliadolgova",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1278.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "JulienPalard",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1365.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "kirbyfan64",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 535.5,
+        "comment_count": 16.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "larryhastings",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 736.0,
+        "comment_count": 5.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "lelit",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1131.0,
+        "comment_count": 5.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "lisroach",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 515.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "lulouie",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 593.4285714285714,
+        "comment_count": 18.0,
+        "mergeable": 7.0
+      },
+      {
+        "author": "marco-buttu",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 894.3333333333334,
+        "comment_count": 7.0,
+        "mergeable": 3.0
+      },
+      {
+        "author": "Mariatta",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.5,
+        "open_time": 2559.083333333333,
+        "comment_count": 6.0,
+        "mergeable": 1.5
+      },
+      {
+        "author": "marienz",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 988.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "MarkMangoba",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1231.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "Martiusweb",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 4870.0,
+        "comment_count": 9.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "masklinn",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 503.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "matthiaskramm",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 2932.0,
+        "comment_count": 5.0,
+        "mergeable": 0.5
+      },
+      {
+        "author": "mattrobenolt",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 22375.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "maxbelanger",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1171.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "mayfield",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 4324.0,
+        "comment_count": 13.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "mcpeak",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 14783.0,
+        "comment_count": 2.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "methane",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 868.0,
+        "comment_count": 13.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "mircea-cosbuc",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 914.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "misg",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 332.0,
+        "comment_count": 5.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "MojoVampire",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 683.0,
+        "comment_count": 5.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "Mortal",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 331.0,
+        "comment_count": 7.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "MSeifert04",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 285.0,
+        "comment_count": 21.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "msornay",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 1944.0,
+        "comment_count": 8.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "ncoghlan",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 847.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "niklasf",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 766.5,
+        "comment_count": 8.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "nirs",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 686.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "njsmith",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 147.0,
+        "comment_count": 4.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "noplay",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 1196.0,
+        "comment_count": 8.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "olivielpeau",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1001.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "orenmn",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 841.3333333333334,
+        "comment_count": 5.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "orsenthil",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 272.0,
+        "comment_count": 3.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "palaviv",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 632.6666666666666,
+        "comment_count": 13.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "PavloKapyshin",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 144.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "PierreQuentel",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 311.0,
+        "comment_count": 1.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "pitrou",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 89.0,
+        "comment_count": 0.5,
+        "mergeable": 1.0
+      },
+      {
+        "author": "pkch",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 386.5,
+        "comment_count": 14.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "planrich",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 9975.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "prayerslayer",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1409.0,
+        "comment_count": 15.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "pv",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1553.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "rkday",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 305.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "Rosuav",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1175.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "rowillia",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 2632.0,
+        "comment_count": 9.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "satyaakam",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 44667.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "serhiy-storchaka",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 434.2916666666667,
+        "comment_count": 16.0,
+        "mergeable": 13.0
+      },
+      {
+        "author": "shubh3794",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 235.0,
+        "comment_count": 11.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "sixolet",
+        "count": 2,
+        "total": 1,
+        "repo_count": 2.0,
+        "open_time": 1926.6666666666667,
+        "comment_count": 18.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "slytomcat",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1347.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "Soares",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 786.0,
+        "comment_count": 3.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "ssbr",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 318.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "stratakis",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1036.0,
+        "comment_count": 8.0,
+        "mergeable": 4.0
+      },
+      {
+        "author": "tgoodlet",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1188.0,
+        "comment_count": 6.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "thebecwar",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 629.5,
+        "comment_count": 4.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "thewtex",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 473.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "timgraham",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 835.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "tiran",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 616.0,
+        "comment_count": 8.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "tobami",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 13878.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "tomMoral",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 264.0,
+        "comment_count": 3.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "ultimatecoder",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 500.0,
+        "comment_count": 4.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "vlasovskikh",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1911.0,
+        "comment_count": 1.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "vo-va",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 666.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "vxgmichel",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1084.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "warthog9",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 920.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "WilDoane",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 35662.0,
+        "comment_count": 0.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "wm75",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 291.0,
+        "comment_count": 1.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "xdegaye",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1442.0,
+        "comment_count": 0.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "yan12125",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1437.0,
+        "comment_count": 1.0,
+        "mergeable": 0.0
+      },
+      {
+        "author": "Yhg1s",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 332.0,
+        "comment_count": 2.0,
+        "mergeable": 1.0
+      },
+      {
+        "author": "zhangyangyu",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 1148.0,
+        "comment_count": 5.0,
+        "mergeable": 2.0
+      },
+      {
+        "author": "zware",
+        "count": 2,
+        "total": 1,
+        "repo_count": 1.0,
+        "open_time": 605.5,
+        "comment_count": 3.0,
+        "mergeable": 4.0
+      }
+    ]
+  }
+]

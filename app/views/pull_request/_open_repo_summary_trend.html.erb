@@ -5,7 +5,7 @@
 
   repos = file_data.map {|file_hash|
     file_hash[:pr_data].map {|pr| pr[:repo]}
-  }.flatten.uniq
+  }.flatten.compact.uniq
 
 %>
 

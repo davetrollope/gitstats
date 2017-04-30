@@ -36,8 +36,10 @@ RSpec.describe 'main endpoints' do
 
     context 'open trend' do
       before(:each) do
-        expect(GithubDataFile).to receive(:file_set).and_return(['spec/fixtures/20170101_user_open_summary.json',
-                                                                 'spec/fixtures/20170102_user_open_summary.json'])
+        expect(GithubDataFile).to receive(:file_set).and_return([
+                                                                  'spec/fixtures/20170412_open_consolidated_pr_data.json',
+                                                                  'spec/fixtures/20170413_open_consolidated_pr_data.json'
+                                                                ])
       end
 
       [:author_summary, :repo_summary, :details].each {|view_type|

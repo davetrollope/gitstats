@@ -1,4 +1,4 @@
-# rubocop:disable Metrics/ModuleLength
+require 'hash_arrays'
 module PrViewDataMappingHelper
   class << self
     def open_author_summary_json(_filename, pr_data)
@@ -39,30 +39,13 @@ module PrViewDataMappingHelper
       }
     end
 
+    def open_consolidated_json(filename, pr_data)
+      new_pr_data = open_repo_summary_json(filename, pr_data)
+      new_pr_data.concat open_author_summary_json(filename, pr_data)
+    end
+
     def open_details_json(_filename, pr_data)
       pr_data.sort_by! {|pr| pr[:repo].downcase}
-    end
-
-    def open_repo_summary_trend_json(filename, file_hash)
-      file_hash[:pr_data].each {|pr|
-        pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
-      }
-      pr_data = file_hash[:pr_data]
-
-      file_hash[:pr_data] = open_repo_summary_json(filename, pr_data)
-
-      file_hash
-    end
-
-    def open_author_summary_trend_json(filename, file_hash)
-      file_hash[:pr_data].each {|pr|
-        pr[:created_date] = DateTime.parse(pr[:created_at]).strftime('%Y%m%d')
-      }
-      pr_data = file_hash[:pr_data]
-
-      file_hash[:pr_data] = open_author_summary_json(filename, pr_data)
-
-      file_hash
     end
 
     def open_time(pr)

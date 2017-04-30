@@ -108,9 +108,10 @@ class PullRequestController < ApplicationController
       @file = file_hash[:filename]
 
       pr_data = file_hash[:pr_data].where(state: state)
-      @start_time = earliest_data pr_data
 
-      pr_data = reduce_by_time pr_data, primary_field
+      update_start_time(pr_data)
+
+      pr_data = reduce_by_date_field pr_data, primary_field
 
       pr_data = yield(pr_data) if block_given?
 
@@ -118,7 +119,7 @@ class PullRequestController < ApplicationController
 
       pr_data = reduce_to_current_repos pr_data
 
-      pr_data = customize_load @file, pr_data, "#{state}_#{session['view_type']}_json"
+      pr_data = GithubDataFile.customize_load @file, pr_data, "#{state}_#{session['view_type']}_json"
 
       file_hash[:pr_data] = pr_data
 
@@ -142,41 +143,47 @@ class PullRequestController < ApplicationController
     end
   end
 
-  def trend(state, primary_field)
+  def trend(state, _primary_field)
     session[:days] = 7 if session[:days].to_i.zero?
 
-    pattern = "*_#{state}_pr_data.json"
+    pattern = "*_#{state}_consolidated_pr_data.json"
     build_project_list pattern
 
     repos = []
-
-    if view_type == 'details'
-      pr_data = GithubDataFile.load_unique_data 'archive', pattern, session['project']
-
-      view_data = [{ pr_data: pr_data }]
-    else
-      view_data = GithubDataFile.load_files 'archive', pattern, session['project'] {|f, json|
-        start_time = earliest_data json[:pr_data]
-        @start_time = start_time if @start_time.nil? || start_time < @start_time
-
-        json[:pr_data] = reduce_by_time json[:pr_data], primary_field
-
-        repos << build_repo_list(json[:pr_data])
-
-        json[:pr_data] = reduce_to_current_repos json[:pr_data]
-
-        customize_load f, json, "#{state}_#{session['view_type']}_trend_json"
+    view_data = GithubDataFile.load_files 'archive', pattern, session['project'] {|f, file_hash|
+      json = file_hash[:pr_data].first
+      json[:pr_data].each {|pr|
+        pr.symbolize_keys!
+        pr[:created_at] = Time.parse(file_hash[:file_date]).to_s
       }
-    end
-    @file = ''
+
+      update_start_time(json[:pr_data])
+
+      reduce_by_filedate json
+
+      repos << build_repo_list(json[:pr_data])
+
+      json[:pr_data] = reduce_to_current_repos json[:pr_data]
+
+      GithubDataFile.customize_load f, json, "#{state}_#{session['view_type']}_trend_json"
+    }
+    @repos = repos.flatten.uniq
+
+    view_data.reject! {|file_hash| file_hash[:file_date].nil? }
+
+    @file = "*_#{session[:project]}_#{state}_consolidated_pr_data.json"
 
     # trim empty data from the head only
     head = true
     view_data.delete_if {|file_hash| head &&= file_hash[:pr_data].empty?}
 
-    view_data = GithubDataFile.reduce_json_files_by_time view_data, session['view_type'] == 'author_summary' ? :author : :repo
-
-    @repos = repos.flatten.uniq
+    if %w(repo_summary author_summary).include? session['view_type']
+      keymap = { 'repo_summary' => :repo, 'author_summary' => :author }
+      key = keymap[session['view_type']]
+      view_data.each {|file_hash|
+        file_hash[:pr_data].reject! {|pr| pr[key].nil? }
+      }
+    end
 
     session['view_type'] ||= 'repo_summary'
 
@@ -192,6 +199,11 @@ class PullRequestController < ApplicationController
         render json: view_data
       }
     end
+  end
+
+  def update_start_time(pr_data)
+    start_time = earliest_data pr_data
+    @start_time = start_time if @start_time.nil? || start_time < @start_time
   end
 
   def build_project_list(pattern)
@@ -218,13 +230,25 @@ class PullRequestController < ApplicationController
     pr_data.present? ? Time.parse(pr_data.map {|hash| hash[:created_at]}.sort.first) : nil
   end
 
-  def reduce_by_time(pr_data, field)
+  def reduce_by_date_field(pr_data, field)
     days = filter_value?(:days, 7).to_i
     if days > 0
       limit_time = Time.now - days.days
       pr_data = pr_data.select {|hash| hash[field] > limit_time }
     end
     pr_data
+  end
+
+  def reduce_by_filedate(file_hash)
+    days = filter_value?(:days, 7).to_i
+    return if days <= 0
+
+    d = Date.parse file_hash[:file_date]
+    limit_time = Time.now - days.days
+    return if d > limit_time
+
+    file_hash[:pr_data] = []
+    file_hash[:file_date] = nil
   end
 
   def include_only_merged_prs(pr_data)
@@ -235,13 +259,5 @@ class PullRequestController < ApplicationController
     project_repo_field = "#{session['project']}_repos"
 
     session[project_repo_field].present? ? pr_data.select {|hash| session[project_repo_field].include? hash[:repo]} : pr_data
-  end
-
-  def customize_load(f, json, name)
-    if PrViewDataMappingHelper.respond_to? name
-      PrViewDataMappingHelper.send(name, f, json)
-    else
-      json
-    end
   end
 end

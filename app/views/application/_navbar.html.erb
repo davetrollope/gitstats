@@ -10,15 +10,13 @@
       <ul class="dropdown-menu" style="width: 300px;">
         <%= form_tag("/pull_request/set_filters", method: "put", remote: true) do %>
           <table align="center" width="100%" style="border-spacing: 3px; border-collapse: separate;">
-            <tr><td colspan="2" align="center">
-              <% if @start_time.present? %>
+            <% if @start_time.present? %>
+              <tr><td colspan="2" align="center">
                   unfiltered data available:<br>
                   <%= distance_of_time_in_words(@start_time,Time.now) %>
-              <% else %>
-                  no data
-              <% end %>
-            </td></tr>
-            <tr><td colspan="2"><li class="divider"></li></td></tr>
+              </td></tr>
+              <tr><td colspan="2"><li class="divider"></li></td></tr>
+            <% end %>
 
             <% repo_list = controller.repos.map {|repo| [repo, repo]}
                if repo_list.count > 1 %>

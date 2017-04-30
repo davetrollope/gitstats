@@ -4,7 +4,7 @@
   }
   authors = file_data.map {|file_hash|
     file_hash[:pr_data].map {|pr| pr[:author]}
-  }.flatten.uniq
+  }.flatten.compact.uniq
 %>
 
 <h1 align="center">Open Pull Request Trends</h1><h2 align="center">Author Summary</h2>

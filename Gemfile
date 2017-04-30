@@ -9,7 +9,7 @@ end
 gem 'rails', '~> 5.0.1'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', platform: 'ruby'
-#gem 'activerecord-jdbcsqlite3-adapter', platform: 'jruby'
+# gem 'activerecord-jdbcsqlite3-adapter', platform: 'jruby'
 gem 'activerecord-jdbcmysql-adapter', '~> 5.0.pre1', platform: 'jruby'
 
 # Use Puma as the app server
