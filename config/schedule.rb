@@ -24,47 +24,47 @@
 # Open PRs
 every :hour, at: 0 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'ruby', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'ruby', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'ruby', state: 'open'"
 end
 
 every :hour, at: 5 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'rails', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'rails', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'rails', state: 'open'"
 end
 
 every :hour, at: 10 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'python', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'python', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'python', state: 'open'"
 end
 
 every :hour, at: 15 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'golang', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'golang', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'golang', state: 'open'"
 end
 
 every :hour, at: 20 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'elixir-lang', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'elixir-lang', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'elixir-lang', state: 'open'"
 end
 
 every :hour, at: 25 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'clojure', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, :repo, 'clojure', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, :repo, 'clojure', state: 'open'"
 end
 
 every :hour, at: 30 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'jruby', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'jruby', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'jruby', state: 'open'"
 end
 
 every :hour, at: 35 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'graalvm', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'graalvm', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'graalvm', state: 'open'"
 end
 
 every :hour, at: 40 do
   runner "require 'github_data_file'; GithubDataFile.get_user_prs 'archive', GithubDataFile.prefix_hour, 'erlang', state: 'open'"
-  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', '*_open_pr_data.json', GithubDataFile.prefix_today, 'erlang', state: 'open'"
+  runner "require 'github_data_file'; GithubDataFile.get_consolidated_user_prs 'archive', \"#{GithubDataFile.prefix_today}*_open_pr_data.json\", GithubDataFile.prefix_today, 'erlang', state: 'open'"
 end
 
 # Closed PRs
